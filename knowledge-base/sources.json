@@ -1,0 +1,692 @@
+[
+  {
+    "id": "zh-ex-01",
+    "topic": "existentialism",
+    "title": "如何理解「存在先于本质」、「他人即地狱」、「人即自由」？",
+    "url": "https://www.zhihu.com/question/20457436",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "存在",
+      "本质",
+      "萨特",
+      "自由"
+    ],
+    "guide": "带着三个命题进入讨论。先辨认它们分别回应什么问题，不把它们拼成一句生活口号。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-02",
+    "topic": "existentialism",
+    "title": "究竟什么是存在主义？",
+    "url": "https://www.zhihu.com/question/269967823?sort=created",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "存在主义",
+      "入门",
+      "定义"
+    ],
+    "guide": "适合寻找日常语言的解释。对照学术导论，分开作者自己的比喻与对哲学概念的解释。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-03",
+    "topic": "existentialism",
+    "title": "加缪和萨特的区别在于哪些方面？",
+    "url": "https://www.zhihu.com/question/20078096",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "加缪",
+      "萨特",
+      "比较"
+    ],
+    "guide": "先做比较表：各自在问什么、给出了什么回应。文学关系、个人关系与哲学分歧并不是同一件事。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-04",
+    "topic": "existentialism",
+    "title": "存在主义和荒诞主义有什么关系？加缪的荒诞和萨特的荒诞有什么区别？",
+    "url": "https://www.zhihu.com/question/359313449",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "荒诞",
+      "加缪",
+      "分歧"
+    ],
+    "guide": "留意同一个词在不同作者那里是否含义相同。别把相邻的思想直接归为一个没有分歧的派别。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-05",
+    "topic": "existentialism",
+    "title": "\"存在先于本质\"中的\"存在\"和\"本质\"指的是什么？",
+    "url": "https://www.zhihu.com/question/306958528",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "存在",
+      "本质",
+      "概念"
+    ],
+    "guide": "把命题拆成术语来读，比只记住结论更有用。检查回答讨论的是物的用途，还是人的生活。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-06",
+    "topic": "existentialism",
+    "title": "该如何理解：“存在先于本质”？",
+    "url": "https://www.zhihu.com/question/23248223",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "选择",
+      "萨特",
+      "本质"
+    ],
+    "guide": "尝试把某条解释放进具体情境，再说明这个例子能说明什么、不能说明什么。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-07",
+    "topic": "existentialism",
+    "title": "如何理解存在主义，如何阅读荒诞文学，例如加缪的文学作品？",
+    "url": "https://www.zhihu.com/question/638494690",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "加缪",
+      "文学",
+      "阅读"
+    ],
+    "guide": "把小说人物的处境与作者的论证区分开。文学阅读可以打开问题，但不是概念的唯一证据。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ex-08",
+    "topic": "existentialism",
+    "title": "如何理解存在主义的存在？",
+    "url": "https://www.zhihu.com/question/267071624",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "前史",
+      "存在",
+      "哲学史"
+    ],
+    "guide": "适合追问不同思想家究竟是否在谈同一个问题。把历史背景与某个作者的具体立场分开。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-01",
+    "topic": "ai-agents",
+    "title": "如何通俗的介绍什么是AI agent？",
+    "url": "https://www.zhihu.com/question/1915789507632011097",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "agent",
+      "定义",
+      "工具"
+    ],
+    "guide": "从任务目标、可调用工具、反馈与停止条件四个角度比较回答，而不是只比较定义的长短。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-02",
+    "topic": "ai-agents",
+    "title": "一文彻底搞懂什么是AI Agent",
+    "url": "https://zhuanlan.zhihu.com/p/32539830815",
+    "author": "数字梦想家",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "agent",
+      "入门",
+      "应用"
+    ],
+    "guide": "这是概念入门的讨论入口。阅读时核对：文字中说能做的事，是否真的有工具和执行记录支持。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-03",
+    "topic": "ai-agents",
+    "title": "Workflow 与 Agent 的区别：从原理到实践的完整指南",
+    "url": "https://zhuanlan.zhihu.com/p/2035484715608700220",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "workflow",
+      "工作流",
+      "动态规划"
+    ],
+    "guide": "用它提出选型问题，再与 Anthropic 的官方架构说明对读：谁决定下一步，流程由什么约束？",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-04",
+    "topic": "ai-agents",
+    "title": "AI Agent 入门指南（一）：综述",
+    "url": "https://zhuanlan.zhihu.com/p/1991985667622840199",
+    "author": "VoidOc",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "agent",
+      "架构",
+      "工具",
+      "入门"
+    ],
+    "guide": "适合建立术语清单。不要把综述中涉及的每项技术都当成首版应用的必要组件。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-05",
+    "topic": "ai-agents",
+    "title": "ReAct：AI Agent 的推理与行动融合框架",
+    "url": "https://zhuanlan.zhihu.com/p/1935762059888419552",
+    "author": "Deductionist",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "react",
+      "行动",
+      "观察"
+    ],
+    "guide": "结合论文作者项目页阅读，重点看行动和观察如何交替，而不是把解释文本当成真实工具执行。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-06",
+    "topic": "ai-agents",
+    "title": "手把手带你写一个 ReAct 智能体：从架构拆解到工程避坑（附源码）",
+    "url": "https://zhuanlan.zhihu.com/p/1990507103245333960",
+    "author": "melon的算法日记",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "react",
+      "工程",
+      "失败"
+    ],
+    "guide": "用工程问题检查自己的实现：失败结果是否回到下一次决策？重试是否有次数上限？",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-07",
+    "topic": "ai-agents",
+    "title": "大模型的幻觉 (Hallucination) 因何而来？如何解决幻觉问题？",
+    "url": "https://zhuanlan.zhihu.com/p/662550362",
+    "author": "Baihai",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "幻觉",
+      "检索",
+      "可靠性"
+    ],
+    "guide": "阅读时区分语言答案错误、工具执行失败与无依据的成功声明。本 Demo 不把检索等同于事实保证。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-ai-08",
+    "topic": "ai-agents",
+    "title": "Agent系统如何约束大模型幻觉？约束后还幻觉怎么办？",
+    "url": "https://zhuanlan.zhihu.com/p/2040835109855749610",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "约束",
+      "校验",
+      "幻觉"
+    ],
+    "guide": "带着权限、证据、校验、停止四个问题读。源内容属于工程讨论入口，不作为安全保证。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-01",
+    "topic": "critical-thinking",
+    "title": "如何培养批判性思维？",
+    "url": "https://www.zhihu.com/question/21206479?sort=created",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "批判性思维",
+      "训练"
+    ],
+    "guide": "尝试将建议转成可操作的检查：主张是什么，证据是什么，还缺什么？不同回答不是一套统一课程。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-02",
+    "topic": "critical-thinking",
+    "title": "如何区分事实（fact）和观点（view）？",
+    "url": "https://www.zhihu.com/question/326831974",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "事实",
+      "观点",
+      "判断"
+    ],
+    "guide": "先问陈述能否核查，再问它实际上有没有证据支持。可以核查的陈述也可能是错误的。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-03",
+    "topic": "critical-thinking",
+    "title": "区分“事实”与“观点” Fact VS Opinion",
+    "url": "https://zhuanlan.zhihu.com/p/267927580",
+    "author": "HAHAPPYPPY",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "事实",
+      "观点",
+      "分类"
+    ],
+    "guide": "使用生活例子做区分练习，但不要把“事实型陈述”误解为“已证明为真”。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-04",
+    "topic": "critical-thinking",
+    "title": "相关性和因果性有什么区别？",
+    "url": "https://www.zhihu.com/question/24029893",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "相关",
+      "因果",
+      "干预"
+    ],
+    "guide": "关键追问是：如果主动改变 A，B 会怎样？一起变化的观察不足以独自回答这个问题。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-05",
+    "topic": "critical-thinking",
+    "title": "我们如何区分相关性和因果关系？",
+    "url": "https://www.zhihu.com/question/413769450",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "因果",
+      "混杂",
+      "研究"
+    ],
+    "guide": "比较不同回答依赖的研究设计和假设。避免另一个极端：把所有观察性证据都说成完全无用。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-06",
+    "topic": "critical-thinking",
+    "title": "幸存者偏差对于统计来说影响大吗？",
+    "url": "https://www.zhihu.com/question/1909258859383621450",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "样本",
+      "幸存者偏差",
+      "统计"
+    ],
+    "guide": "先画出谁进入了样本、谁被排除，再讨论推论。返航飞机只是比喻，真正问题是选择机制。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-07",
+    "topic": "critical-thinking",
+    "title": "确认偏误是什么？如何系统地克服确认偏误？",
+    "url": "https://www.zhihu.com/question/25345397",
+    "author": null,
+    "publisher": "知乎",
+    "kind": "问题讨论",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "确认偏误",
+      "反例",
+      "证据"
+    ],
+    "guide": "写出一条能使自己改主意的证据，再去找它，而不是只收集让自己安心的材料。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "zh-th-08",
+    "topic": "critical-thinking",
+    "title": "[读书笔记] [深入浅出数据分析] [第六章] [第二节]贝叶斯推断",
+    "url": "https://zhuanlan.zhihu.com/p/420691371",
+    "author": "兰胖子",
+    "publisher": "知乎",
+    "kind": "专栏",
+    "access": "index-only",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "贝叶斯",
+      "先验",
+      "更新"
+    ],
+    "guide": "与概率教材对照，区分先验、似然和后验。本 Demo 的数值练习使用公开标注的虚构数据。",
+    "summaryKind": "本项目阅读提示，非原文摘要",
+    "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+  },
+  {
+    "id": "sep-existentialism",
+    "topic": "existentialism",
+    "title": "Existentialism",
+    "url": "https://plato.stanford.edu/entries/existentialism/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "存在主义",
+      "前史",
+      "概念"
+    ],
+    "guide": "用于核对存在主义并非单一教义，以及它的问题范围和思想背景。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "sep-sartre",
+    "topic": "existentialism",
+    "title": "Jean-Paul Sartre",
+    "url": "https://plato.stanford.edu/entries/sartre/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "萨特",
+      "自由",
+      "责任"
+    ],
+    "guide": "用于核对萨特的自由、处境与自欺概念；阅读相关章节，而非截取一句口号。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "sep-beauvoir",
+    "topic": "existentialism",
+    "title": "Simone de Beauvoir",
+    "url": "https://plato.stanford.edu/entries/beauvoir/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "波伏瓦",
+      "处境",
+      "他人"
+    ],
+    "guide": "用于理解处境中的自由和对他人的责任。波伏瓦在此被作为独立思想家对待。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "sep-camus",
+    "topic": "existentialism",
+    "title": "Albert Camus",
+    "url": "https://plato.stanford.edu/entries/camus/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "加缪",
+      "荒诞",
+      "反抗"
+    ],
+    "guide": "用于区分加缪与存在主义标签的关系，以及其对荒诞问题的回应。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "sep-authenticity",
+    "topic": "existentialism",
+    "title": "Authenticity",
+    "url": "https://plato.stanford.edu/entries/authenticity/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "本真",
+      "真实性",
+      "自我"
+    ],
+    "guide": "用于理解真实性概念的不同历史含义，防止将其直接等同于“只要做自己”。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "anthropic-agents",
+    "topic": "ai-agents",
+    "title": "Building effective agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "publisher": "Anthropic · Engineering",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "agent",
+      "workflow",
+      "工作流",
+      "停止"
+    ],
+    "guide": "官方工程说明：按预定代码路径组织的工作流，与模型动态决定过程的智能体有区别。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "react-paper",
+    "topic": "ai-agents",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "url": "https://react-lm.github.io/",
+    "publisher": "ReAct · 论文作者项目页",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "react",
+      "反馈",
+      "观察",
+      "行动"
+    ],
+    "guide": "介绍推理与外部行动交替的研究方法。Demo 展示的是公开的工具事件，不是模型的内部思考。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "anthropic-tools",
+    "topic": "ai-agents",
+    "title": "Introducing advanced tool use on the Claude Developer Platform",
+    "url": "https://www.anthropic.com/engineering/advanced-tool-use",
+    "publisher": "Anthropic · Engineering",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "工具",
+      "输入",
+      "工具搜索",
+      "执行"
+    ],
+    "guide": "作为工具使用机制的官方补充。Demo 工具在本地执行，不把模拟结果冒充真实联网调用。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "sep-critical",
+    "topic": "critical-thinking",
+    "title": "Critical Thinking",
+    "url": "https://plato.stanford.edu/entries/critical-thinking/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "批判",
+      "判断",
+      "证据"
+    ],
+    "guide": "以反思、理由和自我修正理解批判性思维，而不是把怀疑一切当成目标。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "sep-science",
+    "topic": "critical-thinking",
+    "title": "Scientific Method",
+    "url": "https://plato.stanford.edu/entries/scientific-method/",
+    "publisher": "Stanford Encyclopedia of Philosophy",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "科学",
+      "证据",
+      "假设",
+      "因果"
+    ],
+    "guide": "用于讨论假设、观察与检验。方法需要具体条件，并不是一张万能的检查表。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "brown-bayes",
+    "topic": "critical-thinking",
+    "title": "Seeing Theory · Bayesian Inference",
+    "url": "https://seeing-theory.brown.edu/bayesian-inference/index.html",
+    "publisher": "Brown University · Seeing Theory",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "贝叶斯",
+      "先验",
+      "后验",
+      "概率"
+    ],
+    "guide": "概率更新练习的参考。界面里每个概率都来自写明的教学假设，而不是对现实用户的评估。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  },
+  {
+    "id": "brown-regression",
+    "topic": "critical-thinking",
+    "title": "Seeing Theory · Regression Analysis",
+    "url": "https://seeing-theory.brown.edu/regression-analysis/index.html",
+    "publisher": "Brown University · Seeing Theory",
+    "author": null,
+    "kind": "参考原始页面",
+    "access": "page-read",
+    "checkedAt": "2026-09-13",
+    "tags": [
+      "相关",
+      "回归",
+      "样本"
+    ],
+    "guide": "以可交互的统计图理解变量关系。这里只借鉴操作后观察变化的教学方式，不复制其实现。",
+    "summaryKind": "本项目导读，非原文转载",
+    "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+  }
+]

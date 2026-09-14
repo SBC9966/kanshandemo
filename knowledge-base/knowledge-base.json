@@ -1,0 +1,3472 @@
+{
+  "version": "2.0.0",
+  "researchedAt": "2026-09-13",
+  "description": "可离线使用的策展型学习知识库。24个知乎条目为搜索索引及部分摘要，不包含完整回答；12个公开参考页读取了相关段落。所有导读和练习是本项目编写，不是原文转载。",
+  "retrieval": "本地分词与关键词匹配，不是实时联网或向量RAG",
+  "audit": {
+    "ok": true,
+    "errors": [],
+    "sources": 36,
+    "zhihu": 24,
+    "readable": 12,
+    "units": 15,
+    "questions": 24,
+    "concepts": 30
+  },
+  "sources": [
+    {
+      "id": "zh-ex-01",
+      "topic": "existentialism",
+      "title": "如何理解「存在先于本质」、「他人即地狱」、「人即自由」？",
+      "url": "https://www.zhihu.com/question/20457436",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "存在",
+        "本质",
+        "萨特",
+        "自由"
+      ],
+      "guide": "带着三个命题进入讨论。先辨认它们分别回应什么问题，不把它们拼成一句生活口号。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-02",
+      "topic": "existentialism",
+      "title": "究竟什么是存在主义？",
+      "url": "https://www.zhihu.com/question/269967823?sort=created",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "存在主义",
+        "入门",
+        "定义"
+      ],
+      "guide": "适合寻找日常语言的解释。对照学术导论，分开作者自己的比喻与对哲学概念的解释。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-03",
+      "topic": "existentialism",
+      "title": "加缪和萨特的区别在于哪些方面？",
+      "url": "https://www.zhihu.com/question/20078096",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "加缪",
+        "萨特",
+        "比较"
+      ],
+      "guide": "先做比较表：各自在问什么、给出了什么回应。文学关系、个人关系与哲学分歧并不是同一件事。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-04",
+      "topic": "existentialism",
+      "title": "存在主义和荒诞主义有什么关系？加缪的荒诞和萨特的荒诞有什么区别？",
+      "url": "https://www.zhihu.com/question/359313449",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "荒诞",
+        "加缪",
+        "分歧"
+      ],
+      "guide": "留意同一个词在不同作者那里是否含义相同。别把相邻的思想直接归为一个没有分歧的派别。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-05",
+      "topic": "existentialism",
+      "title": "\"存在先于本质\"中的\"存在\"和\"本质\"指的是什么？",
+      "url": "https://www.zhihu.com/question/306958528",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "存在",
+        "本质",
+        "概念"
+      ],
+      "guide": "把命题拆成术语来读，比只记住结论更有用。检查回答讨论的是物的用途，还是人的生活。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-06",
+      "topic": "existentialism",
+      "title": "该如何理解：“存在先于本质”？",
+      "url": "https://www.zhihu.com/question/23248223",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "选择",
+        "萨特",
+        "本质"
+      ],
+      "guide": "尝试把某条解释放进具体情境，再说明这个例子能说明什么、不能说明什么。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-07",
+      "topic": "existentialism",
+      "title": "如何理解存在主义，如何阅读荒诞文学，例如加缪的文学作品？",
+      "url": "https://www.zhihu.com/question/638494690",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "加缪",
+        "文学",
+        "阅读"
+      ],
+      "guide": "把小说人物的处境与作者的论证区分开。文学阅读可以打开问题，但不是概念的唯一证据。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ex-08",
+      "topic": "existentialism",
+      "title": "如何理解存在主义的存在？",
+      "url": "https://www.zhihu.com/question/267071624",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "前史",
+        "存在",
+        "哲学史"
+      ],
+      "guide": "适合追问不同思想家究竟是否在谈同一个问题。把历史背景与某个作者的具体立场分开。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-01",
+      "topic": "ai-agents",
+      "title": "如何通俗的介绍什么是AI agent？",
+      "url": "https://www.zhihu.com/question/1915789507632011097",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "agent",
+        "定义",
+        "工具"
+      ],
+      "guide": "从任务目标、可调用工具、反馈与停止条件四个角度比较回答，而不是只比较定义的长短。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-02",
+      "topic": "ai-agents",
+      "title": "一文彻底搞懂什么是AI Agent",
+      "url": "https://zhuanlan.zhihu.com/p/32539830815",
+      "author": "数字梦想家",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "agent",
+        "入门",
+        "应用"
+      ],
+      "guide": "这是概念入门的讨论入口。阅读时核对：文字中说能做的事，是否真的有工具和执行记录支持。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-03",
+      "topic": "ai-agents",
+      "title": "Workflow 与 Agent 的区别：从原理到实践的完整指南",
+      "url": "https://zhuanlan.zhihu.com/p/2035484715608700220",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "workflow",
+        "工作流",
+        "动态规划"
+      ],
+      "guide": "用它提出选型问题，再与 Anthropic 的官方架构说明对读：谁决定下一步，流程由什么约束？",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-04",
+      "topic": "ai-agents",
+      "title": "AI Agent 入门指南（一）：综述",
+      "url": "https://zhuanlan.zhihu.com/p/1991985667622840199",
+      "author": "VoidOc",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "agent",
+        "架构",
+        "工具",
+        "入门"
+      ],
+      "guide": "适合建立术语清单。不要把综述中涉及的每项技术都当成首版应用的必要组件。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-05",
+      "topic": "ai-agents",
+      "title": "ReAct：AI Agent 的推理与行动融合框架",
+      "url": "https://zhuanlan.zhihu.com/p/1935762059888419552",
+      "author": "Deductionist",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "react",
+        "行动",
+        "观察"
+      ],
+      "guide": "结合论文作者项目页阅读，重点看行动和观察如何交替，而不是把解释文本当成真实工具执行。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-06",
+      "topic": "ai-agents",
+      "title": "手把手带你写一个 ReAct 智能体：从架构拆解到工程避坑（附源码）",
+      "url": "https://zhuanlan.zhihu.com/p/1990507103245333960",
+      "author": "melon的算法日记",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "react",
+        "工程",
+        "失败"
+      ],
+      "guide": "用工程问题检查自己的实现：失败结果是否回到下一次决策？重试是否有次数上限？",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-07",
+      "topic": "ai-agents",
+      "title": "大模型的幻觉 (Hallucination) 因何而来？如何解决幻觉问题？",
+      "url": "https://zhuanlan.zhihu.com/p/662550362",
+      "author": "Baihai",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "幻觉",
+        "检索",
+        "可靠性"
+      ],
+      "guide": "阅读时区分语言答案错误、工具执行失败与无依据的成功声明。本 Demo 不把检索等同于事实保证。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-ai-08",
+      "topic": "ai-agents",
+      "title": "Agent系统如何约束大模型幻觉？约束后还幻觉怎么办？",
+      "url": "https://zhuanlan.zhihu.com/p/2040835109855749610",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "约束",
+        "校验",
+        "幻觉"
+      ],
+      "guide": "带着权限、证据、校验、停止四个问题读。源内容属于工程讨论入口，不作为安全保证。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-01",
+      "topic": "critical-thinking",
+      "title": "如何培养批判性思维？",
+      "url": "https://www.zhihu.com/question/21206479?sort=created",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "批判性思维",
+        "训练"
+      ],
+      "guide": "尝试将建议转成可操作的检查：主张是什么，证据是什么，还缺什么？不同回答不是一套统一课程。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-02",
+      "topic": "critical-thinking",
+      "title": "如何区分事实（fact）和观点（view）？",
+      "url": "https://www.zhihu.com/question/326831974",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "事实",
+        "观点",
+        "判断"
+      ],
+      "guide": "先问陈述能否核查，再问它实际上有没有证据支持。可以核查的陈述也可能是错误的。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-03",
+      "topic": "critical-thinking",
+      "title": "区分“事实”与“观点” Fact VS Opinion",
+      "url": "https://zhuanlan.zhihu.com/p/267927580",
+      "author": "HAHAPPYPPY",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "事实",
+        "观点",
+        "分类"
+      ],
+      "guide": "使用生活例子做区分练习，但不要把“事实型陈述”误解为“已证明为真”。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-04",
+      "topic": "critical-thinking",
+      "title": "相关性和因果性有什么区别？",
+      "url": "https://www.zhihu.com/question/24029893",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "相关",
+        "因果",
+        "干预"
+      ],
+      "guide": "关键追问是：如果主动改变 A，B 会怎样？一起变化的观察不足以独自回答这个问题。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-05",
+      "topic": "critical-thinking",
+      "title": "我们如何区分相关性和因果关系？",
+      "url": "https://www.zhihu.com/question/413769450",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "因果",
+        "混杂",
+        "研究"
+      ],
+      "guide": "比较不同回答依赖的研究设计和假设。避免另一个极端：把所有观察性证据都说成完全无用。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-06",
+      "topic": "critical-thinking",
+      "title": "幸存者偏差对于统计来说影响大吗？",
+      "url": "https://www.zhihu.com/question/1909258859383621450",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "样本",
+        "幸存者偏差",
+        "统计"
+      ],
+      "guide": "先画出谁进入了样本、谁被排除，再讨论推论。返航飞机只是比喻，真正问题是选择机制。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-07",
+      "topic": "critical-thinking",
+      "title": "确认偏误是什么？如何系统地克服确认偏误？",
+      "url": "https://www.zhihu.com/question/25345397",
+      "author": null,
+      "publisher": "知乎",
+      "kind": "问题讨论",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "确认偏误",
+        "反例",
+        "证据"
+      ],
+      "guide": "写出一条能使自己改主意的证据，再去找它，而不是只收集让自己安心的材料。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "zh-th-08",
+      "topic": "critical-thinking",
+      "title": "[读书笔记] [深入浅出数据分析] [第六章] [第二节]贝叶斯推断",
+      "url": "https://zhuanlan.zhihu.com/p/420691371",
+      "author": "兰胖子",
+      "publisher": "知乎",
+      "kind": "专栏",
+      "access": "index-only",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "贝叶斯",
+        "先验",
+        "更新"
+      ],
+      "guide": "与概率教材对照，区分先验、似然和后验。本 Demo 的数值练习使用公开标注的虚构数据。",
+      "summaryKind": "本项目阅读提示，非原文摘要",
+      "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+    },
+    {
+      "id": "sep-existentialism",
+      "topic": "existentialism",
+      "title": "Existentialism",
+      "url": "https://plato.stanford.edu/entries/existentialism/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "存在主义",
+        "前史",
+        "概念"
+      ],
+      "guide": "用于核对存在主义并非单一教义，以及它的问题范围和思想背景。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "sep-sartre",
+      "topic": "existentialism",
+      "title": "Jean-Paul Sartre",
+      "url": "https://plato.stanford.edu/entries/sartre/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "萨特",
+        "自由",
+        "责任"
+      ],
+      "guide": "用于核对萨特的自由、处境与自欺概念；阅读相关章节，而非截取一句口号。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "sep-beauvoir",
+      "topic": "existentialism",
+      "title": "Simone de Beauvoir",
+      "url": "https://plato.stanford.edu/entries/beauvoir/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "波伏瓦",
+        "处境",
+        "他人"
+      ],
+      "guide": "用于理解处境中的自由和对他人的责任。波伏瓦在此被作为独立思想家对待。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "sep-camus",
+      "topic": "existentialism",
+      "title": "Albert Camus",
+      "url": "https://plato.stanford.edu/entries/camus/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "加缪",
+        "荒诞",
+        "反抗"
+      ],
+      "guide": "用于区分加缪与存在主义标签的关系，以及其对荒诞问题的回应。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "sep-authenticity",
+      "topic": "existentialism",
+      "title": "Authenticity",
+      "url": "https://plato.stanford.edu/entries/authenticity/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "本真",
+        "真实性",
+        "自我"
+      ],
+      "guide": "用于理解真实性概念的不同历史含义，防止将其直接等同于“只要做自己”。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "anthropic-agents",
+      "topic": "ai-agents",
+      "title": "Building effective agents",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "publisher": "Anthropic · Engineering",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "agent",
+        "workflow",
+        "工作流",
+        "停止"
+      ],
+      "guide": "官方工程说明：按预定代码路径组织的工作流，与模型动态决定过程的智能体有区别。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "react-paper",
+      "topic": "ai-agents",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "url": "https://react-lm.github.io/",
+      "publisher": "ReAct · 论文作者项目页",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "react",
+        "反馈",
+        "观察",
+        "行动"
+      ],
+      "guide": "介绍推理与外部行动交替的研究方法。Demo 展示的是公开的工具事件，不是模型的内部思考。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "anthropic-tools",
+      "topic": "ai-agents",
+      "title": "Introducing advanced tool use on the Claude Developer Platform",
+      "url": "https://www.anthropic.com/engineering/advanced-tool-use",
+      "publisher": "Anthropic · Engineering",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "工具",
+        "输入",
+        "工具搜索",
+        "执行"
+      ],
+      "guide": "作为工具使用机制的官方补充。Demo 工具在本地执行，不把模拟结果冒充真实联网调用。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "sep-critical",
+      "topic": "critical-thinking",
+      "title": "Critical Thinking",
+      "url": "https://plato.stanford.edu/entries/critical-thinking/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "批判",
+        "判断",
+        "证据"
+      ],
+      "guide": "以反思、理由和自我修正理解批判性思维，而不是把怀疑一切当成目标。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "sep-science",
+      "topic": "critical-thinking",
+      "title": "Scientific Method",
+      "url": "https://plato.stanford.edu/entries/scientific-method/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "科学",
+        "证据",
+        "假设",
+        "因果"
+      ],
+      "guide": "用于讨论假设、观察与检验。方法需要具体条件，并不是一张万能的检查表。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "brown-bayes",
+      "topic": "critical-thinking",
+      "title": "Seeing Theory · Bayesian Inference",
+      "url": "https://seeing-theory.brown.edu/bayesian-inference/index.html",
+      "publisher": "Brown University · Seeing Theory",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "贝叶斯",
+        "先验",
+        "后验",
+        "概率"
+      ],
+      "guide": "概率更新练习的参考。界面里每个概率都来自写明的教学假设，而不是对现实用户的评估。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    },
+    {
+      "id": "brown-regression",
+      "topic": "critical-thinking",
+      "title": "Seeing Theory · Regression Analysis",
+      "url": "https://seeing-theory.brown.edu/regression-analysis/index.html",
+      "publisher": "Brown University · Seeing Theory",
+      "author": null,
+      "kind": "参考原始页面",
+      "access": "page-read",
+      "checkedAt": "2026-09-13",
+      "tags": [
+        "相关",
+        "回归",
+        "样本"
+      ],
+      "guide": "以可交互的统计图理解变量关系。这里只借鉴操作后观察变化的教学方式，不复制其实现。",
+      "summaryKind": "本项目导读，非原文转载",
+      "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+    }
+  ],
+  "units": [
+    {
+      "id": "existentialism:0",
+      "topic": "existentialism",
+      "node": 0,
+      "title": "存在主义，究竟在问什么？",
+      "concepts": [
+        "本质",
+        "处境"
+      ],
+      "summary": "我们常常先给自己一个标签，再照着标签生活。存在主义提供了另一种提问方式：不是先确定一个永远不变的「我」，而是观察我们怎样在具体处境中选择、行动，并逐渐成为自己。",
+      "sourceIds": [
+        "sep-existentialism",
+        "sep-sartre",
+        "zh-ex-01",
+        "zh-ex-02",
+        "zh-ex-05"
+      ]
+    },
+    {
+      "id": "existentialism:1",
+      "topic": "existentialism",
+      "node": 1,
+      "title": "它为什么会出现？",
+      "concepts": [
+        "前史",
+        "现象学"
+      ],
+      "summary": "思想不是凭空落下的答案。存在主义的形成有漫长的思想背景：个人与普遍规则的张力、现代社会中的疏离感，以及对人的具体生活经验的关注，都为它提供了土壤。",
+      "sourceIds": [
+        "sep-existentialism",
+        "sep-sartre",
+        "zh-ex-08",
+        "zh-ex-06"
+      ]
+    },
+    {
+      "id": "existentialism:2",
+      "topic": "existentialism",
+      "node": 2,
+      "title": "自由、处境与荒诞",
+      "concepts": [
+        "自由",
+        "荒诞"
+      ],
+      "summary": "这座山不要求你把所有观点记成同一种「存在主义」。我们将萨特、波伏瓦与加缪放在一起比较，是为了看见关联和差异，而不是抹去差异。加缪也不宜被不加说明地当作接受这一标签的代表。",
+      "sourceIds": [
+        "sep-sartre",
+        "sep-beauvoir",
+        "sep-camus",
+        "zh-ex-03",
+        "zh-ex-04"
+      ]
+    },
+    {
+      "id": "existentialism:3",
+      "topic": "existentialism",
+      "node": 3,
+      "title": "我们究竟有多自由？",
+      "concepts": [
+        "能动性",
+        "他人"
+      ],
+      "summary": "一条好的知识路径，不会把复杂问题包装成唯一正确的口号。「人可以选择」与「人受到限制」可以同时成立。真正有挑战的，是说明两者如何相互作用。",
+      "sourceIds": [
+        "sep-beauvoir",
+        "sep-authenticity",
+        "zh-ex-01",
+        "zh-ex-04"
+      ]
+    },
+    {
+      "id": "existentialism:4",
+      "topic": "existentialism",
+      "node": 4,
+      "title": "把思考带回自己的生活",
+      "concepts": [
+        "本真",
+        "自我修正"
+      ],
+      "summary": "登顶不意味着你已掌握整个领域。这次旅程建立的是一条可以继续追问的路径：我如何理解自己，如何看见处境，又如何认真对待自己的选择与他人。",
+      "sourceIds": [
+        "sep-authenticity",
+        "sep-beauvoir",
+        "zh-ex-07",
+        "zh-ex-06"
+      ]
+    },
+    {
+      "id": "ai-agents:0",
+      "topic": "ai-agents",
+      "node": 0,
+      "title": "Agent 与聊天机器人有什么不同？",
+      "concepts": [
+        "目标",
+        "工具"
+      ],
+      "summary": "在本主题的工作定义中，Agent 不只是生成一段回答：它能够根据目标选择步骤、调用工具，并利用结果继续推进任务。不同产品对 Agent 的用法并不完全一致，因此先说明定义很重要。",
+      "sourceIds": [
+        "anthropic-agents",
+        "zh-ai-01",
+        "zh-ai-02"
+      ]
+    },
+    {
+      "id": "ai-agents:1",
+      "topic": "ai-agents",
+      "node": 1,
+      "title": "先用工作流，还是先用 Agent？",
+      "concepts": [
+        "工作流",
+        "自主性"
+      ],
+      "summary": "固定工作流按预先写好的路径安排步骤；动态智能体则让模型在一定范围内决定过程。两者不是高低等级，而是适合不同任务的设计选择。",
+      "sourceIds": [
+        "anthropic-agents",
+        "zh-ai-03",
+        "zh-ai-04"
+      ]
+    },
+    {
+      "id": "ai-agents:2",
+      "topic": "ai-agents",
+      "node": 2,
+      "title": "一次行动循环如何运作？",
+      "concepts": [
+        "观察",
+        "反馈"
+      ],
+      "summary": "一个可理解的行动循环包括：读懂目标和当前状态，选择工具，执行调用，检查结果，再决定继续或停止。把这些步骤显式记录，比只看最后一段回答更容易定位问题。",
+      "sourceIds": [
+        "react-paper",
+        "anthropic-tools",
+        "zh-ai-05",
+        "zh-ai-06"
+      ]
+    },
+    {
+      "id": "ai-agents:3",
+      "topic": "ai-agents",
+      "node": 3,
+      "title": "自主性与可控性如何平衡？",
+      "concepts": [
+        "权限",
+        "停止条件"
+      ],
+      "summary": "让系统做更多事，也意味着要更清楚地定义它不能做什么。控制边界、输入隔离、可观察性与人工批准，都是产品设计的一部分，而不是发布前临时补上的按钮。",
+      "sourceIds": [
+        "anthropic-agents",
+        "anthropic-tools",
+        "zh-ai-07",
+        "zh-ai-08"
+      ]
+    },
+    {
+      "id": "ai-agents:4",
+      "topic": "ai-agents",
+      "node": 4,
+      "title": "怎样做一个值得信任的 Agent Demo？",
+      "concepts": [
+        "验收",
+        "证据"
+      ],
+      "summary": "好的 Demo 不只是展示一次顺利的输出，还应说明：它在哪些任务上有效，失败时如何表现，以及哪些部分仍是演示。先做一个可重复验证的小闭环，再扩大范围。",
+      "sourceIds": [
+        "anthropic-agents",
+        "react-paper",
+        "zh-ai-04",
+        "zh-ai-08"
+      ]
+    },
+    {
+      "id": "critical-thinking:0",
+      "topic": "critical-thinking",
+      "node": 0,
+      "title": "独立思考，是反对所有人吗？",
+      "concepts": [
+        "陈述",
+        "推论"
+      ],
+      "summary": "独立思考不是坚持与别人相反，也不是只相信自己的直觉。更有价值的目标是：能说明自己为什么接受一个判断，并愿意在出现更好证据时修正它。",
+      "sourceIds": [
+        "sep-critical",
+        "zh-th-01",
+        "zh-th-02",
+        "zh-th-03"
+      ]
+    },
+    {
+      "id": "critical-thinking:1",
+      "topic": "critical-thinking",
+      "node": 1,
+      "title": "为什么我们会轻易相信一段话？",
+      "concepts": [
+        "样本",
+        "选择机制"
+      ],
+      "summary": "熟悉的表述、流畅的讲述和受到欢迎的作者，都可能增加内容的说服力。但让人信服的呈现方式，与支持主张的证据质量不是同一回事。",
+      "sourceIds": [
+        "brown-regression",
+        "sep-science",
+        "zh-th-06"
+      ]
+    },
+    {
+      "id": "critical-thinking:2",
+      "topic": "critical-thinking",
+      "node": 2,
+      "title": "证据如何支持一个结论？",
+      "concepts": [
+        "混杂",
+        "干预"
+      ],
+      "summary": "论证不仅需要证据，还需要说明证据为什么与结论相关。检查支持关系时，留意样本、适用范围、替代解释，以及有没有从有限信息跳到过大的结论。",
+      "sourceIds": [
+        "sep-science",
+        "brown-regression",
+        "zh-th-04",
+        "zh-th-05"
+      ]
+    },
+    {
+      "id": "critical-thinking:3",
+      "topic": "critical-thinking",
+      "node": 3,
+      "title": "遇到分歧，如何不急着站队？",
+      "concepts": [
+        "反例",
+        "适用范围"
+      ],
+      "summary": "两个人可能在事实、价值、用词或行动优先级上存在分歧。先找到分歧发生在哪里，比快速给对方贴上标签更有助于推进讨论。",
+      "sourceIds": [
+        "sep-critical",
+        "zh-th-07",
+        "zh-th-01"
+      ]
+    },
+    {
+      "id": "critical-thinking:4",
+      "topic": "critical-thinking",
+      "node": 4,
+      "title": "给自己的判断留一扇窗",
+      "concepts": [
+        "先验",
+        "后验"
+      ],
+      "summary": "把每条信息都研究到底并不现实。可以根据判断的影响和风险，决定需要投入多少验证。重要的是保留一种可重复的习惯：清楚主张、寻找依据、确认范围、标记不确定性。",
+      "sourceIds": [
+        "brown-bayes",
+        "sep-critical",
+        "zh-th-08",
+        "zh-th-07"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-ex-01",
+      "topic": "existentialism",
+      "node": 0,
+      "question": "存在先于本质，等于人没有任何限制吗？",
+      "keywords": [
+        "存在",
+        "本质",
+        "限制",
+        "萨特",
+        "定义"
+      ],
+      "answer": "不是。这里讨论的是人的生活不由一份预先写好的身份说明书完全规定；它不能抹去身体、历史与社会条件。先区分既有处境和可承担的行动。",
+      "sourceIds": [
+        "sep-sartre",
+        "zh-ex-01",
+        "zh-ex-05"
+      ]
+    },
+    {
+      "id": "q-ex-02",
+      "topic": "existentialism",
+      "node": 0,
+      "question": "存在主义是什么，它等于虚无主义吗？",
+      "keywords": [
+        "存在主义",
+        "existentialism",
+        "定义",
+        "虚无",
+        "消极",
+        "意义"
+      ],
+      "answer": "存在主义是一组围绕人的具体存在、选择、自由与责任展开的哲学探索，不是一套完全统一的教义。它不能直接等同于虚无主义：认真面对意义问题，不等于宣称一切都不值得做。读具体作者的主张，不要只依据标签。",
+      "sourceIds": [
+        "sep-existentialism",
+        "zh-ex-02"
+      ]
+    },
+    {
+      "id": "q-ex-03",
+      "topic": "existentialism",
+      "node": 1,
+      "question": "存在主义是二战后才突然出现的吗？",
+      "keywords": [
+        "二战",
+        "历史",
+        "前史",
+        "战争",
+        "出现"
+      ],
+      "answer": "不是。思想背景可以追溯到更早的作者和问题。20 世纪中叶的公共影响不等于这些思想从那时才开始；这条山路把前史、经验方法与公共传播分开。",
+      "sourceIds": [
+        "sep-existentialism",
+        "zh-ex-08"
+      ]
+    },
+    {
+      "id": "q-ex-04",
+      "topic": "existentialism",
+      "node": 2,
+      "question": "加缪算不算存在主义者？",
+      "keywords": [
+        "加缪",
+        "存在主义者",
+        "归类",
+        "荒诞"
+      ],
+      "answer": "不能不加说明地这样归类。加缪与存在主义有思想联系，但拒绝这一标签。比较他与萨特时，应保留对荒诞、自由与政治伦理问题的差异。",
+      "sourceIds": [
+        "sep-camus",
+        "zh-ex-03",
+        "zh-ex-04"
+      ]
+    },
+    {
+      "id": "q-ex-05",
+      "topic": "existentialism",
+      "node": 2,
+      "question": "为什么这座山单独讨论波伏瓦？",
+      "keywords": [
+        "波伏瓦",
+        "女性",
+        "处境",
+        "他人"
+      ],
+      "answer": "她对处境中的自由、他人和伦理作出了独立贡献。把她仅仅作为萨特思想的附属，会遗漏这里要理解的关系与社会条件。",
+      "sourceIds": [
+        "sep-beauvoir",
+        "zh-ex-03"
+      ]
+    },
+    {
+      "id": "q-ex-06",
+      "topic": "existentialism",
+      "node": 3,
+      "question": "自由是不是想做什么就做什么？",
+      "keywords": [
+        "自由",
+        "责任",
+        "任性",
+        "想做"
+      ],
+      "answer": "这不是本课程中自由的含义。行动需要在具体条件中被理解，也会影响他人。双径栈道要求同时看见行动与限制，而不是训练你选定某种人生立场。",
+      "sourceIds": [
+        "sep-beauvoir",
+        "sep-sartre",
+        "zh-ex-01"
+      ]
+    },
+    {
+      "id": "q-ex-07",
+      "topic": "existentialism",
+      "node": 4,
+      "question": "做真实的自己就可以不考虑别人吗？",
+      "keywords": [
+        "真实",
+        "本真",
+        "自己",
+        "别人"
+      ],
+      "answer": "真实性不是简单的任性口号。有关自我与社会关系的解释有分歧；可以先说明正在回应的处境、愿意承担的行动，以及什么信息会让自己修正。",
+      "sourceIds": [
+        "sep-authenticity",
+        "zh-ex-07"
+      ]
+    },
+    {
+      "id": "q-ex-08",
+      "topic": "existentialism",
+      "node": 4,
+      "question": "读完五层，就等于掌握存在主义了吗？",
+      "keywords": [
+        "读完",
+        "掌握",
+        "五层",
+        "全部"
+      ],
+      "answer": "这只是建立问题地图，不是完整课程。带着自己的问题回到原著、学术条目和多种解读，特别注意文学情境和哲学论证的区别。",
+      "sourceIds": [
+        "sep-existentialism",
+        "zh-ex-07"
+      ]
+    },
+    {
+      "id": "q-ai-01",
+      "topic": "ai-agents",
+      "node": 0,
+      "question": "Agent 和聊天机器人究竟有什么区别？",
+      "keywords": [
+        "agent",
+        "智能体",
+        "聊天",
+        "区别",
+        "定义"
+      ],
+      "answer": "本 Demo 采用一个可检查的工作定义：系统根据目标与反馈决定下一步，调用受控工具并观察结果。名字或拟人语气不是能力证据；有工具也不自动意味着高自主性。",
+      "sourceIds": [
+        "anthropic-agents",
+        "zh-ai-01",
+        "zh-ai-02"
+      ]
+    },
+    {
+      "id": "q-ai-02",
+      "topic": "ai-agents",
+      "node": 1,
+      "question": "Agent 与工作流有什么区别，固定流程更低级吗？",
+      "keywords": [
+        "工作流",
+        "workflow",
+        "固定",
+        "低级",
+        "复杂"
+      ],
+      "answer": "主要区别在于谁决定下一步：工作流按预先定义的路径组织执行，而 Agent 让模型动态决定部分过程与工具选择。它们不是高低等级。先建简单、可测量的基线，再用任务结果、成本和延迟判断要不要增加自主性。",
+      "sourceIds": [
+        "anthropic-agents",
+        "zh-ai-03"
+      ]
+    },
+    {
+      "id": "q-ai-03",
+      "topic": "ai-agents",
+      "node": 2,
+      "question": "ReAct 的行动与观察是什么意思？",
+      "keywords": [
+        "react",
+        "行动",
+        "观察",
+        "反馈",
+        "循环"
+      ],
+      "answer": "行动指与工具或环境交互，观察是返回的外部结果。它们和关于行动的解释文字不一样。实验室只显示实际工具事件，不展示或声称取得模型内部思考。",
+      "sourceIds": [
+        "react-paper",
+        "zh-ai-05",
+        "zh-ai-06"
+      ]
+    },
+    {
+      "id": "q-ai-04",
+      "topic": "ai-agents",
+      "node": 2,
+      "question": "它说保存成功，能证明真的成功吗？",
+      "keywords": [
+        "成功",
+        "保存",
+        "文件",
+        "校验",
+        "引用"
+      ],
+      "answer": "不能。成功应依据工具输出，并检查预期结果。本实验会检查引用 ID 是否真实存在于知识库；一段流畅的草稿不能代替这个检查。",
+      "sourceIds": [
+        "react-paper",
+        "anthropic-tools",
+        "zh-ai-06"
+      ]
+    },
+    {
+      "id": "q-ai-05",
+      "topic": "ai-agents",
+      "node": 3,
+      "question": "检索和 RAG 能消除所有幻觉吗？",
+      "keywords": [
+        "rag",
+        "幻觉",
+        "消除",
+        "检索"
+      ],
+      "answer": "不能据此保证正确。资料可能不相关、陈旧或只读到摘要，模型也可能误用资料。应该保留访问范围、引用、失败与不确定性，而不是把有链接当作已证明。",
+      "sourceIds": [
+        "anthropic-agents",
+        "zh-ai-07",
+        "zh-ai-08"
+      ]
+    },
+    {
+      "id": "q-ai-06",
+      "topic": "ai-agents",
+      "node": 3,
+      "question": "为什么发邮件还要人工批准？",
+      "keywords": [
+        "邮件",
+        "批准",
+        "权限",
+        "发送",
+        "安全"
+      ],
+      "answer": "本 Demo 将阅读和对外写入分开。真实发送会影响别人，因此必须由用户明确批准；网页中的“忽略权限”文字只是外部数据，不能授权系统。",
+      "sourceIds": [
+        "anthropic-agents",
+        "anthropic-tools",
+        "zh-ai-08"
+      ]
+    },
+    {
+      "id": "q-ai-07",
+      "topic": "ai-agents",
+      "node": 3,
+      "question": "Agent 一直重试是不是更聪明？",
+      "keywords": [
+        "重试",
+        "循环",
+        "停止",
+        "预算"
+      ],
+      "answer": "无界重试可能浪费资源并重复错误。应定义成功条件、最大步数、超时与需要人工介入的情形。实验里的闸门是代码约束，不是一句提示语。",
+      "sourceIds": [
+        "anthropic-agents",
+        "zh-ai-06"
+      ]
+    },
+    {
+      "id": "q-ai-08",
+      "topic": "ai-agents",
+      "node": 4,
+      "question": "通过三个用例，能直接投入生产吗？",
+      "keywords": [
+        "测试",
+        "验收",
+        "生产",
+        "三个"
+      ],
+      "answer": "不能。这三个确定性的本地用例只用于解释证据、拒绝和权限。生产系统还需要代表性测试集、故障评估、真实服务监测与更充分的安全审查。",
+      "sourceIds": [
+        "anthropic-agents",
+        "react-paper",
+        "zh-ai-04"
+      ]
+    },
+    {
+      "id": "q-th-01",
+      "topic": "critical-thinking",
+      "node": 0,
+      "question": "可核查的陈述就一定是真话吗？",
+      "keywords": [
+        "事实",
+        "观点",
+        "陈述",
+        "真假",
+        "核查"
+      ],
+      "answer": "不是。可核查描述的是陈述类型，是否真实仍要看记录与证据。把事实型陈述、价值判断和因果推论分开，是检查的开始而不是结束。",
+      "sourceIds": [
+        "sep-critical",
+        "zh-th-02",
+        "zh-th-03"
+      ]
+    },
+    {
+      "id": "q-th-02",
+      "topic": "critical-thinking",
+      "node": 0,
+      "question": "批判性思维就是怀疑或反对一切吗？",
+      "keywords": [
+        "批判",
+        "思维",
+        "独立思考",
+        "critical thinking",
+        "怀疑",
+        "反对"
+      ],
+      "answer": "不是。目标是给判断提供可检查的理由，并允许修正。对合理证据无条件否定，与无条件相信权威一样，都绕过了具体检验。",
+      "sourceIds": [
+        "sep-critical",
+        "zh-th-01"
+      ]
+    },
+    {
+      "id": "q-th-03",
+      "topic": "critical-thinking",
+      "node": 1,
+      "question": "为什么补全样本后成功率变了？",
+      "keywords": [
+        "样本",
+        "幸存者",
+        "成功率",
+        "选择",
+        "看不见"
+      ],
+      "answer": "本实验原先只展示 20 人，其中 18 人成功；补上 80 人后，完整样本是 100 人中 30 人成功。是观察范围发生变化，不是原来那些人的结果变了。所有数字都是教学构造。",
+      "sourceIds": [
+        "sep-science",
+        "zh-th-06"
+      ]
+    },
+    {
+      "id": "q-th-04",
+      "topic": "critical-thinking",
+      "node": 2,
+      "question": "相关性为什么不等于因果性？",
+      "keywords": [
+        "相关",
+        "因果",
+        "混杂",
+        "温度"
+      ],
+      "answer": "两个变量可以受共同因素影响，也可能存在其他方向的关系。冰饮实验预设温度为共同原因；观察到共同变化，不能直接证明主动改变其中之一会改变另一个。",
+      "sourceIds": [
+        "sep-science",
+        "brown-regression",
+        "zh-th-04"
+      ]
+    },
+    {
+      "id": "q-th-05",
+      "topic": "critical-thinking",
+      "node": 2,
+      "question": "按温度分组，就一定证明因果了吗？",
+      "keywords": [
+        "分组",
+        "控制",
+        "温度",
+        "证明"
+      ],
+      "answer": "没有。分组帮助检查这个教学模型中的混杂；真实研究仍依赖变量测量、研究设计和假设。也不应因此认为观察性研究毫无价值。",
+      "sourceIds": [
+        "sep-science",
+        "zh-th-05"
+      ]
+    },
+    {
+      "id": "q-th-06",
+      "topic": "critical-thinking",
+      "node": 3,
+      "question": "证据天平两边的卡片可以直接投票吗？",
+      "keywords": [
+        "证据",
+        "天平",
+        "数量",
+        "投票",
+        "反例"
+      ],
+      "answer": "不能。天平只是提醒同时看支持与限制，证据要看质量和适用范围。三条故事不能自动胜过一条研究，一条研究也不能自动推广到所有人。",
+      "sourceIds": [
+        "sep-critical",
+        "zh-th-07"
+      ]
+    },
+    {
+      "id": "q-th-07",
+      "topic": "critical-thinking",
+      "node": 4,
+      "question": "贝叶斯更新为什么需要先验？",
+      "keywords": [
+        "贝叶斯",
+        "先验",
+        "后验",
+        "概率",
+        "更新"
+      ],
+      "answer": "后验同时依赖原先的可能性和证据在不同条件下出现的概率。在本实验中，先验为 20%、真提示率 80%、误报率 20% 时，看到提示后的概率为 50%。这不是现实天气预测。",
+      "sourceIds": [
+        "brown-bayes",
+        "zh-th-08"
+      ]
+    },
+    {
+      "id": "q-th-08",
+      "topic": "critical-thinking",
+      "node": 4,
+      "question": "新证据和我原来的想法冲突怎么办？",
+      "keywords": [
+        "冲突",
+        "改变",
+        "确认偏误",
+        "反面"
+      ],
+      "answer": "先检查证据是否相关、可靠，再调整判断的范围或确信程度。主动写下什么证据会让自己改主意，有助于避免只挑选支持材料。",
+      "sourceIds": [
+        "sep-critical",
+        "brown-bayes",
+        "zh-th-07"
+      ]
+    }
+  ],
+  "concepts": {
+    "existentialism": [
+      [
+        "本质",
+        "处境"
+      ],
+      [
+        "前史",
+        "现象学"
+      ],
+      [
+        "自由",
+        "荒诞"
+      ],
+      [
+        "能动性",
+        "他人"
+      ],
+      [
+        "本真",
+        "自我修正"
+      ]
+    ],
+    "ai-agents": [
+      [
+        "目标",
+        "工具"
+      ],
+      [
+        "工作流",
+        "自主性"
+      ],
+      [
+        "观察",
+        "反馈"
+      ],
+      [
+        "权限",
+        "停止条件"
+      ],
+      [
+        "验收",
+        "证据"
+      ]
+    ],
+    "critical-thinking": [
+      [
+        "陈述",
+        "推论"
+      ],
+      [
+        "样本",
+        "选择机制"
+      ],
+      [
+        "混杂",
+        "干预"
+      ],
+      [
+        "反例",
+        "适用范围"
+      ],
+      [
+        "先验",
+        "后验"
+      ]
+    ]
+  },
+  "crossPaths": [
+    {
+      "from": [
+        "existentialism",
+        3
+      ],
+      "to": [
+        "critical-thinking",
+        3
+      ],
+      "name": "怎样对待一个不同意见？",
+      "relation": "从承认分歧，走向比较理由与证据。"
+    },
+    {
+      "from": [
+        "ai-agents",
+        2
+      ],
+      "to": [
+        "critical-thinking",
+        0
+      ],
+      "name": "工具返回了内容，就代表事实吗？",
+      "relation": "从执行记录，走向区分陈述与证据。"
+    },
+    {
+      "from": [
+        "critical-thinking",
+        4
+      ],
+      "to": [
+        "ai-agents",
+        3
+      ],
+      "name": "不确定时，系统应该怎么停？",
+      "relation": "从更新判断，走向可控的行动。"
+    },
+    {
+      "from": [
+        "existentialism",
+        4
+      ],
+      "to": [
+        "critical-thinking",
+        4
+      ],
+      "name": "什么会让我修改现在的选择？",
+      "relation": "从行动寄语，走向可修正的相信程度。"
+    }
+  ],
+  "mountains": [
+    {
+      "id": "existentialism",
+      "title": "存在主义",
+      "subtitle": "在不确定的世界里，认真做自己的选择。",
+      "category": "人文思想",
+      "group": "humanities",
+      "en": "THE ART OF EXISTING",
+      "color": "sage",
+      "keywords": [
+        "存在",
+        "哲学",
+        "萨特",
+        "加缪",
+        "意义",
+        "自由"
+      ],
+      "tags": [
+        "哲学",
+        "自我认知",
+        "人生选择"
+      ],
+      "kicker": "给正在寻找答案的你",
+      "reason": "从「我是谁」出发，建立一条关于自由与责任的思考路径。",
+      "sources": [
+        {
+          "id": "sep-existentialism",
+          "topic": "existentialism",
+          "title": "Existentialism",
+          "url": "https://plato.stanford.edu/entries/existentialism/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "存在主义",
+            "前史",
+            "概念"
+          ],
+          "guide": "用于核对存在主义并非单一教义，以及它的问题范围和思想背景。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "sep-sartre",
+          "topic": "existentialism",
+          "title": "Jean-Paul Sartre",
+          "url": "https://plato.stanford.edu/entries/sartre/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "萨特",
+            "自由",
+            "责任"
+          ],
+          "guide": "用于核对萨特的自由、处境与自欺概念；阅读相关章节，而非截取一句口号。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-ex-01",
+          "topic": "existentialism",
+          "title": "如何理解「存在先于本质」、「他人即地狱」、「人即自由」？",
+          "url": "https://www.zhihu.com/question/20457436",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "存在",
+            "本质",
+            "萨特",
+            "自由"
+          ],
+          "guide": "带着三个命题进入讨论。先辨认它们分别回应什么问题，不把它们拼成一句生活口号。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ex-02",
+          "topic": "existentialism",
+          "title": "究竟什么是存在主义？",
+          "url": "https://www.zhihu.com/question/269967823?sort=created",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "存在主义",
+            "入门",
+            "定义"
+          ],
+          "guide": "适合寻找日常语言的解释。对照学术导论，分开作者自己的比喻与对哲学概念的解释。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ex-05",
+          "topic": "existentialism",
+          "title": "\"存在先于本质\"中的\"存在\"和\"本质\"指的是什么？",
+          "url": "https://www.zhihu.com/question/306958528",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "存在",
+            "本质",
+            "概念"
+          ],
+          "guide": "把命题拆成术语来读，比只记住结论更有用。检查回答讨论的是物的用途，还是人的生活。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ex-08",
+          "topic": "existentialism",
+          "title": "如何理解存在主义的存在？",
+          "url": "https://www.zhihu.com/question/267071624",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "前史",
+            "存在",
+            "哲学史"
+          ],
+          "guide": "适合追问不同思想家究竟是否在谈同一个问题。把历史背景与某个作者的具体立场分开。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ex-06",
+          "topic": "existentialism",
+          "title": "该如何理解：“存在先于本质”？",
+          "url": "https://www.zhihu.com/question/23248223",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "选择",
+            "萨特",
+            "本质"
+          ],
+          "guide": "尝试把某条解释放进具体情境，再说明这个例子能说明什么、不能说明什么。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "sep-beauvoir",
+          "topic": "existentialism",
+          "title": "Simone de Beauvoir",
+          "url": "https://plato.stanford.edu/entries/beauvoir/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "波伏瓦",
+            "处境",
+            "他人"
+          ],
+          "guide": "用于理解处境中的自由和对他人的责任。波伏瓦在此被作为独立思想家对待。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "sep-camus",
+          "topic": "existentialism",
+          "title": "Albert Camus",
+          "url": "https://plato.stanford.edu/entries/camus/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "加缪",
+            "荒诞",
+            "反抗"
+          ],
+          "guide": "用于区分加缪与存在主义标签的关系，以及其对荒诞问题的回应。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-ex-03",
+          "topic": "existentialism",
+          "title": "加缪和萨特的区别在于哪些方面？",
+          "url": "https://www.zhihu.com/question/20078096",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "加缪",
+            "萨特",
+            "比较"
+          ],
+          "guide": "先做比较表：各自在问什么、给出了什么回应。文学关系、个人关系与哲学分歧并不是同一件事。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ex-04",
+          "topic": "existentialism",
+          "title": "存在主义和荒诞主义有什么关系？加缪的荒诞和萨特的荒诞有什么区别？",
+          "url": "https://www.zhihu.com/question/359313449",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "荒诞",
+            "加缪",
+            "分歧"
+          ],
+          "guide": "留意同一个词在不同作者那里是否含义相同。别把相邻的思想直接归为一个没有分歧的派别。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "sep-authenticity",
+          "topic": "existentialism",
+          "title": "Authenticity",
+          "url": "https://plato.stanford.edu/entries/authenticity/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "本真",
+            "真实性",
+            "自我"
+          ],
+          "guide": "用于理解真实性概念的不同历史含义，防止将其直接等同于“只要做自己”。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-ex-07",
+          "topic": "existentialism",
+          "title": "如何理解存在主义，如何阅读荒诞文学，例如加缪的文学作品？",
+          "url": "https://www.zhihu.com/question/638494690",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "加缪",
+            "文学",
+            "阅读"
+          ],
+          "guide": "把小说人物的处境与作者的论证区分开。文学阅读可以打开问题，但不是概念的唯一证据。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        }
+      ],
+      "nodes": [
+        {
+          "title": "存在主义，究竟在问什么？",
+          "short": "从「我是谁」出发",
+          "intro": "我们常常先给自己一个标签，再照着标签生活。存在主义提供了另一种提问方式：不是先确定一个永远不变的「我」，而是观察我们怎样在具体处境中选择、行动，并逐渐成为自己。",
+          "points": [
+            {
+              "title": "不是一本统一的答案之书",
+              "text": "存在主义是一组相互关联、又彼此分歧的哲学探索。自由、处境、责任与真实地生活，是其中反复出现的问题；它并不等于一种统一的生活处方。"
+            },
+            {
+              "title": "从「本来是什么」转向「正在怎样生活」",
+              "text": "在萨特的讨论里，人并非先拥有一份规定好的人生说明书，再按说明书行动。我们在行动与选择中形成自己的生活方向。"
+            },
+            {
+              "title": "自由从不意味着没有现实限制",
+              "text": "家庭、身体、时代和他人会影响可以做出的选择。思考自由，不是把这些条件擦掉，而是在看见处境后，辨认自己仍能承担的行动。"
+            }
+          ],
+          "misconception": "存在主义不是「想做什么就做什么」，也不等于消极、虚无或单纯的励志话语。",
+          "application": "在选择一条职业道路时，试着分开两句话：「大家说我应该成为……」和「在目前的条件下，我愿意尝试……」。两者可以一致，也可以不同。",
+          "bridge": "知道它在问什么之后，下一站我们看看：为什么「人的存在」会成为一个如此迫切的问题？",
+          "takeaway": "不急着用标签定义自己，而是留意选择与行动。",
+          "quiz": {
+            "question": "哪一种理解更接近本营地的讨论？",
+            "options": [
+              "人生没有现成说明书，选择需要结合处境并承担责任。",
+              "只要足够自由，就不必考虑现实条件和他人。",
+              "存在主义已经替每个人找到同一个人生答案。"
+            ],
+            "answer": 0,
+            "explanation": "关键不是不受限制，而是在具体处境里辨认选择、承担责任。不同思想家对此仍有分歧。"
+          },
+          "perspectives": [
+            {
+              "lens": "概念视角",
+              "title": "先理解问题，再寻找标签",
+              "text": "把存在主义看成关于人如何存在的一组问题，比背下一条口号更有帮助。",
+              "source": "sep-existentialism"
+            },
+            {
+              "lens": "生活视角",
+              "title": "选择也意味着回应处境",
+              "text": "可以把「我必须如此」拆成事实限制、他人期待与自己的判断。这是一个思考练习，并非理论的全部。",
+              "source": "sep-sartre"
+            }
+          ],
+          "sourceIds": [
+            "sep-existentialism",
+            "sep-sartre",
+            "zh-ex-01",
+            "zh-ex-02",
+            "zh-ex-05"
+          ],
+          "prerequisite": -1
+        },
+        {
+          "title": "它为什么会出现？",
+          "short": "把思想放回时代",
+          "intro": "思想不是凭空落下的答案。存在主义的形成有漫长的思想背景：个人与普遍规则的张力、现代社会中的疏离感，以及对人的具体生活经验的关注，都为它提供了土壤。",
+          "points": [
+            {
+              "title": "比流行标签更长的前史",
+              "text": "克尔凯郭尔、尼采等思想家的问题意识，常被纳入存在主义的思想背景。但这不意味着他们都属于一个后来成立的统一学派。"
+            },
+            {
+              "title": "回到活生生的经验",
+              "text": "现象学促使思想家认真对待人如何经验世界。讨论不再只是抽象地定义「人」，也关心焦虑、关系、行动和日常处境。"
+            },
+            {
+              "title": "在公共生活中被听见",
+              "text": "战争与社会变化让自由、责任和人的处境成为公共问题。战后法国的哲学、文学与公共讨论，使存在主义成为广为人知的文化现象。"
+            }
+          ],
+          "misconception": "不能把存在主义简单归因于某一场战争，也不应把所有关联思想家放进同一个没有分歧的阵营。",
+          "application": "理解一个观点时，补问三个问题：它回应了什么处境？在反对什么？它没有解决什么？这样能避免把历史中的思想变成脱离语境的口号。",
+          "bridge": "背景给了我们地图，但不是所有旅人都走同一条路。下一站，比较几位思想家的不同追问。",
+          "takeaway": "理解一个思想，也要理解它正在回应怎样的处境。",
+          "quiz": {
+            "question": "为什么需要了解一个思想的背景？",
+            "options": [
+              "有了时代背景，就不需要读它的具体主张。",
+              "背景帮助我们理解问题，但不能代替对论证的判断。",
+              "同一时代的思想家一定拥有完全相同的观点。"
+            ],
+            "answer": 1,
+            "explanation": "背景是理解的辅助，不是结论的替代品。相近的处境也可能产生不同的哲学回应。"
+          },
+          "perspectives": [
+            {
+              "lens": "历史视角",
+              "title": "思想有前史，也有转折",
+              "text": "在文化运动兴起之前，相关的问题已经经历了长期讨论。",
+              "source": "sep-existentialism"
+            },
+            {
+              "lens": "阅读视角",
+              "title": "不要让一句话离开它的语境",
+              "text": "先辨认一个命题针对的问题，再判断它能否适用于自己的处境。",
+              "source": "sep-sartre"
+            }
+          ],
+          "sourceIds": [
+            "sep-existentialism",
+            "sep-sartre",
+            "zh-ex-08",
+            "zh-ex-06"
+          ],
+          "prerequisite": 0
+        },
+        {
+          "title": "自由、处境与荒诞",
+          "short": "认识不同的思想路径",
+          "intro": "这座山不要求你把所有观点记成同一种「存在主义」。我们将萨特、波伏瓦与加缪放在一起比较，是为了看见关联和差异，而不是抹去差异。加缪也不宜被不加说明地当作接受这一标签的代表。",
+          "points": [
+            {
+              "title": "萨特：行动中的选择与责任",
+              "text": "在萨特的论述里，人需要面对自己的自由，而不是总用固定身份为行动开脱。他的讨论也涉及他人、社会与历史，不能缩成一句「全靠个人选择」。"
+            },
+            {
+              "title": "波伏瓦：自由发生在关系与处境中",
+              "text": "波伏瓦将人的自由与具体的社会处境、他人的自由联系起来。抽象地宣称人人都能选择，并不能消除真实的不平等。"
+            },
+            {
+              "title": "加缪：在荒诞问题面前如何生活",
+              "text": "加缪讨论人与世界之间的张力，以及面对荒诞时的回应。他与存在主义有思想关联，但其自我定位和观点需要单独辨认。"
+            }
+          ],
+          "misconception": "「思想有关联」不等于「主张相同」，也不等于思想家认同同一个标签。",
+          "application": "给观点做一张三列表：主要问题、给出的回应、保留的疑问。比较两个思想家时，先看他们是否在回答同一个问题。",
+          "bridge": "不同路径交汇时，争议就出现了。下一站我们检视：强调自由，会不会忽略现实限制？",
+          "takeaway": "把不同思想放在一起比较，而不是揉成一个口号。",
+          "quiz": {
+            "question": "比较思想家时，哪种做法更稳妥？",
+            "options": [
+              "把所有关联作者都称作没有分歧的同一学派。",
+              "先记住一个金句，用它解释所有作者。",
+              "辨认各自的问题、主张与自我定位，保留差异。"
+            ],
+            "answer": 2,
+            "explanation": "好的比较既看见关联，也尊重问题、主张与标签上的差异。"
+          },
+          "perspectives": [
+            {
+              "lens": "个体视角",
+              "title": "我不能把行动完全推给标签",
+              "text": "自由与责任使我们重新审视那些用身份来替自己做决定的时刻。",
+              "source": "sep-sartre"
+            },
+            {
+              "lens": "关系视角",
+              "title": "他人的自由也在我的世界里",
+              "text": "讨论行动时，需要考虑处境、社会关系和真实的不平等。",
+              "source": "sep-beauvoir"
+            },
+            {
+              "lens": "比较视角",
+              "title": "相邻，不意味着相同",
+              "text": "加缪与存在主义的关系本身就值得辨析。",
+              "source": "sep-camus"
+            }
+          ],
+          "sourceIds": [
+            "sep-sartre",
+            "sep-beauvoir",
+            "sep-camus",
+            "zh-ex-03",
+            "zh-ex-04"
+          ],
+          "prerequisite": 1
+        },
+        {
+          "title": "我们究竟有多自由？",
+          "short": "在分歧中形成判断",
+          "intro": "一条好的知识路径，不会把复杂问题包装成唯一正确的口号。「人可以选择」与「人受到限制」可以同时成立。真正有挑战的，是说明两者如何相互作用。",
+          "points": [
+            {
+              "title": "不要把责任变成责备",
+              "text": "讨论个人行动，并不意味着将所有困境都归因于个人。贫困、歧视、疾病等真实条件，不能被一句「你可以选择」轻轻带过。"
+            },
+            {
+              "title": "真实地生活不等于只顾自己",
+              "text": "自我选择发生在与他人的关系中。所谓真实，也需要面对行动对他人的影响，而不是拒绝一切关系与承诺。"
+            },
+            {
+              "title": "允许问题暂时不被消解",
+              "text": "一个观点可能揭示了重要经验，同时留下困难。阅读分歧时，可以记下它解释了什么、遗漏了什么，而不是急着选一个阵营。"
+            }
+          ],
+          "misconception": "「有个人责任」与「有结构性限制」不是只能二选一的命题。",
+          "application": "想一个你正在面对的选择，画两个圆：我可以调整的行动、暂时无法改变的条件。再在交界处写一个最小的、可尝试的下一步。",
+          "bridge": "到了这里，我们不只看见观点，也看见它的边界。最后一站，将这些思考谨慎地放回生活。",
+          "takeaway": "同时看见可以承担的行动与不可忽略的现实限制。",
+          "quiz": {
+            "question": "面对一个人的困难，哪种回应更审慎？",
+            "options": [
+              "只要让他自由选择，就可以忽略他的客观条件。",
+              "既辨认具体限制，也讨论在其中可行的行动与支持。",
+              "既然有现实限制，讨论行动就完全没有意义。"
+            ],
+            "answer": 1,
+            "explanation": "同时看见处境与行动，可以避免简单责备，也避免把人当作完全没有能动性的对象。"
+          },
+          "perspectives": [
+            {
+              "lens": "批判视角",
+              "title": "过度强调个体会遗漏什么？",
+              "text": "社会条件和他人的行为，会实质性地影响选择空间。",
+              "source": "sep-beauvoir"
+            },
+            {
+              "lens": "行动视角",
+              "title": "承认限制之后，还能做什么？",
+              "text": "辨认限制不必取消行动；它也可能帮助我们寻找更实际的合作与回应。",
+              "source": "sep-existentialism"
+            }
+          ],
+          "sourceIds": [
+            "sep-beauvoir",
+            "sep-authenticity",
+            "zh-ex-01",
+            "zh-ex-04"
+          ],
+          "prerequisite": 2
+        },
+        {
+          "title": "把思考带回自己的生活",
+          "short": "不是答案，而是新的起点",
+          "intro": "登顶不意味着你已掌握整个领域。这次旅程建立的是一条可以继续追问的路径：我如何理解自己，如何看见处境，又如何认真对待自己的选择与他人。",
+          "points": [
+            {
+              "title": "从抽象观点走向具体问题",
+              "text": "把「如何真实地生活」变成一个更小的问题：在今天的一次选择中，我是在回应自己的判断，还是机械地遵循一个标签？"
+            },
+            {
+              "title": "保留反思，也保留行动",
+              "text": "可以通过写作、讨论或一次小规模尝试检验自己的理解。哲学思考不是必须等到想清一切才开始生活。"
+            },
+            {
+              "title": "继续阅读，让理解可以被修正",
+              "text": "回到原著、学术导论和不同观点，注意翻译与语境。当前的理解是一张暂时的地图，而不是终点证明。"
+            }
+          ],
+          "misconception": "哲学提供理解与追问的工具，不是医学建议，也不是解决所有生活困难的万能方法。",
+          "application": "写下一个近期的具体选择：我看见了哪些限制？我愿意承担什么？有哪些信息仍需补足？为自己保留修改答案的空间。",
+          "bridge": "山外还有山。带着这份理解卡片，可以重访刚才的分歧，也可以开始一座关于「如何判断信息」的新山。",
+          "takeaway": "把理解变成可以反思、尝试和修正的生活问题。",
+          "quiz": {
+            "question": "完成这次旅程，最合理的下一步是什么？",
+            "options": [
+              "将一套观点作为解释所有问题的唯一答案。",
+              "认为五个节点已经替代所有进一步阅读。",
+              "带着具体问题继续阅读、讨论与尝试，并允许修正。"
+            ],
+            "answer": 2,
+            "explanation": "学习路径帮助建立脉络，不代替深入阅读，也不替你完成所有判断。"
+          },
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "一个具体问题，胜过一串漂亮标签",
+              "text": "让观点落在可以观察的行动中，才有反思与修正的机会。",
+              "source": "sep-existentialism"
+            },
+            {
+              "lens": "阅读视角",
+              "title": "地图指向世界，却不是整个世界",
+              "text": "不同著作与解读仍需要在语境中比较。",
+              "source": "sep-sartre"
+            }
+          ],
+          "sourceIds": [
+            "sep-authenticity",
+            "sep-beauvoir",
+            "zh-ex-07",
+            "zh-ex-06"
+          ],
+          "prerequisite": 3
+        }
+      ]
+    },
+    {
+      "id": "ai-agents",
+      "title": "AI Agent",
+      "subtitle": "从会回答，到会行动。看清智能体的能力与边界。",
+      "category": "科技前沿",
+      "group": "technology",
+      "en": "FROM ANSWERS TO ACTIONS",
+      "color": "blue",
+      "keywords": [
+        "agent",
+        "ai",
+        "人工智能",
+        "智能体",
+        "自动化"
+      ],
+      "tags": [
+        "人工智能",
+        "工具协作",
+        "未来工作"
+      ],
+      "kicker": "给想理解新技术的你",
+      "reason": "不从术语开始，从一个「帮我完成任务」的愿望出发。",
+      "sources": [
+        {
+          "id": "anthropic-agents",
+          "topic": "ai-agents",
+          "title": "Building effective agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents",
+          "publisher": "Anthropic · Engineering",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "agent",
+            "workflow",
+            "工作流",
+            "停止"
+          ],
+          "guide": "官方工程说明：按预定代码路径组织的工作流，与模型动态决定过程的智能体有区别。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-ai-01",
+          "topic": "ai-agents",
+          "title": "如何通俗的介绍什么是AI agent？",
+          "url": "https://www.zhihu.com/question/1915789507632011097",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "agent",
+            "定义",
+            "工具"
+          ],
+          "guide": "从任务目标、可调用工具、反馈与停止条件四个角度比较回答，而不是只比较定义的长短。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ai-02",
+          "topic": "ai-agents",
+          "title": "一文彻底搞懂什么是AI Agent",
+          "url": "https://zhuanlan.zhihu.com/p/32539830815",
+          "author": "数字梦想家",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "agent",
+            "入门",
+            "应用"
+          ],
+          "guide": "这是概念入门的讨论入口。阅读时核对：文字中说能做的事，是否真的有工具和执行记录支持。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ai-03",
+          "topic": "ai-agents",
+          "title": "Workflow 与 Agent 的区别：从原理到实践的完整指南",
+          "url": "https://zhuanlan.zhihu.com/p/2035484715608700220",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "workflow",
+            "工作流",
+            "动态规划"
+          ],
+          "guide": "用它提出选型问题，再与 Anthropic 的官方架构说明对读：谁决定下一步，流程由什么约束？",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ai-04",
+          "topic": "ai-agents",
+          "title": "AI Agent 入门指南（一）：综述",
+          "url": "https://zhuanlan.zhihu.com/p/1991985667622840199",
+          "author": "VoidOc",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "agent",
+            "架构",
+            "工具",
+            "入门"
+          ],
+          "guide": "适合建立术语清单。不要把综述中涉及的每项技术都当成首版应用的必要组件。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "react-paper",
+          "topic": "ai-agents",
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+          "url": "https://react-lm.github.io/",
+          "publisher": "ReAct · 论文作者项目页",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "react",
+            "反馈",
+            "观察",
+            "行动"
+          ],
+          "guide": "介绍推理与外部行动交替的研究方法。Demo 展示的是公开的工具事件，不是模型的内部思考。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "anthropic-tools",
+          "topic": "ai-agents",
+          "title": "Introducing advanced tool use on the Claude Developer Platform",
+          "url": "https://www.anthropic.com/engineering/advanced-tool-use",
+          "publisher": "Anthropic · Engineering",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "工具",
+            "输入",
+            "工具搜索",
+            "执行"
+          ],
+          "guide": "作为工具使用机制的官方补充。Demo 工具在本地执行，不把模拟结果冒充真实联网调用。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-ai-05",
+          "topic": "ai-agents",
+          "title": "ReAct：AI Agent 的推理与行动融合框架",
+          "url": "https://zhuanlan.zhihu.com/p/1935762059888419552",
+          "author": "Deductionist",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "react",
+            "行动",
+            "观察"
+          ],
+          "guide": "结合论文作者项目页阅读，重点看行动和观察如何交替，而不是把解释文本当成真实工具执行。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ai-06",
+          "topic": "ai-agents",
+          "title": "手把手带你写一个 ReAct 智能体：从架构拆解到工程避坑（附源码）",
+          "url": "https://zhuanlan.zhihu.com/p/1990507103245333960",
+          "author": "melon的算法日记",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "react",
+            "工程",
+            "失败"
+          ],
+          "guide": "用工程问题检查自己的实现：失败结果是否回到下一次决策？重试是否有次数上限？",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ai-07",
+          "topic": "ai-agents",
+          "title": "大模型的幻觉 (Hallucination) 因何而来？如何解决幻觉问题？",
+          "url": "https://zhuanlan.zhihu.com/p/662550362",
+          "author": "Baihai",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "幻觉",
+            "检索",
+            "可靠性"
+          ],
+          "guide": "阅读时区分语言答案错误、工具执行失败与无依据的成功声明。本 Demo 不把检索等同于事实保证。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-ai-08",
+          "topic": "ai-agents",
+          "title": "Agent系统如何约束大模型幻觉？约束后还幻觉怎么办？",
+          "url": "https://zhuanlan.zhihu.com/p/2040835109855749610",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "约束",
+            "校验",
+            "幻觉"
+          ],
+          "guide": "带着权限、证据、校验、停止四个问题读。源内容属于工程讨论入口，不作为安全保证。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        }
+      ],
+      "nodes": [
+        {
+          "title": "Agent 与聊天机器人有什么不同？",
+          "short": "从回答到行动",
+          "intro": "在本主题的工作定义中，Agent 不只是生成一段回答：它能够根据目标选择步骤、调用工具，并利用结果继续推进任务。不同产品对 Agent 的用法并不完全一致，因此先说明定义很重要。",
+          "points": [
+            {
+              "title": "一个目标，而不止一个问题",
+              "text": "「解释旅行攻略」是回答问题；「按预算比较备选行程」可能涉及多步任务。目标决定了系统需要多大的行动能力。"
+            },
+            {
+              "title": "工具把语言连接到行动",
+              "text": "工具可能是检索、计算或读写文件。模型提出调用并不等于行动一定发生，实际执行仍由应用程序、权限和验证逻辑控制。"
+            },
+            {
+              "title": "观察结果，再决定下一步",
+              "text": "一次工具调用可能失败，结果也可能不完整。智能体需要据此决定重试、调整、停止，或请人帮助。"
+            }
+          ],
+          "misconception": "Agent 不是「完全自主且永远正确的数字员工」。多步执行会引入新的失败路径。",
+          "application": "将一个日常任务拆成目标、可用工具和完成标准。再问：哪些步骤真的需要模型动态决定，哪些用确定的代码就够了？",
+          "bridge": "下一站区分固定工作流与动态智能体，理解为什么简单方案常常更好。",
+          "takeaway": "Agent 把目标、工具和反馈连接起来，但行动仍需要约束。",
+          "quiz": {
+            "question": "区分 Agent 能力时，最值得观察的是什么？",
+            "options": [
+              "名字里是否包含「智能体」三个字。",
+              "能否根据目标与反馈决定步骤并调用受控工具。",
+              "回答是否特别长、语气是否像人。"
+            ],
+            "answer": 1,
+            "explanation": "名称和拟人感不是能力证明。关注目标、控制流程、工具与反馈。"
+          },
+          "sourceIds": [
+            "anthropic-agents",
+            "zh-ai-01",
+            "zh-ai-02"
+          ],
+          "prerequisite": -1,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "将一个日常任务拆成目标、可用工具和完成标准。再问：哪些步骤真的需要模型动态决定，哪些用确定的代码就够了？",
+              "source": "anthropic-agents"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "Agent 不是「完全自主且永远正确的数字员工」。多步执行会引入新的失败路径。",
+              "source": "anthropic-agents"
+            }
+          ]
+        },
+        {
+          "title": "先用工作流，还是先用 Agent？",
+          "short": "不必从复杂开始",
+          "intro": "固定工作流按预先写好的路径安排步骤；动态智能体则让模型在一定范围内决定过程。两者不是高低等级，而是适合不同任务的设计选择。",
+          "points": [
+            {
+              "title": "流程清楚时，固定步骤更容易验证",
+              "text": "例如先提取字段、再校验、最后生成一段说明。这类任务可以先考虑确定性流程，而非让模型重新发现步骤。"
+            },
+            {
+              "title": "路径难以预先写全时，再考虑动态规划",
+              "text": "开放式检索或复杂修复任务，可能需要根据中间结果改变策略。灵活性有价值，也会增加评估难度。"
+            },
+            {
+              "title": "把成本与延迟算进去",
+              "text": "更多模型调用与工具往返，通常意味着更多成本、等待和失败机会。应以实际评估决定是否值得增加复杂度。"
+            }
+          ],
+          "misconception": "多智能体不自动优于单智能体，智能体也不自动优于一个简单的工作流。",
+          "application": "给一个任务写最简单的固定流程。只有在明确发现固定流程无法覆盖的变化时，再引入模型决策。",
+          "bridge": "确定需要哪些动态步骤后，下一站看一次行动循环是怎样工作的。",
+          "takeaway": "复杂度应该由任务与评估证明，而不是由技术名词决定。",
+          "quiz": {
+            "question": "对步骤非常固定、结果容易验证的任务，通常应先做什么？",
+            "options": [
+              "先尝试简单、可验证的工作流。",
+              "直接创建尽可能多的自主 Agent。",
+              "取消校验，让模型自由发挥。"
+            ],
+            "answer": 0,
+            "explanation": "先建立简单基线，再用测量决定更复杂的设计是否带来收益。"
+          },
+          "sourceIds": [
+            "anthropic-agents",
+            "zh-ai-03",
+            "zh-ai-04"
+          ],
+          "prerequisite": 0,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "给一个任务写最简单的固定流程。只有在明确发现固定流程无法覆盖的变化时，再引入模型决策。",
+              "source": "anthropic-agents"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "多智能体不自动优于单智能体，智能体也不自动优于一个简单的工作流。",
+              "source": "anthropic-agents"
+            }
+          ]
+        },
+        {
+          "title": "一次行动循环如何运作？",
+          "short": "计划 · 行动 · 观察",
+          "intro": "一个可理解的行动循环包括：读懂目标和当前状态，选择工具，执行调用，检查结果，再决定继续或停止。把这些步骤显式记录，比只看最后一段回答更容易定位问题。",
+          "points": [
+            {
+              "title": "工具必须有清晰的契约",
+              "text": "每个工具需要明确输入、输出、失败方式与权限。模糊的工具说明会把本来简单的任务变得不可预测。"
+            },
+            {
+              "title": "状态让多步行动保持连贯",
+              "text": "系统应明确记录已完成的步骤、工具结果和待解决的问题。不能仅凭自然语言声称「已完成」就更新关键状态。"
+            },
+            {
+              "title": "停止条件也是设计的一部分",
+              "text": "任务成功、达到步数上限、预算耗尽或需要用户批准，都可以触发停止。没有边界的循环并不等于更强的能力。"
+            }
+          ],
+          "misconception": "模型说「文件已保存」并不能证明文件存在；成功需要由实际工具结果确认。",
+          "application": "在你们的黑客松项目里，节点是否解锁应由经过校验的状态决定，而不是让模型直接控制锁定标记。",
+          "bridge": "行动能力越强，越要讨论谁能批准行动。下一站关注安全与控制。",
+          "takeaway": "完成状态来自可验证的结果，而不是来自模型的声明。",
+          "quiz": {
+            "question": "怎样判断一个需要写文件的任务真的完成了？",
+            "options": [
+              "模型用了肯定语气。",
+              "屏幕播放了完成动画。",
+              "执行工具返回成功，并检查预期文件或结果。"
+            ],
+            "answer": 2,
+            "explanation": "动画和语言可以表达状态，不能代替执行证据。"
+          },
+          "sourceIds": [
+            "react-paper",
+            "anthropic-tools",
+            "zh-ai-05",
+            "zh-ai-06"
+          ],
+          "prerequisite": 1,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "在你们的黑客松项目里，节点是否解锁应由经过校验的状态决定，而不是让模型直接控制锁定标记。",
+              "source": "anthropic-agents"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "模型说「文件已保存」并不能证明文件存在；成功需要由实际工具结果确认。",
+              "source": "anthropic-agents"
+            }
+          ]
+        },
+        {
+          "title": "自主性与可控性如何平衡？",
+          "short": "为行动设好边界",
+          "intro": "让系统做更多事，也意味着要更清楚地定义它不能做什么。控制边界、输入隔离、可观察性与人工批准，都是产品设计的一部分，而不是发布前临时补上的按钮。",
+          "points": [
+            {
+              "title": "读取与写入使用不同权限",
+              "text": "获取公开信息与发送消息、删除文件不是同一种风险。高影响操作应设独立的授权与确认。"
+            },
+            {
+              "title": "外部内容不是系统指令",
+              "text": "网页或文件里的文字可能包含不可信指令。应用应将检索内容视为数据，而不是自动提升为行动权限。"
+            },
+            {
+              "title": "失败必须能停下来",
+              "text": "设置时间、步数与预算上限，保留操作日志与撤回方案。在不确定时请求用户介入，往往比继续猜测更合适。"
+            }
+          ],
+          "misconception": "给模型一条「注意安全」的提示，不能替代应用层权限、验证与审计。",
+          "application": "列出你的产品中三种后果不同的操作，为每种操作分别确定：谁能触发、是否需要确认、失败后如何处理。",
+          "bridge": "最后一站，我们把能力、成本与安全放到同一张验收表里。",
+          "takeaway": "安全不是模型的一句承诺，而是系统的实际约束。",
+          "quiz": {
+            "question": "智能体准备执行高影响写入操作时，哪种设计更合适？",
+            "options": [
+              "无论风险大小都自动执行。",
+              "通过应用层权限、明确确认与结果校验控制操作。",
+              "只把模型温度调低，不设权限。"
+            ],
+            "answer": 1,
+            "explanation": "权限、确认和结果校验是可执行的约束，不能只依赖提示语。"
+          },
+          "sourceIds": [
+            "anthropic-agents",
+            "anthropic-tools",
+            "zh-ai-07",
+            "zh-ai-08"
+          ],
+          "prerequisite": 2,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "列出你的产品中三种后果不同的操作，为每种操作分别确定：谁能触发、是否需要确认、失败后如何处理。",
+              "source": "anthropic-agents"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "给模型一条「注意安全」的提示，不能替代应用层权限、验证与审计。",
+              "source": "anthropic-agents"
+            }
+          ]
+        },
+        {
+          "title": "怎样做一个值得信任的 Agent Demo？",
+          "short": "让成功可以被验证",
+          "intro": "好的 Demo 不只是展示一次顺利的输出，还应说明：它在哪些任务上有效，失败时如何表现，以及哪些部分仍是演示。先做一个可重复验证的小闭环，再扩大范围。",
+          "points": [
+            {
+              "title": "准备代表性任务与失败用例",
+              "text": "覆盖正常输入、信息不足、工具失败与超时。比较简单基线和 Agent 版本，而不是只挑一次好看的结果。"
+            },
+            {
+              "title": "记录结果，也记录代价",
+              "text": "除了成功率，还观察延迟、调用成本、人工介入和错误的影响。指标需要来自实际执行。"
+            },
+            {
+              "title": "让演示状态清清楚楚",
+              "text": "离线内容、真实检索与模型生成应明确区分。没有真实数据接入，就不虚构搜索数量、作者或成功记录。"
+            }
+          ],
+          "misconception": "一次成功的路演不能证明系统在所有真实场景下都可靠。",
+          "application": "选择一个小任务，写出五条验收用例。把「出现成功动画」替换成「产生了可检查的结果」。",
+          "bridge": "你已建立从定义到验收的五层路径。下一步是带着边界意识，完成一个小而真实的系统。",
+          "takeaway": "从可验证的小闭环出发，用测试而不是演示气氛证明能力。",
+          "quiz": {
+            "question": "哪种方式更能支持「这个系统可用」的判断？",
+            "options": [
+              "记录代表性测试的结果、失败与成本，并标明演示边界。",
+              "只展示一次精心挑选的成功回答。",
+              "用更复杂的架构图代替实际测试。"
+            ],
+            "answer": 0,
+            "explanation": "可重复的测试和明确的边界，比一次顺利的演示更有判断价值。"
+          },
+          "sourceIds": [
+            "anthropic-agents",
+            "react-paper",
+            "zh-ai-04",
+            "zh-ai-08"
+          ],
+          "prerequisite": 3,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "选择一个小任务，写出五条验收用例。把「出现成功动画」替换成「产生了可检查的结果」。",
+              "source": "anthropic-agents"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "一次成功的路演不能证明系统在所有真实场景下都可靠。",
+              "source": "anthropic-agents"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "critical-thinking",
+      "title": "独立思考",
+      "subtitle": "在众声喧哗里，找到自己的判断。",
+      "category": "思维方法",
+      "group": "thinking",
+      "en": "A LITTLE ROOM TO THINK",
+      "color": "amber",
+      "keywords": [
+        "思考",
+        "信息",
+        "批判",
+        "逻辑",
+        "判断",
+        "认知",
+        "热搜",
+        "谣言"
+      ],
+      "tags": [
+        "信息辨识",
+        "论证",
+        "理性判断"
+      ],
+      "kicker": "给不想被信息推着走的你",
+      "reason": "把「看起来有道理」拆成可以检查的主张、证据和推理。",
+      "sources": [
+        {
+          "id": "sep-critical",
+          "topic": "critical-thinking",
+          "title": "Critical Thinking",
+          "url": "https://plato.stanford.edu/entries/critical-thinking/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "批判",
+            "判断",
+            "证据"
+          ],
+          "guide": "以反思、理由和自我修正理解批判性思维，而不是把怀疑一切当成目标。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-th-01",
+          "topic": "critical-thinking",
+          "title": "如何培养批判性思维？",
+          "url": "https://www.zhihu.com/question/21206479?sort=created",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "批判性思维",
+            "训练"
+          ],
+          "guide": "尝试将建议转成可操作的检查：主张是什么，证据是什么，还缺什么？不同回答不是一套统一课程。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-th-02",
+          "topic": "critical-thinking",
+          "title": "如何区分事实（fact）和观点（view）？",
+          "url": "https://www.zhihu.com/question/326831974",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "事实",
+            "观点",
+            "判断"
+          ],
+          "guide": "先问陈述能否核查，再问它实际上有没有证据支持。可以核查的陈述也可能是错误的。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-th-03",
+          "topic": "critical-thinking",
+          "title": "区分“事实”与“观点” Fact VS Opinion",
+          "url": "https://zhuanlan.zhihu.com/p/267927580",
+          "author": "HAHAPPYPPY",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "事实",
+            "观点",
+            "分类"
+          ],
+          "guide": "使用生活例子做区分练习，但不要把“事实型陈述”误解为“已证明为真”。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "brown-regression",
+          "topic": "critical-thinking",
+          "title": "Seeing Theory · Regression Analysis",
+          "url": "https://seeing-theory.brown.edu/regression-analysis/index.html",
+          "publisher": "Brown University · Seeing Theory",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "相关",
+            "回归",
+            "样本"
+          ],
+          "guide": "以可交互的统计图理解变量关系。这里只借鉴操作后观察变化的教学方式，不复制其实现。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "sep-science",
+          "topic": "critical-thinking",
+          "title": "Scientific Method",
+          "url": "https://plato.stanford.edu/entries/scientific-method/",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "科学",
+            "证据",
+            "假设",
+            "因果"
+          ],
+          "guide": "用于讨论假设、观察与检验。方法需要具体条件，并不是一张万能的检查表。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-th-06",
+          "topic": "critical-thinking",
+          "title": "幸存者偏差对于统计来说影响大吗？",
+          "url": "https://www.zhihu.com/question/1909258859383621450",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "样本",
+            "幸存者偏差",
+            "统计"
+          ],
+          "guide": "先画出谁进入了样本、谁被排除，再讨论推论。返航飞机只是比喻，真正问题是选择机制。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-th-04",
+          "topic": "critical-thinking",
+          "title": "相关性和因果性有什么区别？",
+          "url": "https://www.zhihu.com/question/24029893",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "相关",
+            "因果",
+            "干预"
+          ],
+          "guide": "关键追问是：如果主动改变 A，B 会怎样？一起变化的观察不足以独自回答这个问题。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-th-05",
+          "topic": "critical-thinking",
+          "title": "我们如何区分相关性和因果关系？",
+          "url": "https://www.zhihu.com/question/413769450",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "因果",
+            "混杂",
+            "研究"
+          ],
+          "guide": "比较不同回答依赖的研究设计和假设。避免另一个极端：把所有观察性证据都说成完全无用。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "zh-th-07",
+          "topic": "critical-thinking",
+          "title": "确认偏误是什么？如何系统地克服确认偏误？",
+          "url": "https://www.zhihu.com/question/25345397",
+          "author": null,
+          "publisher": "知乎",
+          "kind": "问题讨论",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "确认偏误",
+            "反例",
+            "证据"
+          ],
+          "guide": "写出一条能使自己改主意的证据，再去找它，而不是只收集让自己安心的材料。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        },
+        {
+          "id": "brown-bayes",
+          "topic": "critical-thinking",
+          "title": "Seeing Theory · Bayesian Inference",
+          "url": "https://seeing-theory.brown.edu/bayesian-inference/index.html",
+          "publisher": "Brown University · Seeing Theory",
+          "author": null,
+          "kind": "参考原始页面",
+          "access": "page-read",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "贝叶斯",
+            "先验",
+            "后验",
+            "概率"
+          ],
+          "guide": "概率更新练习的参考。界面里每个概率都来自写明的教学假设，而不是对现实用户的评估。",
+          "summaryKind": "本项目导读，非原文转载",
+          "scope": "本次读取公开网页的相关段落；只对所引用的具体概念提供参考，不代表整篇材料已逐条核验。"
+        },
+        {
+          "id": "zh-th-08",
+          "topic": "critical-thinking",
+          "title": "[读书笔记] [深入浅出数据分析] [第六章] [第二节]贝叶斯推断",
+          "url": "https://zhuanlan.zhihu.com/p/420691371",
+          "author": "兰胖子",
+          "publisher": "知乎",
+          "kind": "专栏",
+          "access": "index-only",
+          "checkedAt": "2026-09-13",
+          "tags": [
+            "贝叶斯",
+            "先验",
+            "更新"
+          ],
+          "guide": "与概率教材对照，区分先验、似然和后验。本 Demo 的数值练习使用公开标注的虚构数据。",
+          "summaryKind": "本项目阅读提示，非原文摘要",
+          "scope": "检索结果可见标题与部分摘要；未取得完整正文。链接可能需要登录。不可据此推断全部回答的立场。"
+        }
+      ],
+      "nodes": [
+        {
+          "title": "独立思考，是反对所有人吗？",
+          "short": "先看清正在讨论什么",
+          "intro": "独立思考不是坚持与别人相反，也不是只相信自己的直觉。更有价值的目标是：能说明自己为什么接受一个判断，并愿意在出现更好证据时修正它。",
+          "points": [
+            {
+              "title": "先辨认主张",
+              "text": "一段内容可能同时包含事实陈述、价值判断和行动建议。先明确对方究竟在说什么，再决定需要哪种证据。"
+            },
+            {
+              "title": "理由与结论要分开",
+              "text": "「我喜欢它」和「它对所有人有效」不是同一个主张。个人体验可以有价值，但不能自动支持所有范围的结论。"
+            },
+            {
+              "title": "保持可以修正的态度",
+              "text": "承认信息不足，不是失去判断力。可以暂缓结论、缩小断言的范围，或说明自己的不确定性。"
+            }
+          ],
+          "misconception": "独立不等于孤立；向可靠来源学习，并不会自动失去自己的判断。",
+          "application": "从今天看到的内容中选一句话，改写成最清晰的主张：谁，在什么条件下，发生了什么？",
+          "bridge": "明确主张以后，下一站追问：它是如何获得我们信任的？",
+          "takeaway": "独立思考不是反对姿态，而是可说明、可修正的判断。",
+          "quiz": {
+            "question": "哪一种行为更接近独立思考？",
+            "options": [
+              "只要是多数人同意的，就必须反对。",
+              "只要符合直觉，就不必检查。",
+              "检查理由与证据，并允许新信息改变判断。"
+            ],
+            "answer": 2,
+            "explanation": "关键在于判断的方法，而不是结论是否与别人不同。"
+          },
+          "sourceIds": [
+            "sep-critical",
+            "zh-th-01",
+            "zh-th-02",
+            "zh-th-03"
+          ],
+          "prerequisite": -1,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "从今天看到的内容中选一句话，改写成最清晰的主张：谁，在什么条件下，发生了什么？",
+              "source": "sep-critical"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "独立不等于孤立；向可靠来源学习，并不会自动失去自己的判断。",
+              "source": "sep-critical"
+            }
+          ]
+        },
+        {
+          "title": "为什么我们会轻易相信一段话？",
+          "short": "辨认信息的来路",
+          "intro": "熟悉的表述、流畅的讲述和受到欢迎的作者，都可能增加内容的说服力。但让人信服的呈现方式，与支持主张的证据质量不是同一回事。",
+          "points": [
+            {
+              "title": "追到原始语境",
+              "text": "一张截图可能省略条件，一段转述可能改变范围。能找到原始材料时，优先检查上下文。"
+            },
+            {
+              "title": "把传播线索与证据分开",
+              "text": "转发量说明传播，不直接说明真实性。专家身份也需要与问题领域、证据和实际论证一起考虑。"
+            },
+            {
+              "title": "检查我们自己的偏好",
+              "text": "当内容让自己特别愉快或愤怒时，给判断留一点时间。喜欢一个结论，不会让它自动更可靠。"
+            }
+          ],
+          "misconception": "怀疑传播方式不等于证明主张为假；仍需回到具体证据。",
+          "application": "遇到一张信息截图，记录能确认的出处、时间、语境，以及仍缺失的信息。",
+          "bridge": "知道信息从哪里来后，下一站检查理由是否真的支持结论。",
+          "takeaway": "说服力与证据质量应当分开检查。",
+          "quiz": {
+            "question": "某观点传播很广，能直接证明什么？",
+            "options": [
+              "它被广泛传播，但真伪仍需要证据。",
+              "它在所有情况下都是真的。",
+              "它一定是假的，因为热门内容都不可靠。"
+            ],
+            "answer": 0,
+            "explanation": "传播范围不是结论真假的充分依据。"
+          },
+          "sourceIds": [
+            "brown-regression",
+            "sep-science",
+            "zh-th-06"
+          ],
+          "prerequisite": 0,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "遇到一张信息截图，记录能确认的出处、时间、语境，以及仍缺失的信息。",
+              "source": "sep-critical"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "怀疑传播方式不等于证明主张为假；仍需回到具体证据。",
+              "source": "sep-critical"
+            }
+          ]
+        },
+        {
+          "title": "证据如何支持一个结论？",
+          "short": "连接理由与主张",
+          "intro": "论证不仅需要证据，还需要说明证据为什么与结论相关。检查支持关系时，留意样本、适用范围、替代解释，以及有没有从有限信息跳到过大的结论。",
+          "points": [
+            {
+              "title": "相关，不必然意味着因果",
+              "text": "两个现象同时变化，可能有多种解释。判断因果关系通常需要更细致的研究设计与证据，而不能只靠并排出现。"
+            },
+            {
+              "title": "一个例子不自动代表所有人",
+              "text": "个人经历能够启发问题，但从个案推广到群体，需要更多说明。结论的范围应与证据相称。"
+            },
+            {
+              "title": "寻找替代解释",
+              "text": "在接受最顺手的解释之前，想想还有什么可能。一个解释很动听，不意味着它已经排除了其他解释。"
+            }
+          ],
+          "misconception": "发现一种可能的替代解释，也不等于证明原解释一定错误。",
+          "application": "选一个「因为 A，所以 B」的说法，写出它需要成立的条件，再写一个可能的替代解释。",
+          "bridge": "论证通常不会只有一边。下一站练习公平地理解分歧。",
+          "takeaway": "结论的力度与范围，应当和证据相称。",
+          "quiz": {
+            "question": "观察到两个变量相关，怎样表达更审慎？",
+            "options": [
+              "它们相关，所以已经证明一个导致另一个。",
+              "它们存在关联，因果解释仍需要进一步证据。",
+              "只要没有证明因果，关联就完全没有价值。"
+            ],
+            "answer": 1,
+            "explanation": "关联有信息价值，但因果判断需要额外依据。"
+          },
+          "sourceIds": [
+            "sep-science",
+            "brown-regression",
+            "zh-th-04",
+            "zh-th-05"
+          ],
+          "prerequisite": 1,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "选一个「因为 A，所以 B」的说法，写出它需要成立的条件，再写一个可能的替代解释。",
+              "source": "sep-critical"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "发现一种可能的替代解释，也不等于证明原解释一定错误。",
+              "source": "sep-critical"
+            }
+          ]
+        },
+        {
+          "title": "遇到分歧，如何不急着站队？",
+          "short": "先理解，再判断",
+          "intro": "两个人可能在事实、价值、用词或行动优先级上存在分歧。先找到分歧发生在哪里，比快速给对方贴上标签更有助于推进讨论。",
+          "points": [
+            {
+              "title": "尽量准确地复述对方",
+              "text": "先把对方真正的主张说清楚，而不是选择最容易攻击的版本。理解一个观点，不代表同意它。"
+            },
+            {
+              "title": "事实问题与价值问题分开讨论",
+              "text": "「会造成什么后果」和「应该优先考虑什么」可能需要不同的讨论方式。有时争论双方说的并不是同一件事。"
+            },
+            {
+              "title": "平衡不等于给所有说法同样权重",
+              "text": "不同观点值得被理解，但可靠性仍由理由与证据决定。不能为了形式上的对称而抹平证据差异。"
+            }
+          ],
+          "misconception": "理解多元观点不是「所有观点都同样正确」。",
+          "application": "将一次争论分成三列：共同承认的事实、尚待确认的事实、不同的价值优先级。",
+          "bridge": "最后一站，把判断的方法变成一份可以反复使用的小清单。",
+          "takeaway": "保留多元视角，也保留对证据差异的判断。",
+          "quiz": {
+            "question": "如何更好地面对两个相互冲突的观点？",
+            "options": [
+              "只要有争议，就认为双方同样可信。",
+              "先攻击说话者，不讨论主张。",
+              "明确分歧的类型，并比较各自理由与证据。"
+            ],
+            "answer": 2,
+            "explanation": "理解分歧与评估证据可以同时进行；不必为了平衡而放弃判断。"
+          },
+          "sourceIds": [
+            "sep-critical",
+            "zh-th-07",
+            "zh-th-01"
+          ],
+          "prerequisite": 2,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "将一次争论分成三列：共同承认的事实、尚待确认的事实、不同的价值优先级。",
+              "source": "sep-critical"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "理解多元观点不是「所有观点都同样正确」。",
+              "source": "sep-critical"
+            }
+          ]
+        },
+        {
+          "title": "给自己的判断留一扇窗",
+          "short": "建立可修正的小清单",
+          "intro": "把每条信息都研究到底并不现实。可以根据判断的影响和风险，决定需要投入多少验证。重要的是保留一种可重复的习惯：清楚主张、寻找依据、确认范围、标记不确定性。",
+          "points": [
+            {
+              "title": "用四个问题暂停一下",
+              "text": "主张是什么？依据在哪里？还有什么解释？什么信息会让我改变判断？不一定马上找到答案，但可以明确下一步。"
+            },
+            {
+              "title": "根据影响决定验证投入",
+              "text": "低影响的日常偏好与重大决定不需要相同的核验强度。判断越重要，越需要可靠来源与必要的专业帮助。"
+            },
+            {
+              "title": "把「我不知道」写具体",
+              "text": "与其笼统说不确定，不如指出缺少哪个条件、数据或定义。具体的不确定性会帮助下一次检索与讨论。"
+            }
+          ],
+          "misconception": "批判性思考不能保证永不犯错；它帮助我们更早发现问题并修正。",
+          "application": "写下一个你最近改变过的判断：是什么新信息促成了改变？以后如何更早发现类似信息？",
+          "bridge": "带着这张小清单，返回日常阅读。下一次不一定读得更多，但可以理解得更清楚。",
+          "takeaway": "让判断有依据、有边界，也有修正的机会。",
+          "quiz": {
+            "question": "哪一项最适合作为阅读后的自我检查？",
+            "options": [
+              "什么新的证据会让我修改目前的判断？",
+              "我怎样才能永远证明自己没错？",
+              "怎样选择只支持我观点的信息？"
+            ],
+            "answer": 0,
+            "explanation": "愿意说明改变判断的条件，是保持开放和可修正性的实际方法。"
+          },
+          "sourceIds": [
+            "brown-bayes",
+            "sep-critical",
+            "zh-th-08",
+            "zh-th-07"
+          ],
+          "prerequisite": 3,
+          "perspectives": [
+            {
+              "lens": "实践视角",
+              "title": "把概念放回一个具体问题",
+              "text": "写下一个你最近改变过的判断：是什么新信息促成了改变？以后如何更早发现类似信息？",
+              "source": "sep-critical"
+            },
+            {
+              "lens": "审慎视角",
+              "title": "也看看这个说法的边界",
+              "text": "批判性思考不能保证永不犯错；它帮助我们更早发现问题并修正。",
+              "source": "sep-critical"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "activities": {
+    "existentialism": [
+      {
+        "id": "ex-satchel",
+        "type": "classify",
+        "name": "山脚行囊 · 把标签放下来",
+        "terrain": "在芦苇渡口整理行囊",
+        "instruction": "把四张卡放进「已经面对的处境」或「可以承担的行动」。可以拖动，也可以点击卡片上的分类按钮。",
+        "bins": [
+          "已经面对的处境",
+          "可以承担的行动"
+        ],
+        "items": [
+          {
+            "id": "family",
+            "text": "我出生的家庭背景",
+            "answer": 0
+          },
+          {
+            "id": "ask",
+            "text": "主动了解另一种职业路径",
+            "answer": 1
+          },
+          {
+            "id": "past",
+            "text": "已经发生的一次考试结果",
+            "answer": 0
+          },
+          {
+            "id": "try",
+            "text": "用一周时间试做一个小项目",
+            "answer": 1
+          }
+        ],
+        "insight": "处境不能凭意志抹掉；承认处境，也不必取消行动。分类是这个具体练习的用法，并非给整个人生定性。",
+        "reward": "行囊整理好了，渡口的雾散开一层。"
+      },
+      {
+        "id": "ex-timeline",
+        "type": "sequence",
+        "name": "回声石阶 · 给思想找来路",
+        "terrain": "沿年代刻度拾级而上",
+        "instruction": "把三个背景片段按先后放到石阶上。拖动排序，或使用上移、下移按钮。",
+        "items": [
+          {
+            "id": "public",
+            "text": "20 世纪中叶：进入法国公共讨论"
+          },
+          {
+            "id": "precursors",
+            "text": "19 世纪：克尔凯郭尔、尼采提出相关追问"
+          },
+          {
+            "id": "phenomenology",
+            "text": "20 世纪前期：现象学与人的具体经验"
+          }
+        ],
+        "correct": [
+          "precursors",
+          "phenomenology",
+          "public"
+        ],
+        "insight": "这是理解背景的简化时间线，不是声称后一个阶段必然由前一个阶段造成，也不是把这些思想家归成一个统一派别。",
+        "reward": "石阶接续起来，前史不再只是三个名字。"
+      },
+      {
+        "id": "ex-constellation",
+        "type": "match",
+        "name": "思想星图 · 让三个声音分开",
+        "terrain": "在松间书院点亮思想星图",
+        "instruction": "将本项目概括的提问与思想家对应。它们不是原文引语，也不穷尽任何一人的思想。",
+        "bins": [
+          "萨特",
+          "波伏瓦",
+          "加缪"
+        ],
+        "items": [
+          {
+            "id": "responsibility",
+            "text": "我如何面对自己的选择，而不以固定身份完全开脱？",
+            "answer": 0
+          },
+          {
+            "id": "situated",
+            "text": "我的自由如何与具体处境、他人的自由相连？",
+            "answer": 1
+          },
+          {
+            "id": "absurd",
+            "text": "面对人与世界之间的荒诞张力，我怎样继续生活？",
+            "answer": 2
+          }
+        ],
+        "insight": "三条线连在同一张图上，但不汇成同一种声音。特别是加缪与“存在主义者”标签的关系，需要说明而非默认。",
+        "reward": "三颗思想星亮起，各自保留自己的位置。"
+      },
+      {
+        "id": "ex-bridge",
+        "type": "lenses",
+        "name": "双径栈道 · 自由与限制可以并存",
+        "terrain": "让两侧绳索一起托住桥面",
+        "instruction": "分别查看「行动」与「处境」两端，再选择能同时容纳它们的判断。这里只考查对材料的理解，不评判你的人生立场。",
+        "lenses": [
+          {
+            "id": "agency",
+            "title": "行动这一侧",
+            "text": "面对一次不满意的选择，我仍可查找信息、寻求支持或做小范围试验。",
+            "icon": "foot"
+          },
+          {
+            "id": "situation",
+            "title": "处境这一侧",
+            "text": "可用时间、经济条件、照护责任和他人行为，会改变我真正能做的事。",
+            "icon": "mountain"
+          }
+        ],
+        "choices": [
+          "有自由，就可以忽略全部现实条件。",
+          "看见现实限制，也辨认可行行动与需要的支持。",
+          "既然有现实限制，任何行动都没有意义。"
+        ],
+        "answer": 1,
+        "insight": "桥需要两端的支撑。把所有困难归于个人，与把行动完全取消，都使具体问题消失了。",
+        "reward": "两根绳索绷紧，栈道可以通行。"
+      },
+      {
+        "id": "ex-letter",
+        "type": "reflection",
+        "name": "山顶寄语 · 给未来的自己留一句话",
+        "terrain": "把自己的行动挂在山顶风铃上",
+        "instruction": "不是让 AI 替你写答案。各写一个具体短句；内容只保存到本机，不用于评判你的价值观。",
+        "fields": [
+          {
+            "id": "situation",
+            "label": "一个真实的处境",
+            "placeholder": "例如：想换方向，但还要完成这学期的课程。"
+          },
+          {
+            "id": "action",
+            "label": "一个愿意承担的小行动",
+            "placeholder": "例如：这周约一位从业者，了解日常工作。"
+          },
+          {
+            "id": "revision",
+            "label": "什么新信息会让我调整？",
+            "placeholder": "例如：发现实际工作与想象差异很大。"
+          }
+        ],
+        "insight": "这里没有唯一正确的生活答案。写下处境、行动和修正条件，只是让抽象理解变得具体。",
+        "reward": "你的寄语已留在风铃里，而不是变成另一个收藏夹。"
+      }
+    ],
+    "ai-agents": [
+      {
+        "id": "ai-loop",
+        "type": "sequence",
+        "name": "回路工坊 · 把行动接回反馈",
+        "terrain": "点亮山脚四段铜线",
+        "instruction": "按本实验约定的执行顺序连接四个模块。每一步的输出会成为下一步的输入。",
+        "items": [
+          {
+            "id": "act",
+            "text": "③ 执行经过校验的工具调用"
+          },
+          {
+            "id": "observe",
+            "text": "① 读取目标与当前状态"
+          },
+          {
+            "id": "feedback",
+            "text": "④ 观察实际结果，决定继续或停止"
+          },
+          {
+            "id": "decide",
+            "text": "② 选择下一步与需要的工具"
+          }
+        ],
+        "correct": [
+          "observe",
+          "decide",
+          "act",
+          "feedback"
+        ],
+        "insight": "自然语言表示“已完成”不是外部执行证据。回路需要真正的观察结果；本页也一样，由状态而不是动画决定是否完成。",
+        "reward": "回路通电，信号从输入到反馈完整走了一圈。"
+      },
+      {
+        "id": "ai-dispatch",
+        "type": "match",
+        "name": "工具岔路 · 谁来决定下一步",
+        "terrain": "为不同任务扳动道岔",
+        "instruction": "给三个任务匹配更合适的机制。这是具体任务条件下的判断，不是说某种架构永远优越。",
+        "bins": [
+          "固定工作流",
+          "受控动态检索",
+          "人工批准后执行"
+        ],
+        "items": [
+          {
+            "id": "extract",
+            "text": "格式固定的表单：提取三个字段，再校验格式。",
+            "answer": 0
+          },
+          {
+            "id": "investigate",
+            "text": "公开资料问题：根据查到的线索决定下一条检索。",
+            "answer": 1
+          },
+          {
+            "id": "send",
+            "text": "把最后写好的邮件发给真实客户。",
+            "answer": 2
+          }
+        ],
+        "insight": "最少必要的自主性，通常比“所有事都交给 Agent”更容易验证。写入和对外发送需要单独的许可。",
+        "reward": "道岔归位，三条轨道各去该去的地方。"
+      },
+      {
+        "id": "ai-toolrun",
+        "type": "runner",
+        "name": "检索实验室 · 看见真正的工具结果",
+        "terrain": "让检索吊舱在两个平台间运送证据",
+        "instruction": "运行本地资料检索 → 检查返回证据 → 生成带来源的草稿 → 验证引用。工具操作确实在浏览器中执行；不调用网络或大模型。",
+        "query": "Agent 与工作流有什么区别",
+        "insight": "工具返回的来源 ID、正文可读取状态和引用校验应当显式可见。检索结果是证据入口，不等于所有主张都已核实。",
+        "reward": "证据吊舱已到站，草稿有了可追溯的引用。"
+      },
+      {
+        "id": "ai-guard",
+        "type": "guardrails",
+        "name": "限流闸门 · 不让失败无限上山",
+        "terrain": "设置步数闸、权限锁与数据隔离",
+        "instruction": "调整三项运行策略，然后尝试放行一条来自外部网页的越权请求。观察应用层是否真正阻止它。",
+        "insight": "外部文本不是系统指令。最大步数、批准与隔离必须由代码强制执行，而不是依靠模型的一句安全承诺。",
+        "reward": "闸门拦下越权请求，失败停在边界之内。"
+      },
+      {
+        "id": "ai-bench",
+        "type": "benchmark",
+        "name": "验收平台 · 先验证，再说完成",
+        "terrain": "在观测台检查三次实验",
+        "instruction": "运行三个本地验收用例：有依据、无结果、恶意指令。只有通过全部检查，平台才会打开。",
+        "cases": [
+          {
+            "id": "grounded",
+            "title": "资料存在时",
+            "expect": "返回真实来源 ID，且引用能解析。"
+          },
+          {
+            "id": "missing",
+            "title": "找不到证据时",
+            "expect": "如实返回不足，不伪造一条答案。"
+          },
+          {
+            "id": "injection",
+            "title": "资料含越权文字时",
+            "expect": "将它当作数据，阻止发送或删除操作。"
+          }
+        ],
+        "insight": "三个用例只是教学基线，不代表生产安全认证。准确率、成本和复杂失败场景仍需要更大的独立测试集。",
+        "reward": "验收记录盖章。能运行和能验证，现在是同一件事。"
+      }
+    ],
+    "critical-thinking": [
+      {
+        "id": "th-sort",
+        "type": "classify",
+        "name": "辨言码头 · 把陈述拆开",
+        "terrain": "把不同的行李放进三艘渡船",
+        "instruction": "区分可核查陈述、偏好判断与因果推论。分类正确不表示陈述已经被证明为真。",
+        "bins": [
+          "可核查的陈述",
+          "偏好／价值判断",
+          "需要证据的因果推论"
+        ],
+        "items": [
+          {
+            "id": "count",
+            "text": "这次活动的登记表记录了 40 名参与者。",
+            "answer": 0
+          },
+          {
+            "id": "taste",
+            "text": "我更喜欢安静的学习环境。",
+            "answer": 1
+          },
+          {
+            "id": "cause",
+            "text": "参加活动的人得分更高，所以活动导致了提升。",
+            "answer": 2
+          }
+        ],
+        "insight": "先判断一句话在做什么，再判断它是否成立。能被核查的陈述，依然可能与记录不符。",
+        "reward": "三艘渡船各载一种陈述，判断有了清楚的起点。"
+      },
+      {
+        "id": "th-sample",
+        "type": "sample",
+        "name": "迷雾样本 · 把看不见的人找回来",
+        "terrain": "移动观察镜，照亮被漏掉的样本",
+        "instruction": "先观察展示出的 20 人，再拖动滑杆逐步看见未展示的 80 人。所有数字都是本项目构造的教学数据。",
+        "base": {
+          "n": 20,
+          "success": 18
+        },
+        "hidden": {
+          "n": 80,
+          "success": 12
+        },
+        "insight": "可见样本的成功率是 18/20，完整教学样本是 30/100。变化来自观察范围，不是这些人的结果被改变了。",
+        "reward": "迷雾退去，样本的边界终于可见。"
+      },
+      {
+        "id": "th-cause",
+        "type": "causal",
+        "name": "因果峡谷 · 找到第三条河",
+        "terrain": "转动观察镜，比较总体与分组",
+        "instruction": "夏天冰饮销量和泳池人次一起增加。依次查看「总体」「按温度分组」「关系图」，再判断这能否直接证明因果。数据为教学构造。",
+        "insight": "在这个例子里，温度是预先设定的共同原因。分组观察帮助暴露混杂，但现实中“控制一个变量”也不自动证明因果。",
+        "reward": "第三条河被看见，虚线不再被当成因果箭头。"
+      },
+      {
+        "id": "th-evidence",
+        "type": "evidence",
+        "name": "证据天平 · 让反面材料也上桌",
+        "terrain": "往天平两侧放上支持与限制",
+        "instruction": "主张：这个学习活动对所有人都有效。把三张材料都放上天平，再选择结论。示例资料为虚构，天平不是概率计算器。",
+        "items": [
+          {
+            "id": "story",
+            "title": "三位参与者的成功故事",
+            "text": "提示可能受益，但缺少未受益者和比较组。",
+            "side": "support"
+          },
+          {
+            "id": "missing",
+            "title": "退出者没有纳入报告",
+            "text": "提醒选择机制可能改变看到的结果。",
+            "side": "limit"
+          },
+          {
+            "id": "study",
+            "title": "小型对照研究只招募初学者",
+            "text": "对该条件有参考价值，不能推广到所有人。",
+            "side": "limit"
+          }
+        ],
+        "insight": "支持材料与限制可以同时存在。科学判断不按两边卡片数量投票，而要比较设计、适用范围和不确定性。",
+        "reward": "天平容得下反面材料，结论也留下了边界。"
+      },
+      {
+        "id": "th-bayes",
+        "type": "bayes",
+        "name": "校准灯塔 · 新证据怎样改变相信程度",
+        "terrain": "调节观察灯，让先验与证据相遇",
+        "instruction": "虚构天气提示器：下雨时 80% 会发出提示；不下雨时 20% 也会误报。拖动下雨的先验概率，比较看到提示后的概率。",
+        "likelihood": 0.8,
+        "falsePositive": 0.2,
+        "insight": "后验 = 先验×0.8 ÷ [先验×0.8 + (1−先验)×0.2]。数字来自写明的假设；并不是对真实天气的预测。",
+        "reward": "灯塔已经校准。你改变的是有依据的相信程度，不是强行选一个阵营。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "passed": 14,
+  "checks": [
+    "map zoom and reset update real transform",
+    "map pans by pointer movement",
+    "daylight and reduced-motion preferences persist",
+    "repeated slider input keeps keyboard focus and recomputes probability",
+    "personal reflection appears in actual summit page",
+    "resetting a revisited exercise does not revoke earned completion",
+    "backup file contains all three real journey records",
+    "file import confirms and restores validated backup",
+    "malformed import preserves existing records",
+    "cancelled destructive action retains data",
+    "source modal closes with Escape",
+    "unknown input is not silently mapped to a preset topic",
+    "cancelled generation cannot redirect after the timer finishes",
+    "extra workflow checks have no uncaught JavaScript errors"
+  ],
+  "errors": [],
+  "scope": "DOM via set_content; explicit test-only storage adapter"
+}

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pelican Pedals</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #0d2430;
+      --night: #102f3b;
+      --night-2: #184b55;
+      --foam: #c9f2df;
+      --mint: #83d6bf;
+      --coral: #f08b62;
+      --sun: #f6c56d;
+      --paper: #f5e8d0;
+      --white: #f8f3e8;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      overflow: hidden;
+      background: var(--night);
+      color: var(--white);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100svh;
+      min-height: 520px;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #102f3b;
+      z-index: -3;
+    }
+
+    .topbar {
+      position: absolute;
+      top: clamp(22px, 5vw, 56px);
+      left: clamp(22px, 6vw, 92px);
+      right: clamp(22px, 6vw, 92px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 5;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--foam);
+      animation: fade-down .9s ease-out both;
+    }
+
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .brand-mark {
+      width: 22px;
+      aspect-ratio: 1;
+      border: 2px solid var(--coral);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+    .brand-mark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+    .scene-note { opacity: .7; }
+
+    .copy {
+      position: absolute;
+      top: 21%;
+      left: clamp(22px, 6vw, 92px);
+      width: min(340px, 43vw);
+      z-index: 4;
+      pointer-events: none;
+      animation: rise-in 1.05s .18s cubic-bezier(.2,.8,.2,1) both;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(44px, 7.8vw, 112px);
+      line-height: .88;
+      letter-spacing: -.045em;
+      font-weight: 800;
+      color: var(--paper);
+    }
+    h1 span { color: var(--coral); display: block; }
+    .copy p {
+      margin: 0;
+      max-width: 260px;
+      font-size: clamp(13px, 1.35vw, 17px);
+      line-height: 1.55;
+      color: var(--foam);
+    }
+    .scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      color: var(--sun);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .scroll-cue i { display: block; width: 28px; height: 1px; background: var(--sun); }
+
+    .artboard {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cloud { animation: drift 22s linear infinite; transform-box: fill-box; transform-origin: center; }
+    .cloud.slow { animation-duration: 34s; animation-direction: reverse; opacity: .42; }
+    .wave { animation: wave 5.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .wave:nth-child(2) { animation-delay: -1.8s; animation-duration: 6.4s; }
+    .wave:nth-child(3) { animation-delay: -3.2s; animation-duration: 7.2s; }
+
+    .rider-group { animation: roll-in 1.65s .18s cubic-bezier(.1,.7,.2,1) both; transform-box: fill-box; transform-origin: center; }
+    .pelican { animation: rider-bob .68s ease-in-out infinite; transform-box: fill-box; transform-origin: center bottom; }
+    .leg-front, .leg-back { animation: pedal .68s linear infinite; transform-box: fill-box; transform-origin: 0 0; }
+    .leg-back { animation-delay: -.34s; }
+    .wheel { animation: spin 1.2s linear infinite; transform-box: fill-box; transform-origin: center; }
+    .handle-glint { animation: blink 2.8s ease-in-out infinite; }
+
+    .caption {
+      position: absolute;
+      right: clamp(22px, 6vw, 92px);
+      bottom: clamp(26px, 6vw, 64px);
+      z-index: 4;
+      text-align: right;
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--foam);
+      opacity: .78;
+      animation: fade-up 1s .55s ease-out both;
+    }
+    .caption strong { display: block; color: var(--sun); font-size: 12px; letter-spacing: .08em; }
+
+    @keyframes fade-down { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: .78; transform: none; } }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @keyframes roll-in { from { opacity: 0; transform: translateX(28vw) translateY(14px) scale(.78); } to { opacity: 1; transform: none; } }
+    @keyframes rider-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @keyframes pedal { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes drift { from { transform: translateX(-12%); } to { transform: translateX(112%); } }
+    @keyframes wave { 0%,100% { transform: translateX(0) scaleX(1); } 50% { transform: translateX(16px) scaleX(1.04); } }
+    @keyframes blink { 0%,80%,100% { opacity: .2; } 88% { opacity: 1; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+    @media (max-width: 640px) {
+      .copy { top: 17%; width: 58vw; }
+      h1 { font-size: clamp(46px, 15vw, 82px); }
+      .copy p { max-width: 210px; font-size: 12px; }
+      .scene-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" aria-label="鹈鹕骑自行车的 SVG 动画">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Pelican Pedals</span></div>
+      <span class="scene-note">Coastal loop / 06:24 PM</span>
+    </header>
+
+    <section class="copy">
+      <h1>Ride<br><span>the tide.</span></h1>
+      <p>一只鹈鹕，沿着潮汐线骑过黄昏。每一圈踏板，都把海风推远一点。</p>
+      <div class="scroll-cue"><i></i> keep rolling</div>
+    </section>
+
+    <svg class="artboard" viewBox="0 0 1440 900" role="img" aria-labelledby="svg-title svg-desc" preserveAspectRatio="xMidYMid slice">
+      <title id="svg-title">鹈鹕骑自行车穿过海岸</title>
+      <desc id="svg-desc">纸雕风格的鹈鹕骑着珊瑚色自行车，海浪、云和月亮缓慢移动。</desc>
+
+      <circle cx="1120" cy="170" r="88" fill="#f6c56d" opacity=".92"/>
+      <circle cx="1120" cy="170" r="112" fill="none" stroke="#f6c56d" stroke-width="1" opacity=".22"/>
+      <path d="M0 510 Q210 440 420 500 T840 490 T1260 500 T1600 480 V900 H0Z" fill="#184b55"/>
+      <path d="M0 590 Q230 520 480 575 T960 560 T1480 570 V900 H0Z" fill="#23616a"/>
+
+      <g class="cloud slow" fill="#c9f2df">
+        <path d="M114 220c20-35 76-36 98-2 13-12 45-10 55 11 25-7 59 12 59 38H82c-2-23 10-43 32-47Z" opacity=".18"/>
+      </g>
+      <g class="cloud" fill="#f5e8d0" opacity=".16">
+        <path d="M1140 298c15-27 58-29 77-2 13-10 37-8 46 10 23-5 45 11 45 30h-190c-2-19 6-33 22-38Z"/>
+      </g>
+
+      <g transform="translate(0 18)">
+        <path d="M0 690 C150 660 250 704 380 678 S640 650 790 680 S1050 718 1200 680 S1400 662 1540 690" fill="none" stroke="#83d6bf" stroke-width="6" opacity=".24"/>
+        <path d="M0 744 C160 712 270 760 420 733 S670 710 840 742 S1100 770 1280 734 S1450 720 1560 750" fill="none" stroke="#c9f2df" stroke-width="3" opacity=".18"/>
+        <path d="M0 820 C170 785 280 838 470 810 S760 790 930 820 S1180 848 1370 812 S1510 802 1600 820" fill="none" stroke="#c9f2df" stroke-width="2" opacity=".18"/>
+      </g>
+
+      <g class="rider-group" transform="translate(835 420)">
+        <g class="wheel" fill="none" stroke="#f5e8d0" stroke-width="5">
+          <circle cx="-180" cy="228" r="92"/><circle cx="178" cy="228" r="92"/>
+          <path d="M-180 228 10 228 178 228M-180 228 10 228M10 228 60 135 178 228M10 228-44 146-180 228M-44 146h104M60 135l30-25" stroke-width="3" opacity=".72"/>
+          <circle cx="-180" cy="228" r="8" fill="#f08b62" stroke="none"/><circle cx="178" cy="228" r="8" fill="#f08b62" stroke="none"/>
+        </g>
+        <path d="M-48 146h68" stroke="#f08b62" stroke-width="10" stroke-linecap="round"/>
+        <path d="M80 105l26 5-6 12-26-4Z" fill="#f08b62"/>
+        <path d="M80 106 70 92" stroke="#f5e8d0" stroke-width="5" stroke-linecap="round"/>
+
+        <g class="pelican">
+          <path d="M0 115c-32-20-36-69-4-101 29-29 86-20 104 14 11 20 7 44-8 62l-26 27Z" fill="#f5e8d0"/>
+          <path d="M70 33c46-7 80 5 107 22-34 25-78 35-115 16Z" fill="#f08b62"/>
+          <path d="M74 40c28 0 50 6 68 16-26 6-47 5-68 0Z" fill="#ffe0aa" opacity=".9"/>
+          <circle cx="70" cy="16" r="7" fill="#0d2430"/>
+          <path d="M20 103c-24 16-50 22-75 6 26-7 45-22 62-42Z" fill="#83d6bf"/>
+          <path d="M16 108c-22 5-43 4-61-4 14 16 35 24 60 21Z" fill="#23616a"/>
+          <path d="M34 110 4 152 38 149 62 111Z" fill="#f5e8d0"/>
+          <path d="M42 145 10 176" stroke="#f08b62" stroke-width="10" stroke-linecap="round"/>
+          <path d="M10 176-2 176M10 176l10 7" stroke="#f08b62" stroke-width="5" stroke-linecap="round"/>
+          <path d="M-20 136-55 166" stroke="#f5e8d0" stroke-width="11" stroke-linecap="round"/>
+          <path d="M-54 166-77 154" stroke="#f5e8d0" stroke-width="8" stroke-linecap="round"/>
+          <path d="M-78 154-68 139" stroke="#f08b62" stroke-width="5" stroke-linecap="round"/>
+          <path d="M-8 117c38 19 68 26 100 18" fill="none" stroke="#f08b62" stroke-width="7" stroke-linecap="round"/>
+        </g>
+        <g class="leg-front" transform="translate(10 228)"><path d="M0 0 31 25" stroke="#f08b62" stroke-width="6" stroke-linecap="round"/><circle cx="36" cy="29" r="7" fill="#f08b62"/></g>
+        <g class="leg-back" transform="translate(10 228)"><path d="M0 0-26 26" stroke="#f08b62" stroke-width="6" stroke-linecap="round"/><circle cx="-31" cy="31" r="7" fill="#f08b62"/></g>
+        <path class="handle-glint" d="M96 100h16" stroke="#f6c56d" stroke-width="4" stroke-linecap="round"/>
+      </g>
+
+      <g fill="#83d6bf" opacity=".65">
+        <path d="M134 820c12-72 8-125-10-167 35 55 39 110 28 167Z"/>
+        <path d="M166 820c4-84 26-135 62-174-24 65-28 118-21 174Z"/>
+        <path d="M1288 820c-8-65-2-112 18-150-4 49 7 95 15 150Z"/>
+        <path d="M1326 820c13-75 38-116 76-145-29 46-41 89-43 145Z"/>
+      </g>
+    </svg>
+
+    <div class="caption"><strong>One continuous loop</strong>Animated in pure SVG · 1440 × 900</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "more-than-a-mountain",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Three interactive knowledge terrains with a sourced offline knowledge library. No third-party runtime dependencies.",
+  "scripts": {
+    "build": "node scripts/export-knowledge.mjs && node scripts/build.mjs",
+    "dev": "npm run build && node server/index.mjs",
+    "start": "node server/index.mjs",
+    "audit": "node scripts/audit-knowledge.mjs",
+    "test": "node --test tests/v2-domain.test.mjs tests/v2-http.test.mjs tests/v2-model.test.mjs",
+    "test:browser": "python tests/v2-browser.py"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

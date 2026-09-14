@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "html_bytes": 1086119,
+  "html_sha256": "9c375e69645d0e7ca22efdbc97812765f97a8af92f4135db7d8fc12976537e8d",
+  "offline_mountains": 3,
+  "interactive_camps": 15,
+  "source_records": 36,
+  "zhihu_index_only": 24,
+  "public_reference_pages": 12,
+  "curated_questions": 24,
+  "concept_labels": 30,
+  "cross_topic_links": 4,
+  "raster_atmosphere_assets": 24,
+  "live_svg_terrains": 3,
+  "node_tests_passed": 67,
+  "browser_scenarios_passed": 48,
+  "browser_test_scope": "Chromium set_content with explicit test-only Storage adapter; separate real HTTP and mock-upstream tests",
+  "live_provider_tested": false,
+  "publicly_deployed": false
+}

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "id": "mountain-ai-agents-3d",
+  "name": "机房 · 轨道 · 调度塔（知识山 3D 资产）",
+  "use": "knowledge-journey terrain exhibit",
+  "style": {
+    "name": "机房轨道山（参数化地形语法）",
+    "traits": [
+      "人工削平的台地层",
+      "环山悬浮轨道",
+      "塔基与天线"
+    ],
+    "avoid": [
+      "自然雪锥",
+      "无基础塔",
+      "重复窗口贴板"
+    ]
+  },
+  "dimensions": {
+    "width": 10,
+    "depth": 10,
+    "floors": 6,
+    "floorHeight": 0.72
+  },
+  "massing": {
+    "type": "terraced",
+    "peaks": 1,
+    "terraceCount": 5,
+    "spineWidth": 0.26
+  },
+  "roof": {
+    "type": "plant-crown",
+    "antennaCount": 3
+  },
+  "facade": {
+    "bandRule": "terrace-rings",
+    "trailRibbon": true,
+    "terraceStyle": "设备平台"
+  },
+  "materials": [
+    {
+      "id": "server-slate",
+      "role": "structure"
+    },
+    {
+      "id": "coolant-blue",
+      "role": "glass"
+    },
+    {
+      "id": "signal-gold",
+      "role": "accent"
+    },
+    {
+      "id": "moss-machine",
+      "role": "ground"
+    }
+  ],
+  "seed": 524287,
+  "variants": 2,
+  "target": {
+    "format": "glb",
+    "units": "m",
+    "upAxis": "Y",
+    "frontAxis": "+Z",
+    "integration": "standalone",
+    "detail": "aerial"
+  },
+  "budget": {
+    "triangles": 90000,
+    "materialBatches": 8,
+    "textureResolution": 64
+  },
+  "terrain": {
+    "archetype": "machine-orbit-mountain",
+    "palette": [
+      "#213943",
+      "#547783",
+      "#e1bd63"
+    ],
+    "weather": "rain",
+    "stations": [
+      0.14,
+      0.36,
+      0.52,
+      0.73,
+      0.9
+    ],
+    "variantSeeds": [
+      524287,
+      999983
+    ]
+  },
+  "assumptions": [
+    "山体为示意性知识地图，不是真实测绘地形，尺度按米制营地比例设定",
+    "五层营地高差按 floorHeight 0.72m 计，总高 4.32m；峰形受 maxPeakHeight 约束",
+    "顶点色表达坡向与高程分带；运行时按 GLB 材质取近似 PBR 参数，无贴图",
+    "同一山体的第二个变体只改 seed 参数，几何按规格有意不同，共享同一造型身份"
+  ],
+  "parameters": {
+    "heightM": 4.32,
+    "baseRadiusM": 5,
+    "peakRadiusM": 0.7,
+    "trailWidthM": 0.24,
+    "terraceCount": 5,
+    "forestDensity": 1,
+    "seed": 524287
+  }
+}

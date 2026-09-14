@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>沙盘预览 · 看山不是山</title>
+<style>
+  html,body{margin:0;height:100%;background:#0e1512;font-family:"Songti SC",SimSun,serif;overflow:hidden}
+  #stage{position:fixed;inset:0}
+  .hud{position:fixed;z-index:3;color:#e8e2cf;font:12px/1.6 ui-monospace,Consolas,monospace;background:rgba(20,28,25,.72);border-radius:8px;padding:8px 12px;backdrop-filter:blur(3px)}
+  #meta{left:12px;bottom:12px;max-width:46ch}
+  #meta b{color:#e8ae35}
+  #bar{left:12px;right:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;background:none;padding:0}
+  #bar button{font:12px/1 sans-serif;padding:6px 10px;border-radius:6px;border:1px solid #3c4644;background:rgba(20,28,25,.78);color:#e8e2cf;cursor:pointer}
+  #bar button.on{background:#e8ae35;color:#20180a;border-color:#e8ae35}
+  #stages{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:3;display:flex;gap:8px}
+  #stages span{font:12px/1 sans-serif;padding:6px 10px;border-radius:6px;background:rgba(20,28,25,.78);color:#9aa39c;border:1px solid #3c4644}
+  #stages span.on{color:#20180a;background:#e8e2cf;border-color:#e8e2cf}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div class="hud" id="meta">加载中…</div>
+<div class="hud" id="bar"></div>
+<div id="stages"></div>
+<script type="module">
+import { DIORAMAS } from './diorama/registry.mjs';
+import { mountDiorama } from './diorama/engine.mjs';
+
+const params = new URLSearchParams(location.search);
+const id = params.get('mountain') || Object.keys(DIORAMAS)[0];
+const day = Number(params.get('day') || 1.35);
+const def = DIORAMAS[id];
+const meta = document.getElementById('meta');
+const bar = document.getElementById('bar');
+const stagesEl = document.getElementById('stages');
+
+const handle = mountDiorama(document.getElementById('stage'), def.create, {
+  day,
+  quality: params.get('quality') || 'auto',
+  camera: params.get('camera') || 'free'
+});
+const engine = handle.engine;
+
+bar.innerHTML = '';
+for (const p of def.cameras || engine.cameraPresets) {
+  const b = document.createElement('button');
+  b.textContent = p.label;
+  b.onclick = () => { engine.applyPreset(p.id); [...bar.querySelectorAll('button')].forEach(x => x.classList.toggle('on', x === b)); };
+  bar.appendChild(b);
+}
+const directorBtn = document.createElement('button');
+directorBtn.textContent = '导演运镜';
+directorBtn.onclick = () => {
+  const on = directorBtn.classList.toggle('on');
+  engine.setCameraMode(on ? 'director' : 'free');
+};
+bar.appendChild(directorBtn);
+
+function paintStages(stage) {
+  stagesEl.innerHTML = (def.stageTitles || []).map((t, i) => `<span class="${i === stage ? 'on' : ''}">${t}</span>`).join('');
+}
+engine.onStage = paintStages;
+paintStages(0);
+
+setInterval(() => {
+  const s = engine.stats();
+  meta.innerHTML = `<b>${def.title}</b><br>阶段 ${s.stage + 1} / 5 · day ${s.day.toFixed(2)} · ${s.quality} · ${s.calls} calls · ${s.triangles} tris${s.fps ? ` · ${s.fps} fps` : ''}`;
+}, 500);
+window.__diorama = engine;
+</script>
+</body>
+</html>

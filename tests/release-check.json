@@ -1,0 +1,9 @@
+{
+  "html_bytes": 1086119,
+  "source_count": 36,
+  "browser_scenarios": 48,
+  "node_tests": 67,
+  "html_sha256": "9c375e69645d0e7ca22efdbc97812765f97a8af92f4135db7d8fc12976537e8d",
+  "font_files_in_package": 0,
+  "test_shim_in_html": false
+}

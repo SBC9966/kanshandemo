@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "id": "mountain-existentialism-3d",
+  "name": "孤峰 · 风口 · 回声站（知识山 3D 资产）",
+  "use": "knowledge-journey terrain exhibit",
+  "style": {
+    "name": "孤峰风口（参数化地形语法）",
+    "traits": [
+      "单峰陡立",
+      "迎风面裸岩、背风面草坡",
+      "峰顶回声站"
+    ],
+    "avoid": [
+      "对称雪锥",
+      "茂密林相",
+      "贴图替代几何"
+    ]
+  },
+  "dimensions": {
+    "width": 10,
+    "depth": 10,
+    "floors": 6,
+    "floorHeight": 0.72
+  },
+  "massing": {
+    "type": "peak",
+    "peaks": 1,
+    "terraceCount": 5,
+    "spineWidth": 0.2
+  },
+  "roof": {
+    "type": "echo-mast",
+    "mastHeightM": 1.6
+  },
+  "facade": {
+    "bandRule": "windward-bare",
+    "trailRibbon": true,
+    "terraceStyle": "风口平台"
+  },
+  "materials": [
+    {
+      "id": "bare-rock",
+      "role": "cliff"
+    },
+    {
+      "id": "lee-grass",
+      "role": "ground"
+    },
+    {
+      "id": "mast-steel",
+      "role": "structure"
+    },
+    {
+      "id": "echo-warm",
+      "role": "accent"
+    }
+  ],
+  "seed": 161803,
+  "variants": 2,
+  "target": {
+    "format": "glb",
+    "units": "m",
+    "upAxis": "Y",
+    "frontAxis": "+Z",
+    "integration": "standalone",
+    "detail": "aerial"
+  },
+  "budget": {
+    "triangles": 90000,
+    "materialBatches": 8,
+    "textureResolution": 64
+  },
+  "terrain": {
+    "archetype": "wind-swept-lone-peak",
+    "palette": [
+      "#263b3a",
+      "#687a74",
+      "#b79777"
+    ],
+    "weather": "cloud",
+    "stations": [
+      0.16,
+      0.38,
+      0.54,
+      0.74,
+      0.92
+    ],
+    "variantSeeds": [
+      161803,
+      141421
+    ]
+  },
+  "assumptions": [
+    "山体为示意性知识地图，不是真实测绘地形，尺度按米制营地比例设定",
+    "五层营地高差按 floorHeight 0.72m 计，总高 4.32m；峰形受 maxPeakHeight 约束",
+    "顶点色表达坡向与高程分带；运行时按 GLB 材质取近似 PBR 参数，无贴图",
+    "同一山体的第二个变体只改 seed 参数，几何按规格有意不同，共享同一造型身份"
+  ],
+  "parameters": {
+    "heightM": 4.32,
+    "baseRadiusM": 5,
+    "peakRadiusM": 0.7,
+    "trailWidthM": 0.24,
+    "terraceCount": 5,
+    "forestDensity": 1,
+    "seed": 161803
+  }
+}

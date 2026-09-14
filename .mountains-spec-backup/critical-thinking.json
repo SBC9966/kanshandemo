@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "id": "mountain-critical-thinking-3d",
+  "name": "石阶 · 观测台 · 证据林（知识山 3D 资产）",
+  "use": "knowledge-journey terrain exhibit",
+  "style": {
+    "name": "证据林观测脊（参数化地形语法）",
+    "traits": [
+      "缓脊与观测台",
+      "标本尺度的石阵",
+      "针叶林分带"
+    ],
+    "avoid": [
+      "对称雪锥",
+      "无来源的装饰碑",
+      "纯色坡面"
+    ]
+  },
+  "dimensions": {
+    "width": 10,
+    "depth": 10,
+    "floors": 6,
+    "floorHeight": 0.72
+  },
+  "massing": {
+    "type": "ridge",
+    "peaks": 2,
+    "terraceCount": 5,
+    "spineWidth": 0.3
+  },
+  "roof": {
+    "type": "observation-deck",
+    "deckM": 2.2
+  },
+  "facade": {
+    "bandRule": "below-treeline",
+    "trailRibbon": true,
+    "terraceStyle": "样方地块"
+  },
+  "materials": [
+    {
+      "id": "granite-grey",
+      "role": "cliff"
+    },
+    {
+      "id": "forest-floor",
+      "role": "ground"
+    },
+    {
+      "id": "pine-deep",
+      "role": "vegetation"
+    },
+    {
+      "id": "evidence-brass",
+      "role": "accent"
+    }
+  ],
+  "seed": 271828,
+  "variants": 2,
+  "target": {
+    "format": "glb",
+    "units": "m",
+    "upAxis": "Y",
+    "frontAxis": "+Z",
+    "integration": "standalone",
+    "detail": "aerial"
+  },
+  "budget": {
+    "triangles": 90000,
+    "materialBatches": 8,
+    "textureResolution": 64
+  },
+  "terrain": {
+    "archetype": "evidence-forest-ridge",
+    "palette": [
+      "#36433e",
+      "#78816f",
+      "#c09b69"
+    ],
+    "weather": "cloud",
+    "stations": [
+      0.14,
+      0.36,
+      0.52,
+      0.73,
+      0.9
+    ],
+    "variantSeeds": [
+      271828,
+      314159
+    ]
+  },
+  "assumptions": [
+    "山体为示意性知识地图，不是真实测绘地形，尺度按米制营地比例设定",
+    "五层营地高差按 floorHeight 0.72m 计，总高 4.32m；峰形受 maxPeakHeight 约束",
+    "顶点色表达坡向与高程分带；运行时按 GLB 材质取近似 PBR 参数，无贴图",
+    "同一山体的第二个变体只改 seed 参数，几何按规格有意不同，共享同一造型身份"
+  ],
+  "parameters": {
+    "heightM": 4.32,
+    "baseRadiusM": 5,
+    "peakRadiusM": 0.7,
+    "trailWidthM": 0.24,
+    "terraceCount": 5,
+    "forestDensity": 1,
+    "seed": 271828
+  }
+}

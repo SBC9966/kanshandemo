@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "id": "mountain-ethics-intro-3d",
+  "name": "石门 · 庙宇 · 权衡台（知识山 3D 资产）",
+  "use": "knowledge-journey terrain exhibit",
+  "style": {
+    "name": "石门庙峰（参数化地形语法）",
+    "traits": [
+      "陡壁与鞍部",
+      "一处石门隘口",
+      "庙宇主殿压顶"
+    ],
+    "avoid": [
+      "对称雪锥",
+      "无基础悬浮构件",
+      "整面贴板"
+    ]
+  },
+  "dimensions": {
+    "width": 10,
+    "depth": 10,
+    "floors": 6,
+    "floorHeight": 0.72
+  },
+  "massing": {
+    "type": "peak",
+    "peaks": 1,
+    "terraceCount": 5,
+    "spineWidth": 0.22
+  },
+  "roof": {
+    "type": "temple-hip",
+    "roofPitchDeg": 26
+  },
+  "facade": {
+    "bandRule": "cliff-band",
+    "trailRibbon": true,
+    "terraceStyle": "石阶平台"
+  },
+  "materials": [
+    {
+      "id": "temper-red",
+      "role": "ground"
+    },
+    {
+      "id": "stone-taupe",
+      "role": "cliff"
+    },
+    {
+      "id": "gate-crimson",
+      "role": "accent"
+    },
+    {
+      "id": "temple-wood",
+      "role": "structure"
+    }
+  ],
+  "seed": 7919,
+  "variants": 2,
+  "target": {
+    "format": "glb",
+    "units": "m",
+    "upAxis": "Y",
+    "frontAxis": "+Z",
+    "integration": "standalone",
+    "detail": "aerial"
+  },
+  "budget": {
+    "triangles": 90000,
+    "materialBatches": 8,
+    "textureResolution": 64
+  },
+  "terrain": {
+    "archetype": "stone-gate-temple-peak",
+    "palette": [
+      "#463627",
+      "#92795d",
+      "#c25e49"
+    ],
+    "weather": "dust",
+    "stations": [
+      0.14,
+      0.36,
+      0.52,
+      0.73,
+      0.9
+    ],
+    "variantSeeds": [
+      7919,
+      104729
+    ]
+  },
+  "assumptions": [
+    "山体为示意性知识地图，不是真实测绘地形，尺度按米制营地比例设定",
+    "五层营地高差按 floorHeight 0.72m 计，总高 4.32m；峰形受 maxPeakHeight 约束",
+    "顶点色表达坡向与高程分带；运行时按 GLB 材质取近似 PBR 参数，无贴图",
+    "同一山体的第二个变体只改 seed 参数，几何按规格有意不同，共享同一造型身份"
+  ],
+  "parameters": {
+    "heightM": 4.32,
+    "baseRadiusM": 5,
+    "peakRadiusM": 0.7,
+    "trailWidthM": 0.24,
+    "terraceCount": 5,
+    "forestDensity": 1,
+    "seed": 7919
+  }
+}

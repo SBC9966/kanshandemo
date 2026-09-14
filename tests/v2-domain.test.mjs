@@ -1,0 +1,53 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {MOUNTAINS} from '../src/data/content.mjs';
+import {KNOWLEDGE_SOURCES,SOURCE_BY_ID,NODE_SOURCES} from '../src/data/knowledge.mjs';
+import {ACTIVITIES,activityFor,defaultActivity,checkActivity,bayesPosterior,sampleSummary} from '../src/data/activities.mjs';
+import {reduceActivity,activityPassed,normalizeActivity,toolGate} from '../src/activity-engine.mjs';
+import {createJourney,completeNode,normalizeState,EMPTY_STATE,canOpen,validateMountain,escapeHTML,safeURL} from '../src/domain.mjs';
+import {retrieveKnowledge,searchSources,validateKnowledge,QA_CARDS,knowledgeStats} from '../src/knowledge-engine.mjs';
+import {WORLD_DEFINITIONS,terrainScene} from '../src/worlds.mjs';
+export function solveActivity(a){let s=defaultActivity(a);const act=e=>s=reduceActivity(a,s,e);switch(a.type){
+ case 'classify':case 'match':for(const x of a.items)act({type:'place',id:x.id,value:x.answer});break;
+ case 'sequence':for(let i=0;i<a.correct.length;i++){const id=a.correct[i],at=s.order.indexOf(id);act({type:'move',id,delta:i-at});}break;
+ case 'lenses':for(const x of a.lenses)act({type:'view',value:x.id});act({type:'value',key:'choice',value:String(a.answer)});break;
+ case 'reflection':for(const f of a.fields)act({type:'field',key:f.id,value:'一条具体且可以修正的行动。'});break;
+ case 'runner':for(const step of ['search','inspect','draft','verify'])act({type:'runner',step});break;
+ case 'guardrails':for(const [key,value] of Object.entries({maxSteps:3,approval:true,isolate:true}))act({type:'value',key,value});act({type:'guard-test'});break;
+ case 'benchmark':for(const x of a.cases)act({type:'benchmark',id:x.id});break;
+ case 'sample':act({type:'value',key:'reveal',value:80});act({type:'value',key:'conclusion',value:'selection'});break;
+ case 'causal':for(const value of ['overall','groups','diagram'])act({type:'view',value});act({type:'value',key:'conclusion',value:'confounder'});break;
+ case 'evidence':for(const x of a.items)act({type:'place',id:x.id,value:x.side});act({type:'value',key:'conclusion',value:'limited'});break;
+ case 'bayes':act({type:'value',key:'prior',value:50});act({type:'value',key:'conclusion',value:'prior'});break;
+ }return reduceActivity(a,s,{type:'evaluate'});}
+const seed=structuredClone(EMPTY_STATE);
+for(const m of MOUNTAINS){let j=createJourney(m.id,{},m.title);for(let i=0;i<5;i++){const a=activityFor(m.id,i);if(a)j.activities[i]=solveActivity(a);j.checks[i]=true;j=completeNode(j,i);}seed.journeys[m.id]=j;}
+fs.writeFileSync(new URL('./v2-fixtures.json',import.meta.url),JSON.stringify({complete:seed,activities:ACTIVITIES,quizAnswers:Object.fromEntries(MOUNTAINS.map(m=>[m.id,m.nodes.map(n=>n.quiz.answer)]))},null,2));
+test('knowledge database keeps honest provenance counts',()=>{const s=knowledgeStats();assert.ok(s.sources>=36);assert.ok(s.zhihu>=24);assert.ok(s.readable>=12);assert.ok(s.units>=15);});
+test('all source URLs and multi-source lessons validate',()=>{const r=validateKnowledge();assert.equal(r.ok,true,JSON.stringify(r.errors?.slice(0,8)||r));});
+test('all predefined plans validate after source enrichment',()=>MOUNTAINS.forEach(m=>assert.equal(validateMountain(m),m)));
+test('every Zhihu entry is honestly marked index-only, not full article',()=>KNOWLEDGE_SOURCES.filter(s=>s.publisher==='知乎').forEach(s=>{assert.equal(s.access,'index-only');assert.ok(s.scope.includes('未取得'));assert.ok(s.summaryKind.includes('非原文'));}));
+test('all sources are used by at least one node',()=>assert.equal(new Set(Object.values(NODE_SOURCES).flat(2)).size,KNOWLEDGE_SOURCES.length));
+test('search has useful topic and kind filters',()=>{assert.ok(searchSources('加缪').length>=2);assert.ok(searchSources('',{kind:'zhihu'}).length>=24);assert.ok(searchSources('',{topic:'ai-agents'}).length>=8);assert.equal(searchSources('火星玫瑰量子彩票').length,0);});
+test('every curated question retrieves a cited local answer',()=>QA_CARDS.forEach(q=>{const r=retrieveKnowledge(q.question,q.topic);assert.equal(r.ok,true,q.id);assert.ok(r.sources.length>0);r.sources.forEach(s=>assert.ok(SOURCE_BY_ID[s.id]));}));
+test('unknown question does not become a fabricated answer',()=>assert.equal(retrieveKnowledge('火星的玫瑰色海洋城市','ai-agents').ok,false));
+test('local guide is explicitly not a generative model',()=>assert.equal(retrieveKnowledge('Agent 工作流区别','ai-agents').mode,'curated-retrieval'));
+for(const m of MOUNTAINS)for(let i=0;i<5;i++){const a=activityFor(m.id,i);if(!a)continue;test(a.id+' rejects blank state, passes actual interaction and survives normalization',()=>{assert.equal(activityPassed(a,defaultActivity(a)),false);assert.equal(checkActivity(a,defaultActivity(a)).passed,false);const solved=solveActivity(a);assert.equal(activityPassed(a,solved),true,JSON.stringify(solved));assert.equal(activityPassed(a,normalizeActivity(a,solved)),true);});}
+test('all seeded journeys finish and keep receipts',()=>Object.values(seed.journeys).forEach(j=>{assert.equal(j.completed,5);}));
+test('quiz alone cannot unlock a predefined node',()=>{const j=createJourney('existentialism');j.checks[0]=true;assert.equal(completeNode(j,0),j);});
+test('experiment alone cannot unlock a predefined node',()=>{const j=createJourney('existentialism');j.activities[0]=solveActivity(activityFor(j.id,0));assert.equal(completeNode(j,0),j);});
+test('cannot jump over prerequisites',()=>{const j=createJourney('existentialism');j.checks[4]=true;j.activities[4]=solveActivity(activityFor(j.id,4));assert.equal(completeNode(j,4),j);assert.equal(canOpen(j,4),false);});
+test('a saved completion receipt survives revisiting and resetting experiment',()=>{const j=structuredClone(seed.journeys['existentialism']);j.activities[0]=defaultActivity(activityFor(j.id,0));const restored=normalizeState({...EMPTY_STATE,journeys:{[j.id]:j}},MOUNTAINS.map(m=>m.id));assert.equal(restored.journeys[j.id].completed,5);});
+test('false new-version completion without activity or receipt is removed',()=>{const j=createJourney('existentialism');j.completed=5;j.checks={0:true,1:true,2:true,3:true,4:true};const r=normalizeState({...EMPTY_STATE,journeys:{[j.id]:j}},['existentialism']);assert.equal(r.journeys[j.id].completed,0);});
+test('legacy completed v1 readings retain their progress',()=>{const j={id:'existentialism',completed:2,checks:{0:true,1:true},notes:{0:'旧笔记'}};const r=normalizeState({...EMPTY_STATE,journeys:{[j.id]:j}},['existentialism']);assert.equal(r.journeys[j.id].completed,2);assert.equal(r.journeys[j.id].notes[0],'旧笔记');});
+test('source favorites and viewed-card history normalize safely',()=>{const r=normalizeState({...seed,savedSources:['zh-ex-01','xx','zh-ex-01'],sourceVisits:['sep-camus','bad']},MOUNTAINS.map(m=>m.id));assert.deepEqual(r.savedSources,['zh-ex-01']);assert.deepEqual(r.sourceVisits,['sep-camus']);});
+test('malformed nested experiment arrays do not throw',()=>{const a=activityFor('ai-agents',4);assert.doesNotThrow(()=>normalizeActivity(a,{viewed:3,seen:{},tests:'oops',events:false}));});
+test('sample experiment actually recomputes numerator and denominator',()=>{const a=activityFor('critical-thinking',1);assert.equal(sampleSummary(a,0).rate,.9);assert.deepEqual(sampleSummary(a,80),{n:100,success:30,rate:.3,hidden:80});});
+test('Bayesian indicator computes 50 percent and 80 percent correctly',()=>{assert.ok(Math.abs(bayesPosterior(.2)-.5)<1e-10);assert.equal(bayesPosterior(.5),.8);assert.equal(bayesPosterior(0),0);});
+test('permission checks block external write and enforce step bound',()=>{assert.equal(toolGate({tool:'send_mail',external:true,approved:true}).allowed,false);assert.equal(toolGate({tool:'search_local',steps:3,maxSteps:3}).allowed,false);assert.equal(toolGate({tool:'search_local'}).allowed,true);});
+test('runner refuses to draft before retrieval and evidence inspection',()=>{const a=activityFor('ai-agents',2);const s=reduceActivity(a,defaultActivity(a),{type:'runner',step:'draft'});assert.equal(s.stage,0);assert.equal(s.events[0].status,'blocked');});
+test('all worlds have unique geometry and five stations',()=>{const worlds=Object.values(WORLD_DEFINITIONS);assert.ok(worlds.length>=6);assert.equal(new Set(worlds.map(x=>JSON.stringify(x.points))).size,worlds.length);assert.equal(new Set(worlds.map(x=>JSON.stringify(x.segments))).size,worlds.length);assert.ok(worlds.some(w=>w.travel.includes('lift')));assert.ok(worlds.some(w=>w.travel.includes('boat')));for(const m of MOUNTAINS){const svg=terrainScene(m);assert.ok(!svg.includes('<image'));assert.equal((svg.match(/data-action="station"/g)||[]).length,5);}});
+test('HTML and URL guards remain effective',()=>{assert.equal(safeURL('javascript:alert(1)'),'');assert.ok(!escapeHTML('<script>').includes('<'));});
+test('all 24 exact curated questions rank their own answer first',()=>QA_CARDS.forEach(q=>assert.equal(retrieveKnowledge(q.question,q.topic).matches[0]?.id,q.id)));
+test('workflow comparison and basic philosophy questions match their actual intent',()=>{assert.equal(retrieveKnowledge('Agent 与工作流有什么区别').matches[0]?.id,'q-ai-02');assert.equal(retrieveKnowledge('存在主义是什么').matches[0]?.id,'q-ex-02');});

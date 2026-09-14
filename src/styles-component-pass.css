@@ -1,0 +1,111 @@
+/* 布局修复层 B（组件几何：卡片溢出 / 空白 / 等高与对齐）
+   —— 由并行子代理维护，最后由主流程统一复检；新规则一律追加在文件末尾 */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PASS-B · 组件几何（只动盒模型：尺寸 / 换行 / 对齐 / 截断 / 间距）
+   ① 山卡内容不再溢出 ② 作品卡不再留死白
+   ③ 卡片页脚 / 行动区贴底 ④ 横向 rail 与知识栅格等高、节奏一致
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── B1 首页山卡：scrollWidth 377 > clientWidth 328 ────────────────────
+   根因不在文字，而在装饰层：styles-v2.css 里
+   `.mountain-card .little-mountain{position:absolute;right:-15%;width:89%;…}`
+   ≥1269px 视口时 rail 卡宽取 clamp 上限 330，.card-hit 内容盒 328px，
+   15% ≈ 49px 探出右边缘（377−328＝49，与实测完全吻合）。
+   .card-hit 是 position:relative 且 overflow:hidden，于是它成了滚动容器，
+   绝对定位子元素的溢出被计入 scrollable overflow —— 文字其实一点没被裁。
+   修法：改用 overflow:clip。裁剪范围与 hidden 相同（同样按 border-radius
+   裁切），但 clip 不建立滚动容器，scrollWidth 回落到 clientWidth；
+   前一行 overflow:hidden 给不支持 clip 的老引擎兜底。 */
+.mountain-card,
+.mountain-card .card-hit{overflow:hidden;overflow:clip}
+
+/* 兜底：万一引擎不支持 overflow:clip（老 Safari / 老 Firefox），把装饰层探出
+   的幅度从 15%（≈49px）压到 12px，让 scrollWidth 的虚高降到可忽略；支持
+   clip 的浏览器（Chrome/现代 Safari/现代 Firefox）不进入这条分支，构图不变。 */
+@supports not (overflow: clip){
+  .mountain-card .little-mountain{right:-12px}
+}
+
+/* 双保险：以后出现超长标题 / 超长标签，也只在卡内换行，不再把盒子撑宽 */
+.mountain-card .card-content,
+.mountain-card .card-content h3,
+.mountain-card .card-content p,
+.mountain-card .card-meta,
+.mountain-card .card-meta>span,
+.mountain-card .tags{min-width:0}
+.mountain-card .tags{flex-wrap:wrap;row-gap:6px}
+.mountain-card .card-content h3,
+.mountain-card .card-content p{overflow-wrap:anywhere;word-break:break-word}
+.mountain-card .card-meta{gap:8px}
+.mountain-card .card-meta>span:first-child{flex-wrap:wrap}
+
+/* ── B2 资料馆知乎作品卡：卡片底部大片死白（实测 361px 高、内容只到 284）──
+   根因：.works-shelf 是 grid（auto-fill minmax(216px,1fr)），默认
+   align-items:stretch —— 同一行卡片被拉成最高那张的高度；.work-card 又
+   overflow:hidden，矮卡片多出来的高度就变成底部空白。
+   修法：栅格 align-items/align-content 改 start，卡片高度随内容；
+   同时卡片转 flex 列 + 描述截断 + 标签行 margin-top:auto，即使以后
+   卡片被拉高，标签也会贴底而不是露出空白。 */
+.works-shelf{align-items:start;align-content:start}
+.works-shelf .work-card{display:flex;flex-direction:column;min-width:0}
+.works-shelf .work-card img,
+.works-shelf .work-cover{flex:0 0 auto}
+.works-shelf .work-body{display:flex;flex-direction:column;flex:1 1 auto;min-width:0}
+.works-shelf .work-body h3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.works-shelf .work-body p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.works-shelf .work-labels{margin-top:auto;flex-wrap:wrap;row-gap:6px}
+
+/* ── B3 四类卡片统一「页脚 / 行动区贴底」────────────────────────────────
+   统一做法：卡片 = flex 列；正文块可伸展（flex:1 1 auto，min-width:0）；
+   最后一块贴底。这样内容长短不齐时，行动区仍落在同一条水平线上。 */
+
+/* 山卡：卡片正文伸展（段落吸收多余高度），.card-meta 行动行因此贴底；
+   v1 卡片另有卡外的 .card-reason 页脚，同样贴底。 */
+.mountain-card{display:flex;flex-direction:column}
+.mountain-card .card-hit{display:flex;flex-direction:column;flex:1 1 auto;width:100%;min-width:0}
+.mountain-card .card-content{display:flex;flex-direction:column;flex:1 1 auto}
+.mountain-card .card-content p{flex:1 1 auto}
+.mountain-card .card-reason{margin-top:auto}
+
+/* 成就馆：原来只有 min-height + gap，.ach-takeaway 长短不一时 footer 会飘；
+   现在正文伸展、footer 贴底（.ach-takeaway 在 .achievement 内为直接子项）。 */
+.achievement{display:flex;flex-direction:column;height:100%;min-width:0}
+.achievement .ach-takeaway{flex:1 1 auto;min-width:0}
+.achievement footer{margin-top:auto}
+
+/* 方法三步：正文伸展，.step-not 沿用原有 margin:auto 0 0 贴底（补一条更稳） */
+.method-step{display:flex;flex-direction:column;height:100%;min-width:0}
+.method-step .step-body{flex:1 1 auto;min-width:0}
+.method-step .step-not{margin-top:auto}
+
+/* 资料卡：简介保持 v2 的截断（不长高），footer 贴底对齐 */
+.knowledge-source{min-width:0}
+.knowledge-source footer{margin-top:auto}
+
+/* 探索队列的「卡 + 卡外页脚」结构：.recommend-grid 被 main.mjs 加上 .rail 后
+   变成 flex 横滚，条目是 .expedition-card-wrap（山卡 + .expedition-card-footer）。
+   原来 wrap 只是普通块，wrap 被拉伸后页脚停在半空 → 横向滚动里每张卡参差。
+   现在 wrap 也做成 flex 列：卡伸展、页脚贴底，rail 内卡片等高且页脚对齐。 */
+.expedition-card-wrap{display:flex;flex-direction:column;min-width:0}
+.expedition-card-wrap .mountain-card{flex:1 1 auto;height:auto}
+.expedition-card-wrap .expedition-card-footer{margin-top:auto}
+/* 同一模式（卡 + 卡外页脚）的旅程卡，一并贴底，避免同类卡片两套节奏 */
+.journey-card-wrapper{display:flex;flex-direction:column;min-width:0}
+.journey-card-wrapper .mountain-card{flex:1 1 auto;height:auto}
+.journey-card-wrapper .journey-card-bottom{margin-top:auto}
+
+/* ── B4 栅格节奏：宽度一致、行高一致 ────────────────────────────────────
+   .recommend-grid.rail 里的山卡要等高：rail 是 flex 行，条目本来就会 stretch，
+   这里把它写实（align-self:stretch）+ 让卡在 wrap 内长满，高度自然一致。 */
+.recommend-grid.rail{align-items:stretch}
+.recommend-grid.rail>*{align-self:stretch}
+/* 覆盖 styles-v2 的 `.recommend-grid.rail .mountain-card{height:100%}`：
+   wrap 高度是不定的百分比，height:100% 会把卡片退化成 auto 并跳过 stretch */
+.recommend-grid.rail .expedition-card-wrap .mountain-card{flex:1 1 auto;height:auto}
+
+/* .knowledge-grid 是 3 列等宽；v2 曾设 align-items:start，卡片高度随简介长短
+   参差。这里改回 stretch（同一行等高，宽度本来一致），差值由
+   .knowledge-source footer{margin-top:auto} 吸收 —— 页脚线仍贴底，不露死白。 */
+.knowledge-grid{align-items:stretch}
+.knowledge-grid>*{min-width:0}

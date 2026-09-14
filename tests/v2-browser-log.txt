@@ -1,0 +1,35 @@
+PASS home loads without external dependencies
+PASS homepage changes actual SVG geometry for three themes
+PASS local guide returns cited answer and honest no-match
+PASS 36-source library filters, saves, compares and reveals honest access metadata
+PASS library search and empty state behave correctly
+PASS existentialism generated route and locked-node preview
+PASS existentialism quiz alone cannot unlock
+PASS ex-satchel interaction + quiz + walk traversal
+PASS ex-timeline interaction + quiz + stairs traversal
+PASS ex-constellation interaction + quiz + bridge traversal
+PASS ex-bridge interaction + quiz + ridge traversal
+PASS ex-letter summit completed
+PASS ai-agents generated route and locked-node preview
+PASS ai-agents quiz alone cannot unlock
+PASS ai-loop interaction + quiz + rail traversal
+PASS ai-dispatch interaction + quiz + lift traversal
+PASS ai-toolrun interaction + quiz + cable traversal
+PASS ai-guard interaction + quiz + lift traversal
+PASS ai-bench summit completed
+PASS critical-thinking generated route and locked-node preview
+PASS critical-thinking quiz alone cannot unlock
+PASS th-sort interaction + quiz + boat traversal
+PASS th-sample interaction + quiz + switchback traversal
+PASS th-cause interaction + quiz + bridge traversal
+PASS th-evidence interaction + quiz + stairs traversal
+PASS th-bayes summit completed
+PASS notes persist across navigation and all reading tabs show linked content
+PASS understanding graph reflects fifteen completed camps and research export includes real citations
+PASS serialized learning records restore all progress and summit SVG exports
+PASS reduced-motion mode preserves completion without animation
+PASS responsive views at 390px have no horizontal overflow
+PASS responsive views at 768px have no horizontal overflow
+PASS responsive views at 1024px have no horizontal overflow
+PASS no uncaught browser JavaScript errors
+TOTAL 34

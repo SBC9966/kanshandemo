@@ -1,0 +1,15 @@
+PASS map zoom and reset update real transform
+PASS map pans by pointer movement
+PASS daylight and reduced-motion preferences persist
+PASS repeated slider input keeps keyboard focus and recomputes probability
+PASS personal reflection appears in actual summit page
+PASS resetting a revisited exercise does not revoke earned completion
+PASS backup file contains all three real journey records
+PASS file import confirms and restores validated backup
+PASS malformed import preserves existing records
+PASS cancelled destructive action retains data
+PASS source modal closes with Escape
+PASS unknown input is not silently mapped to a preset topic
+PASS cancelled generation cannot redirect after the timer finishes
+PASS extra workflow checks have no uncaught JavaScript errors
+TOTAL 14

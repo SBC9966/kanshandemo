@@ -1,0 +1,417 @@
+
+> more-than-a-mountain@2.0.0 test
+> node --test tests/v2-domain.test.mjs tests/v2-http.test.mjs tests/v2-model.test.mjs
+
+TAP version 13
+# Subtest: knowledge database has exactly the promised provenance counts
+ok 1 - knowledge database has exactly the promised provenance counts
+  ---
+  duration_ms: 2.49953
+  type: 'test'
+  ...
+# Subtest: all 36 URLs, IDs and 15 two-source lessons validate
+ok 2 - all 36 URLs, IDs and 15 two-source lessons validate
+  ---
+  duration_ms: 0.872612
+  type: 'test'
+  ...
+# Subtest: all predefined plans validate after source enrichment
+ok 3 - all predefined plans validate after source enrichment
+  ---
+  duration_ms: 1.096845
+  type: 'test'
+  ...
+# Subtest: every Zhihu entry is honestly marked index-only, not full article
+ok 4 - every Zhihu entry is honestly marked index-only, not full article
+  ---
+  duration_ms: 0.307875
+  type: 'test'
+  ...
+# Subtest: all 36 sources are used by at least one node
+ok 5 - all 36 sources are used by at least one node
+  ---
+  duration_ms: 0.404853
+  type: 'test'
+  ...
+# Subtest: search has useful topic and kind filters
+ok 6 - search has useful topic and kind filters
+  ---
+  duration_ms: 0.974448
+  type: 'test'
+  ...
+# Subtest: every curated question retrieves a cited local answer
+ok 7 - every curated question retrieves a cited local answer
+  ---
+  duration_ms: 16.635927
+  type: 'test'
+  ...
+# Subtest: unknown question does not become a fabricated answer
+ok 8 - unknown question does not become a fabricated answer
+  ---
+  duration_ms: 0.285921
+  type: 'test'
+  ...
+# Subtest: local guide is explicitly not a generative model
+ok 9 - local guide is explicitly not a generative model
+  ---
+  duration_ms: 0.733973
+  type: 'test'
+  ...
+# Subtest: ex-satchel rejects blank state, passes actual interaction and survives normalization
+ok 10 - ex-satchel rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.814906
+  type: 'test'
+  ...
+# Subtest: ex-timeline rejects blank state, passes actual interaction and survives normalization
+ok 11 - ex-timeline rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.294766
+  type: 'test'
+  ...
+# Subtest: ex-constellation rejects blank state, passes actual interaction and survives normalization
+ok 12 - ex-constellation rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.138837
+  type: 'test'
+  ...
+# Subtest: ex-bridge rejects blank state, passes actual interaction and survives normalization
+ok 13 - ex-bridge rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.539419
+  type: 'test'
+  ...
+# Subtest: ex-letter rejects blank state, passes actual interaction and survives normalization
+ok 14 - ex-letter rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.179698
+  type: 'test'
+  ...
+# Subtest: ai-loop rejects blank state, passes actual interaction and survives normalization
+ok 15 - ai-loop rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.116466
+  type: 'test'
+  ...
+# Subtest: ai-dispatch rejects blank state, passes actual interaction and survives normalization
+ok 16 - ai-dispatch rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.103905
+  type: 'test'
+  ...
+# Subtest: ai-toolrun rejects blank state, passes actual interaction and survives normalization
+ok 17 - ai-toolrun rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.679496
+  type: 'test'
+  ...
+# Subtest: ai-guard rejects blank state, passes actual interaction and survives normalization
+ok 18 - ai-guard rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.16214
+  type: 'test'
+  ...
+# Subtest: ai-bench rejects blank state, passes actual interaction and survives normalization
+ok 19 - ai-bench rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.611593
+  type: 'test'
+  ...
+# Subtest: th-sort rejects blank state, passes actual interaction and survives normalization
+ok 20 - th-sort rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.132612
+  type: 'test'
+  ...
+# Subtest: th-sample rejects blank state, passes actual interaction and survives normalization
+ok 21 - th-sample rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.102029
+  type: 'test'
+  ...
+# Subtest: th-cause rejects blank state, passes actual interaction and survives normalization
+ok 22 - th-cause rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.104622
+  type: 'test'
+  ...
+# Subtest: th-evidence rejects blank state, passes actual interaction and survives normalization
+ok 23 - th-evidence rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 4.029785
+  type: 'test'
+  ...
+# Subtest: th-bayes rejects blank state, passes actual interaction and survives normalization
+ok 24 - th-bayes rejects blank state, passes actual interaction and survives normalization
+  ---
+  duration_ms: 0.2647
+  type: 'test'
+  ...
+# Subtest: all 15 experiments have receipts and all three mountains can finish
+ok 25 - all 15 experiments have receipts and all three mountains can finish
+  ---
+  duration_ms: 0.228358
+  type: 'test'
+  ...
+# Subtest: quiz alone cannot unlock a predefined node
+ok 26 - quiz alone cannot unlock a predefined node
+  ---
+  duration_ms: 0.125362
+  type: 'test'
+  ...
+# Subtest: experiment alone cannot unlock a predefined node
+ok 27 - experiment alone cannot unlock a predefined node
+  ---
+  duration_ms: 0.168297
+  type: 'test'
+  ...
+# Subtest: cannot jump over prerequisites
+ok 28 - cannot jump over prerequisites
+  ---
+  duration_ms: 0.242403
+  type: 'test'
+  ...
+# Subtest: a saved completion receipt survives revisiting and resetting experiment
+ok 29 - a saved completion receipt survives revisiting and resetting experiment
+  ---
+  duration_ms: 1.904723
+  type: 'test'
+  ...
+# Subtest: false new-version completion without activity or receipt is removed
+ok 30 - false new-version completion without activity or receipt is removed
+  ---
+  duration_ms: 0.499703
+  type: 'test'
+  ...
+# Subtest: legacy completed v1 readings retain their progress
+ok 31 - legacy completed v1 readings retain their progress
+  ---
+  duration_ms: 0.259984
+  type: 'test'
+  ...
+# Subtest: source favorites and viewed-card history normalize safely
+ok 32 - source favorites and viewed-card history normalize safely
+  ---
+  duration_ms: 0.983879
+  type: 'test'
+  ...
+# Subtest: malformed nested experiment arrays do not throw
+ok 33 - malformed nested experiment arrays do not throw
+  ---
+  duration_ms: 0.338815
+  type: 'test'
+  ...
+# Subtest: sample experiment actually recomputes numerator and denominator
+ok 34 - sample experiment actually recomputes numerator and denominator
+  ---
+  duration_ms: 0.217379
+  type: 'test'
+  ...
+# Subtest: Bayesian indicator computes 50 percent and 80 percent correctly
+ok 35 - Bayesian indicator computes 50 percent and 80 percent correctly
+  ---
+  duration_ms: 0.156528
+  type: 'test'
+  ...
+# Subtest: permission checks block external write and enforce step bound
+ok 36 - permission checks block external write and enforce step bound
+  ---
+  duration_ms: 0.100688
+  type: 'test'
+  ...
+# Subtest: runner refuses to draft before retrieval and evidence inspection
+ok 37 - runner refuses to draft before retrieval and evidence inspection
+  ---
+  duration_ms: 0.12233
+  type: 'test'
+  ...
+# Subtest: three worlds have different geometry, station coordinates and travel modes
+ok 38 - three worlds have different geometry, station coordinates and travel modes
+  ---
+  duration_ms: 1.934711
+  type: 'test'
+  ...
+# Subtest: HTML and URL guards remain effective
+ok 39 - HTML and URL guards remain effective
+  ---
+  duration_ms: 0.302573
+  type: 'test'
+  ...
+# Subtest: all 24 exact curated questions rank their own answer first
+ok 40 - all 24 exact curated questions rank their own answer first
+  ---
+  duration_ms: 15.886999
+  type: 'test'
+  ...
+# Subtest: workflow comparison and basic philosophy questions match their actual intent
+ok 41 - workflow comparison and basic philosophy questions match their actual intent
+  ---
+  duration_ms: 1.317736
+  type: 'test'
+  ...
+# Subtest: GET root serves offline bundled application
+ok 42 - GET root serves offline bundled application
+  ---
+  duration_ms: 164.877509
+  type: 'test'
+  ...
+# Subtest: GET source serves native module development shell
+ok 43 - GET source serves native module development shell
+  ---
+  duration_ms: 12.11525
+  type: 'test'
+  ...
+# Subtest: status does not expose credentials
+ok 44 - status does not expose credentials
+  ---
+  duration_ms: 3.337616
+  type: 'test'
+  ...
+# Subtest: knowledge audit endpoint reports actual totals
+ok 45 - knowledge audit endpoint reports actual totals
+  ---
+  duration_ms: 8.489182
+  type: 'test'
+  ...
+# Subtest: source endpoint filters eight Zhihu agent entries
+ok 46 - source endpoint filters eight Zhihu agent entries
+  ---
+  duration_ms: 3.929059
+  type: 'test'
+  ...
+# Subtest: query API performs actual local retrieval
+ok 47 - query API performs actual local retrieval
+  ---
+  duration_ms: 21.178281
+  type: 'test'
+  ...
+# Subtest: no matching query returns explicit insufficiency
+ok 48 - no matching query returns explicit insufficiency
+  ---
+  duration_ms: 6.178894
+  type: 'test'
+  ...
+# Subtest: invalid JSON query is rejected
+ok 49 - invalid JSON query is rejected
+  ---
+  duration_ms: 3.569658
+  type: 'test'
+  ...
+# Subtest: unconfigured model never fabricates success
+ok 50 - unconfigured model never fabricates success
+  ---
+  duration_ms: 6.262488
+  type: 'test'
+  ...
+# Subtest: private env cannot be downloaded
+ok 51 - private env cannot be downloaded
+  ---
+  duration_ms: 4.748025
+  type: 'test'
+  ...
+# Subtest: unknown API is a 404
+ok 52 - unknown API is a 404
+  ---
+  duration_ms: 1.579123
+  type: 'test'
+  ...
+# Subtest: script is returned with correct content type
+ok 53 - script is returned with correct content type
+  ---
+  duration_ms: 3.156007
+  type: 'test'
+  ...
+# Subtest: HEAD returns no HTML body
+ok 54 - HEAD returns no HTML body
+  ---
+  duration_ms: 4.140036
+  type: 'test'
+  ...
+# Subtest: unsupported static write method is rejected
+ok 55 - unsupported static write method is rejected
+  ---
+  duration_ms: 1.855863
+  type: 'test'
+  ...
+# Subtest: HTTP server and model adapter integration (mock transport, not live AI)
+    # Subtest: status declares configuration without exposing a credential
+    ok 1 - status declares configuration without exposing a credential
+      ---
+      duration_ms: 7.06714
+      type: 'test'
+      ...
+    # Subtest: serves a single-file HTML with no bundled credential
+    ok 2 - serves a single-file HTML with no bundled credential
+      ---
+      duration_ms: 23.417429
+      type: 'test'
+      ...
+    # Subtest: private dotfiles cannot be downloaded
+    ok 3 - private dotfiles cannot be downloaded
+      ---
+      duration_ms: 8.402722
+      type: 'test'
+      ...
+    # Subtest: source modules have JavaScript MIME
+    ok 4 - source modules have JavaScript MIME
+      ---
+      duration_ms: 3.008644
+      type: 'test'
+      ...
+    # Subtest: cross-origin generation is denied
+    ok 5 - cross-origin generation is denied
+      ---
+      duration_ms: 9.413292
+      type: 'test'
+      ...
+    # Subtest: empty topic is rejected
+    ok 6 - empty topic is rejected
+      ---
+      duration_ms: 4.81485
+      type: 'test'
+      ...
+    # Subtest: valid structured response produces 5 nodes and no fabricated sources
+    ok 7 - valid structured response produces 5 nodes and no fabricated sources
+      ---
+      duration_ms: 34.418562
+      type: 'test'
+      ...
+    # Subtest: model citations are limited to supplied matching local source IDs
+    ok 8 - model citations are limited to supplied matching local source IDs
+      ---
+      duration_ms: 12.153907
+      type: 'test'
+      ...
+    # Subtest: invalid upstream structure is an error, not fake success
+    ok 9 - invalid upstream structure is an error, not fake success
+      ---
+      duration_ms: 7.707539
+      type: 'test'
+      ...
+    # Subtest: provider failure is surfaced as an error
+    ok 10 - provider failure is surfaced as an error
+      ---
+      duration_ms: 4.11616
+      type: 'test'
+      ...
+    # Subtest: malformed URL receives 400 rather than crashing server
+    ok 11 - malformed URL receives 400 rather than crashing server
+      ---
+      duration_ms: 3.023395
+      type: 'test'
+      ...
+    1..11
+ok 56 - HTTP server and model adapter integration (mock transport, not live AI)
+  ---
+  duration_ms: 265.319606
+  type: 'test'
+  ...
+1..56
+# tests 67
+# suites 0
+# pass 67
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 417.100108

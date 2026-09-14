@@ -1,0 +1,14 @@
+.env
+node_modules/
+.DS_Store
+*.log
+__pycache__/
+.zhihu-cache.json
+# 独立工程（Three.js 机场/山体沙盘实验场，含 node_modules 215MB），不属于本次提交的 Demo 仓库
+diorama-lab/
+# 录制与截图等本地中间产物
+.roadshow-src/
+.roadshow-tmp/
+tests/ui-pass/
+tests/v2-screenshots/
+tests/v2-exports/

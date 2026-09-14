@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "id": "mountain-meme-culture-3d",
+  "name": "潮汐 · 浮岛 · 漂流语库（知识山 3D 资产）",
+  "use": "knowledge-journey terrain exhibit",
+  "style": {
+    "name": "潮汐浮岛（参数化地形语法）",
+    "traits": [
+      "低平岛群而非登顶",
+      "五座可泊靠浮岛",
+      "潮环与浮标"
+    ],
+    "avoid": [
+      "单一尖峰",
+      "对称雪锥",
+      "水面当作镜子贴板"
+    ]
+  },
+  "dimensions": {
+    "width": 10,
+    "depth": 10,
+    "floors": 6,
+    "floorHeight": 0.72
+  },
+  "massing": {
+    "type": "archipelago",
+    "peaks": 0,
+    "terraceCount": 5,
+    "spineWidth": 0.3
+  },
+  "roof": {
+    "type": "flat",
+    "summitPadM": 0
+  },
+  "facade": {
+    "bandRule": "littoral",
+    "trailRibbon": true,
+    "terraceStyle": "码头甲板"
+  },
+  "materials": [
+    {
+      "id": "deep-water",
+      "role": "water"
+    },
+    {
+      "id": "tidal-shallow",
+      "role": "water"
+    },
+    {
+      "id": "drift-sand",
+      "role": "ground"
+    },
+    {
+      "id": "signal-orange",
+      "role": "accent"
+    }
+  ],
+  "seed": 31337,
+  "variants": 2,
+  "target": {
+    "format": "glb",
+    "units": "m",
+    "upAxis": "Y",
+    "frontAxis": "+Z",
+    "integration": "standalone",
+    "detail": "aerial"
+  },
+  "budget": {
+    "triangles": 90000,
+    "materialBatches": 8,
+    "textureResolution": 64
+  },
+  "terrain": {
+    "archetype": "tidal-floating-islands",
+    "palette": [
+      "#20495c",
+      "#4e93a7",
+      "#d48655"
+    ],
+    "weather": "tide",
+    "stations": [
+      0.12,
+      0.34,
+      0.52,
+      0.72,
+      0.9
+    ],
+    "variantSeeds": [
+      31337,
+      65537
+    ]
+  },
+  "assumptions": [
+    "山体为示意性知识地图，不是真实测绘地形，尺度按米制营地比例设定",
+    "五层营地高差按 floorHeight 0.72m 计，总高 4.32m；峰形受 maxPeakHeight 约束",
+    "顶点色表达坡向与高程分带；运行时按 GLB 材质取近似 PBR 参数，无贴图",
+    "同一山体的第二个变体只改 seed 参数，几何按规格有意不同，共享同一造型身份"
+  ],
+  "parameters": {
+    "heightM": 4.32,
+    "baseRadiusM": 5,
+    "peakRadiusM": 0.7,
+    "trailWidthM": 0.24,
+    "terraceCount": 5,
+    "forestDensity": 1,
+    "seed": 31337
+  }
+}

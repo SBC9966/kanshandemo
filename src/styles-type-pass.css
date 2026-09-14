@@ -1,0 +1,132 @@
+/* 排版修复层 A（文本格式：字距 / 行宽 / 小字可读性）
+   —— 由并行子代理维护，最后由主流程统一复检；新规则一律追加在文件末尾 */
+
+/* ═════════════════════════════════════════════════════════════════════════
+   第 4 轮：修复实测（1440 / 1024，五页：#/ · 山页 · 阅读页 · 资料馆 · 图谱页）
+   暴露的纯文本排版问题。背景：styles-v2.css 末尾的「字号下限层」已把小标签
+   统一到 12.5px、交互字 13px，但字距 / 行宽 / 行高仍是旧版设计值（2–3px 字距、
+   900px+ 满行、1.5 与 2.0 混杂）。本文件在 styles-v2.css 之后加载，同优先级
+   后者胜；凡被下限层 !important 锁住的字号，这里也用 !important 改字号。
+   只改文本层属性（letter-spacing / font-size / line-height / max-width /
+   text-align / 换行），不碰颜色、结构与容器对齐。
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. 小字字距：≤14px 的文本一律 ≤0.08em，不再靠拉字距做「小标签」 ─────── */
+
+/* 1.1 各页 eyebrow（12.5px）：原 .12–.14em（实测 1.5–1.8px）中文读起来稀疏；
+       收到 0.06em，靠已有的 600 字重 + 弱化颜色保持「标签」气质。
+       !important 用于盖过 .library-hero/.materials-head/.method-head/.article-header
+       等复合选择器与 ≤980px 媒体查询里的 .eyebrow 变体。 */
+.eyebrow, .hero-eyebrow { letter-spacing:.06em !important }
+
+/* 1.2 首页「知识实地考察 · 第二卷」版本徽标：原 2.5px（≤980px 档 1px）→ 0.04em；
+       字距收掉后补 600 字重，避免徽标失去标记感。 */
+.edition-badge { letter-spacing:.04em !important; font-weight:600 }
+
+/* 1.3 卡片分类标签（原 1.5px）与红色印章（原 2px）→ 0.04em；分类标签补 600 字重。 */
+.card-category, .mountain-card .card-category,
+.red-seal, .expedition-ending .red-seal { letter-spacing:.04em !important }
+.card-category, .mountain-card .card-category { font-weight:600 }
+
+/* 1.4 山页路线面板标题行（「这一次的山途 / 05 营地」）：原 .12em → 0.04em。 */
+.route-panel-title, .route-panel-title>span { letter-spacing:.04em !important }
+
+/* 1.5 首页 hero 内的 <i> 与 <strong>：竖排「行知」原 3px、地形预览地名原 2px，
+       竖排与短标签都不该被拉开 → 0.06em / 0.04em。 */
+.expedition-copy h1>i { letter-spacing:.06em !important }
+.hero-map-label strong { letter-spacing:.04em !important }
+
+/* 1.6 阅读页侧栏装饰引文（13px 衬线，原 3px ≈ 0.23em）：装饰性也要 ≤0.08em，
+       否则像被逐个拆开的字；保留 serif / 2.15 行高不动。 */
+.margin-line { letter-spacing:.06em !important }
+
+/* 1.7 旧版首页滚动提示（原 3px）、页脚说明与地图地名（原 1px）：压到 0.02–0.06em。 */
+.hero-scroll { letter-spacing:.06em !important }
+.site-footer p, .hero-bottom-caption, .map-location { letter-spacing:.02em }
+
+/* 1.8 全站 <small>：已被下限层统一到 12.5px，但字距仍是 1px（正好 0.08em 上限），
+       12.5px 的中文元信息收到 0.02em。不加 !important，让 .hero-map-label small
+       这类已写明 letter-spacing:0 的具体变体继续生效。 */
+small { letter-spacing:.02em }
+
+/* ── 2. 小字说明段的行宽：12.5px 汉字排到 900px+ ≈ 一行 75 字，回行太累 ───── */
+
+/* 2.1 资料馆顶部说明条：原 12.5px / 行高 1.9 / 文本列横向撑满整页 →
+       13.5px / 1.8 + 文本列 ≤46em；容器仍是「图标 + 文本 + 日期」横排 flex，
+       只限文本列宽度，不改对齐与容器尺寸。 */
+.library-notice, .library-notice>span { font-size:13.5px !important; line-height:1.8 !important }
+.library-notice>span { max-width:46em }
+
+/* 2.2 资料馆「找到 N 条本地资料」计数行：原 12.5px 满行 → 13.5px / 1.8，
+       文本列 ≤44em；space-between 布局不动，按钮依旧贴右。 */
+.library-results-label, .library-results-label>span { font-size:13.5px !important; line-height:1.8 !important }
+.library-results-label>span { max-width:44em }
+
+/* 2.3 山页底部「这座山的资料地图」条：原 12.5px（≤760px 档 10px）→ 13.5px / 1.8，
+       说明段 ≤46em；标签与正文一起抬，按钮（交互字）保持原样。 */
+.mountain-research-bar, .mountain-research-bar>span,
+.mountain-research-bar p { font-size:13.5px !important; line-height:1.8 !important }
+.mountain-research-bar p { max-width:46em }
+
+/* 2.4 各页标题下的整行说明段（读页「先看材料」、资料馆 hero、图谱页、山页副标题、
+       首页推荐区 / 资料预览、来源详情、页脚等）：限宽 42em，避免 12.5–14px 汉字
+       在 1300px 容器里排成 60+ 字长行（.method-head p 已有 38em，不动）。 */
+.materials-head p, .library-hero p, .fieldbook-heading p, .mountain-heading p,
+.recommend-heading p, .home-source-preview>div>p, .source-detail-heading p,
+.page-intro p, .route-guide p, .margin-guide p, .route-panel>p { max-width:42em }
+
+/* ── 3. 段落节奏：卡片说明段统一 1.78–1.84（原 1.5 偏挤、2.0–2.2 偏松） ───── */
+
+/* 3.1 资料卡摘要（12.5px，-webkit-line-clamp 5 行）：原 1.8 / 1.78 两套值 → 1.84，
+       行高变化 <1px，不会改变截断行数。 */
+.knowledge-source>p, .knowledge-source.compact>p { line-height:1.84 !important }
+
+/* 3.2 首页推荐卡说明段：原来继承 body 的 1.72，中文小字偏挤 → 1.8。 */
+.card-content p, .mountain-card .card-content p { line-height:1.8 !important }
+
+/* 3.3 阅读页「先看材料」条目：标题按钮原 1.5 太挤、元信息行无行高 → 1.8；
+       长中文资料标题两行以上时不再挤在一起。 */
+.material-item .material-title { line-height:1.8 }
+.material-item .material-meta { line-height:1.8 }
+
+/* 3.4 各页说明段落行高统一 1.8：图谱页 hero 原 2.0 偏松，其余继承 body 1.72 偏挤。 */
+.library-hero p, .fieldbook-heading p, .materials-head p, .mountain-heading p,
+.recommend-heading p, .home-source-preview>div>p, .source-detail-heading p,
+.page-intro p, .route-guide p, .margin-guide p, .route-panel>p,
+.site-footer p { line-height:1.8 }
+
+/* ── 4. 标题换行：断行更匀称 + 中文长串不撑破卡片 ─────────────────────────── */
+
+/* 4.1 标题用 pretty 断行，避免末行只剩一两个字（中文标题尤其明显）。 */
+h1, h2, h3 { text-wrap:pretty }
+
+/* 4.2 长标题允许任意断点：资料馆资料标题、材料清单标题都是整句中文，
+       窄卡片里必须能断，否则会把卡片顶宽（v2 已覆盖 .card-content h3 等）。 */
+h1, h2, h3, .source-title, .material-title { overflow-wrap:anywhere }
+
+/* ── 5. 两端对齐的边界：窄容器不用 justify（中文短行会产生「河流」） ─────── */
+
+/* 5.1 .excerpt-body 的 38em + justify 在宽屏保留（按复检要求不动）；
+       窄屏单列时可用宽度只剩 ~370–490px（<26em），两端对齐会出现大片字间空隙，
+       这一档改回左对齐。760px 是现有单列断点，作为「窄容器」的保守代理。 */
+@media (max-width:760px) { .excerpt-body p { text-align:left } }
+
+/* ── 6. 清单式扫尾：把全站 ≤14px 文本残留的 >0.08em 字距一次收干净 ─────────── */
+
+/* 6.1 图谱页「概念世界」的世界名（12.5px 小标签）：原 2px = 0.16em → 0.04em。 */
+.concept-world>p { letter-spacing:.04em !important }
+
+/* 6.2 顶栏品牌旁小字（12.5px，五页页眉都有）：原 1px（正好压在 0.08em 上限）→ 0.03em。 */
+.brand small { letter-spacing:.03em }
+
+/* 6.3 山页地图上的地景标签（12.5px）：原 2px = 0.16em → 0.04em（绝对定位盒随之收窄）。 */
+.scenery-label { letter-spacing:.04em }
+
+/* 6.4 地图 SVG 内的经纬坐标（10px 衬线）：原 1px = 0.1em → 0.06em。 */
+.map-coordinate { letter-spacing:.06em }
+
+/* 6.5 整行说明段的字号：下限层把它们统一压在 12.5px，这里对「整行说明文字」
+       再抬一档到 13.5px（窄侧栏的 .route-guide p / .margin-guide p / .route-panel>p
+       列宽不足 30em，抬字号会把注记挤出行，保持 12.5px 只做限宽与行高）。 */
+.library-hero p, .fieldbook-heading p, .mountain-heading p, .recommend-heading p,
+.home-source-preview>div>p, .source-detail-heading p, .page-intro p { font-size:13.5px !important }
