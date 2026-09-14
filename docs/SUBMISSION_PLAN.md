@@ -74,7 +74,7 @@
 
 | # | 官方要求 | 现状 |
 |---|---|---|
-| 1 | 可公开访问并能实际操作的线上 Demo | ✅ **已上线（静态托管）**：<https://sbc9966.github.io/kanshandemo/> —— 六座山、五层营地、互动实验、向导、资料馆均可实际操作；知乎实时能力在静态托管下会如实显示"暂时取不到"（要完整体验见第九节 B 方案） |
+| 1 | 可公开访问并能实际操作的线上 Demo | ✅ **已上线（静态托管）**；Vercel 完整版见第九之二节（导入仓库即可，附免费额度说明） |：<https://sbc9966.github.io/kanshandemo/> —— 六座山、五层营地、互动实验、向导、资料馆均可实际操作；知乎实时能力在静态托管下会如实显示"暂时取不到"（要完整体验见第九节 B 方案） |
 | 2 | 产品说明 / 计划书 | ✅ 本文；公开链接：<https://sbc9966.github.io/kanshandemo/docs/SUBMISSION_PLAN.md>（也可直接把正文粘进活动页） |
 | 3 | 代码仓库（选交） | ✅ **已推送**：<https://github.com/SBC9966/kanshandemo>（`main` 分支；`.env`、本地缓存、独立工程与测试截图均已排除） |
 | 4 | 演示视频（选交） | 已有成片 `docs/roadshow.mp4`（约 38 秒，1280×720，中文标题与字幕）；需上传到可公开访问的平台 |
@@ -100,6 +100,28 @@ PORT=8787
 启动：`node server/index.mjs`。首次部署后运行 `node scripts/zhihu-warm.mjs` 预热缓存（当日额度内取回回答、推荐问题、知识作品与热榜快照）。
 - 可选平台：Render / Railway / Fly.io / 自建 VPS；任何能跑 Node 20+ 的环境都可以。
 - 若后续接入 OAuth：回调地址必须与赛事页面登记值完全一致。
+
+## 九之二、Vercel 部署（已就绪，免费额度够用）
+
+仓库里已经放好 Vercel 需要的两样东西，导入仓库即可部署：
+
+- `api/zhihu/[...path].js`：把服务端的知乎代理挂成无服务器函数（`/api/zhihu/status|search|global|questions|answers|hot|works|quota|topic/<山>`）。
+- `vercel.json`：`framework: null`、`buildCommand: ""`、`outputDirectory: "."`（直接以仓库根目录为静态产物，`index.html` 就是成品），函数 `maxDuration: 30`，并补了安全响应头。
+
+**部署步骤（约 3 分钟）**
+
+1. 打开 <https://vercel.com/new>，用 GitHub 账号登录后 Import 本仓库；框架选 **Other**（vercel.json 已声明，通常自动识别为无框架）。
+2. 在项目的 Environment Variables 里加一条：`ZHIHU_API_KEY` = 你的 Access Secret（**只填在 Vercel，不要写进仓库**）。
+3. Deploy。完成后得到形如 `https://<项目名>.vercel.app` 的地址，且知乎能力是**实时**的。
+
+**免费额度说明**：Vercel 的 Hobby 套餐免费，适合本项目这类演示/非商业用途；函数调用量与带宽的免费上限远高于一次黑客松评审的流量。注意 serverless 的文件系统只读，因此磁盘缓存退化为"实例内内存缓存"——所以我把服务端改成了：**任何取回失败都退回最近一次快照，并如实写明失败原因与快照时间**；前端本身还有一层离线快照兜底（见下）。也就是说在 Vercel 上：配了 key 就是实时；没配 key 或临时失败，就显示快照并标注原因，不会白屏也不会假装成功。
+
+**两种部署形态对照**
+
+| 形态 | 地址类型 | 知乎能力 | 适合 |
+|---|---|---|---|
+| 静态托管（现有，GitHub Pages） | `https://sbc9966.github.io/kanshandemo/` | 离线快照（标注取回时间） | 保证评委一定打得开，零依赖 |
+| Vercel（建议同时开） | `https://<项目>.vercel.app` | **实时**（需配 `ZHIHU_API_KEY`） | 展示"与知乎生态契合"的完整形态 |
 
 ## 十、已知边界（不写成"已实现"的部分）
 

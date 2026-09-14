@@ -64,6 +64,39 @@ function readCache(key, ttl) {
   if (d) return { value: d.value, fresh: false, at: d.at };   // 过期但仍可用：额度耗尽时兜底
   return null;
 }
+/** 取回失败时统一退回缓存：文案里如实写明失败原因与快照时间，不假装是实时的 */
+/** 按键前缀找缓存：同一目标（同一问题/同一主题）不同 count 的请求共享一份缓存，按需切片 */
+function findCache(prefix) {
+  const mem = [...cache.entries()].filter(([k]) => k.startsWith(prefix))
+    .map(([k, v]) => ({ key: k, at: v.at, value: v.value }));
+  const diskKeys = Object.keys(loadDisk()).filter(k => k.startsWith(prefix));
+  const all = [...mem, ...diskKeys.map(k => ({ key: k, at: loadDisk()[k].at, value: loadDisk()[k].value }))]
+    .sort((a, b) => b.at - a.at);
+  return all[0] || null;
+}
+function sliceItems(value, n, extra = {}) {
+  if (!value) return null;
+  return { ...value, items: (value.items || []).slice(0, n), ...extra };
+}
+
+function staleNote(label, err, at) {
+  const why = err?.code === 30001
+    ? '额度或频率已达上限'
+    : (err?.code === 'NOT_CONFIGURED' ? '服务端未配置 Access Secret' : (err?.message || '取回失败'));
+  const when = at ? new Date(at).toLocaleString('zh-CN') : '未知时间';
+  return `${label}实时取回失败（${why}），这里是 ${when} 的快照；实时内容需要服务端凭据在线。`;
+}
+function staleResult(hit, err, label) {
+  return {
+    ...hit.value,
+    mode: 'cached',
+    cached: true,
+    degraded: true,
+    snapshotAt: new Date(hit.at).toISOString(),
+    note: staleNote(label, err, hit.at)
+  };
+}
+
 function writeCache(key, value) {
   const at = Date.now();
   cache.set(key, { at, value });
@@ -202,7 +235,11 @@ export async function searchZhihu(query, count = 8, { ip = 'local' } = {}) {
   }
   const n = Math.min(Math.max(Number(count) || 8, 1), 10);
   const key = `search:${q}:${n}`;
-  const hit = readCache(key, TTL.search);
+  let hit = readCache(key, TTL.search);
+  if (!hit) {
+    const wide = findCache(`search:${q}:`);
+    if (wide) hit = { value: sliceItems(wide.value, n), fresh: Date.now() - wide.at <= TTL.search, at: wide.at };
+  }
   if (hit?.fresh) return { ...hit.value, cached: true };
 
   if (!allow(`s:${ip}`, 8, 60_000)) {
@@ -225,7 +262,7 @@ export async function searchZhihu(query, count = 8, { ip = 'local' } = {}) {
     writeCache(key, result);
     return result;
   } catch (err) {
-    if (err.code === 30001 && hit) return { ...hit.value, mode: 'cached', cached: true, degraded: true, note: '今日站内检索额度已用完，这里是上次取回的结果。' };
+    if (hit) return staleResult(hit, err, '站内检索');
     throw err;
   }
 }
@@ -240,7 +277,11 @@ export async function globalSearch(query, count = 6, { db = 'all', ip = 'local' 
   }
   const n = Math.min(Math.max(Number(count) || 6, 1), 10);
   const key = `global:${q}:${n}:${db}`;
-  const hit = readCache(key, TTL.global);
+  let hit = readCache(key, TTL.global);
+  if (!hit) {
+    const wide = findCache(`global:${q}:`);
+    if (wide) hit = { value: sliceItems(wide.value, n), fresh: Date.now() - wide.at <= TTL.global, at: wide.at };
+  }
   if (hit?.fresh) return { ...hit.value, cached: true };
   if (!allow(`g:${ip}`, 6, 60_000)) {
     const err = new Error('本机每分钟全网检索次数较多，请稍后再试。');
@@ -262,7 +303,7 @@ export async function globalSearch(query, count = 6, { db = 'all', ip = 'local' 
     writeCache(key, result);
     return result;
   } catch (err) {
-    if (err.code === 30001 && hit) return { ...hit.value, mode: 'cached', cached: true, degraded: true, note: '今日全网检索额度已用完，这里是上次取回的结果。' };
+    if (hit) return staleResult(hit, err, '全网检索');
     throw err;
   }
 }
@@ -307,12 +348,12 @@ export async function hotList(limit = 10, { ip = 'local' } = {}) {
     writeCache(ALL, result);
     return slice(result, Date.now(), 'live');
   } catch (err) {
-    if (err.code === 30001 && stale) {
+    if (stale) {
       const at = stale.at || Date.now();
       return slice(stale.value, at, 'cached', {
         cached: true,
         degraded: true,
-        note: `今日热榜额度已用完（2 次/日），这里是 ${new Date(at).toLocaleString('zh-CN')} 取的快照。`
+        note: staleNote('热榜', err, at)
       });
     }
     throw err;
@@ -374,7 +415,11 @@ export async function questionAnswers(questionUrlOrId, limit = 6, { ip = 'local'
   const questionId = m ? m[1] : raw;
   const n = Math.min(Math.max(Number(limit) || 6, 1), 20);
   const key = `qa:${questionId}:${n}`;
-  const hit = readCache(key, TTL.answers);
+  let hit = readCache(key, TTL.answers);
+  if (!hit) {
+    const wide = findCache(`qa:${questionId}:`);
+    if (wide) hit = { value: sliceItems(wide.value, n), fresh: Date.now() - wide.at <= TTL.answers, at: wide.at };
+  }
   if (hit?.fresh) return { ...hit.value, cached: true };
   if (!allow(`q:${ip}`, 6, 60_000)) {
     const err = new Error('问题回答请求过于频繁，请稍后再试。');
@@ -403,7 +448,7 @@ export async function questionAnswers(questionUrlOrId, limit = 6, { ip = 'local'
     writeCache(key, result);
     return result;
   } catch (err) {
-    if (err.code === 30001 && hit) return { ...hit.value, mode: 'cached', cached: true, degraded: true, note: '今日回答额度已用完，这里是上次取回的结果。' };
+    if (hit) return staleResult(hit, err, '问题回答');
     throw err;
   }
 }
@@ -413,7 +458,11 @@ export async function topicQuestions(query, count = 5, { ip = 'local' } = {}) {
   const q = String(query || '').trim().slice(0, 60);
   const n = Math.min(Math.max(Number(count) || 5, 1), 20);
   const key = `tq:${q || 'profile'}:${n}`;
-  const hit = readCache(key, TTL.questions);
+  let hit = readCache(key, TTL.questions);
+  if (!hit) {
+    const wide = findCache(`tq:${q || 'profile'}:`);
+    if (wide) hit = { value: sliceItems(wide.value, n), fresh: Date.now() - wide.at <= TTL.questions, at: wide.at };
+  }
   if (hit?.fresh) return { ...hit.value, cached: true };
   if (!allow(`t:${ip}`, 4, 60_000)) {
     const err = new Error('问题推荐请求过于频繁，请稍后再试。');
@@ -438,7 +487,7 @@ export async function topicQuestions(query, count = 5, { ip = 'local' } = {}) {
     writeCache(key, result);
     return result;
   } catch (err) {
-    if (err.code === 30001 && hit) return { ...hit.value, mode: 'cached', cached: true, degraded: true, note: '今日问题推荐额度已用完，这里是上次取回的结果。' };
+    if (hit) return staleResult(hit, err, '问题推荐');
     throw err;
   }
 }
