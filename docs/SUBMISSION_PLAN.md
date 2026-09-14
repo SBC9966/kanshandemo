@@ -75,7 +75,7 @@
 | # | 官方要求 | 现状 |
 |---|---|---|
 | 1 | 可公开访问并能实际操作的线上 Demo | ✅ **已上线（静态托管）**：<https://sbc9966.github.io/kanshandemo/> —— 六座山、五层营地、互动实验、向导、资料馆均可实际操作；知乎实时能力在静态托管下会如实显示"暂时取不到"（要完整体验见第九节 B 方案） |
-| 2 | 产品说明 / 计划书 | 本文 |
+| 2 | 产品说明 / 计划书 | ✅ 本文；公开链接：<https://sbc9966.github.io/kanshandemo/docs/SUBMISSION_PLAN.md>（也可直接把正文粘进活动页） |
 | 3 | 代码仓库（选交） | ✅ **已推送**：<https://github.com/SBC9966/kanshandemo>（`main` 分支；`.env`、本地缓存、独立工程与测试截图均已排除） |
 | 4 | 演示视频（选交） | 已有成片 `docs/roadshow.mp4`（约 38 秒，1280×720，中文标题与字幕）；需上传到可公开访问的平台 |
 | 5 | 凭证不得出现在仓库/前端/日志/截图/视频 | **已核验**：40 位 Access Secret 在 `index.html`、`dist/index.html`、`.zhihu-cache.json`、`server.log` 中均未出现；`.env` 已忽略 |
