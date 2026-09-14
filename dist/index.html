@@ -60712,7 +60712,14 @@ function ensureScene3D(){
    return;
   }
   const ctl=ctx.ui.scene3dHandle?.engine?.cameraCtl;
-  if(ctl)ctl.onUserTakeover=()=>{ctx.ui.scene3dDirector=false;document.querySelectorAll('[data-action="scene3d-director"]').forEach(b=>{b.classList.remove('is-on');b.setAttribute('aria-pressed','false');});toast('已切到自由观察：拖动旋转、滚轮缩放；点罗盘回到自动导览。','compass');};
+  // 用户拖动/滚轮接手时只做本地状态切换 + 视图内提示：之前弹全局 toast，
+  // 结果人还在别的页面（甚至首页）也会看到"已切到自由观察"，还会被录进截图。
+  if(ctl)ctl.onUserTakeover=()=>{
+    ctx.ui.scene3dDirector=false;
+    document.querySelectorAll('[data-action="scene3d-director"]').forEach(b=>{b.classList.remove('is-on');b.setAttribute('aria-pressed','false');});
+    const hint=document.querySelector('.scene3d-toolbar .tiny');
+    if(hint)hint.textContent='自由观察中 · 点罗盘回到自动导览';
+  };
 }
 // ── 向导「山犬 · 阿山」：浮动小狗 + 抽屉，答案全部来自本地检索并带出处 ──────
 function guideAvatar(){return '<span class="guide-avatar" aria-hidden="true">犬</span>';}
