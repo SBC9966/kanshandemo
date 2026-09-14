@@ -303,18 +303,6 @@ dialog,.saved-card,.summit-summary{border-radius:8px}
 .scene3d-host{position:absolute;inset:0}
 .scene3d-canvas{display:block;width:100%;height:100%;cursor:grab}
 .scene3d-canvas:active{cursor:grabbing}
-.scene3d-toolbar{
-  position:absolute;left:14px;bottom:14px;z-index:4;
-  display:flex;align-items:center;gap:10px;
-  padding:8px 12px;border-radius:8px;
-  background:#fbfaf5e8;border:1px solid #cfd6c6;
-  backdrop-filter:blur(8px);
-}
-.scene3d-toolbar .tiny{color:#6a7368;font-size:11px}
-.scene3d-toolbar .icon-button.is-on,
-.mountain-top-tools .icon-button.is-on{
-  background:#e2ebdd;border-color:#8fa890;
-}
 .icon-button.is-on{box-shadow:inset 0 0 0 1px #7d9a82}
 @media(max-width:760px){
   .scene3d-viewport{min-height:420px}
@@ -804,25 +792,6 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .return-experiment button,
 .runner-result>button,
 .runner-result>button small,
-.scene3d-toolbar .tiny,
-.segmented button,
-.settings-backup .btn,
-.site-header nav>a,.site-header nav>button,
-.source-compare-grid .btn,
-.source-link small,
-.source-meta-table>div,
-.stage-chips i,
-.stage-chips>span,
-.summary-footer .text-button,
-.summary-footer>.text-button,
-.summit-actions>.btn,
-.summit-evidence .btn,
-.tab-row button,
-.tool-event,
-.tool-log-empty,
-.tool-log-head,
-.tool-log-head small,
-.walking-notice button{font-size:13px!important}
 .about-grid small,
 .about-grid strong,
 .activity-body .guard-policies span,.activity-body .benchmark-cases p,
@@ -1307,6 +1276,12 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .next-cta.is-half .next-cta-label{background:var(--zh-gray-l)}
 .activity-panel.is-flash,.understanding.is-flash{animation:target-flash 1.5s var(--zh-ease)}
 @keyframes target-flash{0%,100%{box-shadow:none}25%,60%{box-shadow:0 0 0 3px var(--zh-blue-soft),0 8px 24px rgba(5,109,232,.16)}}
+
+/* 自动演示模式的说明条（只在 ?tour=1 时出现，用于录制视频时的画面说明） */
+.tour-caption{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:70;max-width:min(760px,86vw);
+  padding:11px 20px;border-radius:100px;background:rgba(18,18,18,.86);color:#fff;font-size:15px;line-height:1.5;
+  box-shadow:0 12px 34px rgba(0,0,0,.28);opacity:0;transition:opacity .45s var(--zh-ease),transform .45s var(--zh-ease);pointer-events:none}
+.tour-caption.show{opacity:1;transform:translate(-50%,0)}
 
 /* 排版修复层 A（文本格式：字距 / 行宽 / 小字可读性）
    —— 由并行子代理维护，最后由主流程统一复检；新规则一律追加在文件末尾 */
@@ -60228,7 +60203,7 @@ function homeHTML(ctx){let ms=[...MOUNTAINS];if(ctx.state.interest!=='all')ms.so
  <section class="feature-section page-width"><div class="feature-art">${littleMountain(MOUNTAINS[0])}${art('traveler-read','feature-traveler')}${birds()}</div><div class="feature-copy"><span class="eyebrow">五站 · 一处一景</span><h2>一座山，<br>不只是五篇无关的文章。</h2><p>知道它是什么，理解它为什么出现，<br>看见它的核心，也不回避它的争议。<br>最后，把思考带回自己的生活。</p><div class="stage-chips">${STAGES.map((s,i)=>`<span><i>${i+1}</i>${s.split(' · ')[1]}</span>`).join('')}</div>${button('从存在主义这座山开始','choose-topic','primary','data-id="existentialism"')}</div></section><section class="home-ending"><p>不是为了抵达山顶，<br>而是为了看见更大的世界。</p><span>慢慢走。每一小步，都算数。</span>${art('panorama')}</section></main>`;}
 function askHTML(ctx){const m=ctx.mountain,step=ctx.ask.step,q=QUESTION_STEPS[step];return `<main id="main" class="ask-page">${scenicBackground()}<div class="page-width"><button class="text-button back-link" data-action="home">${icon('back')} 回到探索</button><div class="ask-heading"><span class="eyebrow">出发之前</span><h1>先问问你，再一起出发。</h1><p>同一座山，可以有不同的看法。把节奏和好奇交给你。</p></div><div class="ask-layout"><section class="ask-panel"><div class="guide-message">${avatar()}<p>准备好探索 <strong>「${escapeHTML(m.title)}」</strong> 了吗？<br><small>三个小问题，让这趟旅程更适合你。</small></p></div><div class="question-progress" aria-label="第 ${step+1} 个问题，共 3 个">${QUESTION_STEPS.map((_,i)=>`<span class="${i<=step?'active':''}">${i<step?icon('check'):i+1}</span>${i<2?'<i></i>':''}`).join('')}<small>0${step+1} / 03</small></div><div class="question-content" data-question="${step}"><h2>${q.title}</h2><p>${q.subtitle}</p><div class="question-options" role="group" aria-label="${q.title}">${q.options.map(([title,sub,ic])=>`<button class="question-option ${ctx.ask.prefs[q.key]===title?'selected':''}" data-action="answer" data-key="${q.key}" data-value="${title}" aria-pressed="${ctx.ask.prefs[q.key]===title}"><span class="option-icon">${icon(ic)}</span><span><strong>${title}</strong><small>${sub}</small></span><span class="option-radio">${ctx.ask.prefs[q.key]===title?icon('check'):''}</span></button>`).join('')}</div></div><div class="ask-bottom">${step>0?button('上一步','ask-prev','secondary','','back'):'<span class="tiny muted">没有标准答案，跟随你的好奇。</span>'}${button(step<2?'下一步':'生成我的知识山',step<2?'ask-next':'generate','primary')}</div><p class="ask-honesty">${icon('shield')} ${m.id==='custom'?'将调用服务端模型，不会读取或上传你的私人手记。':'当前使用离线主题包与偏好规则，不会读取你的浏览记录。'}</p></section><aside class="ask-preview"><div class="preview-heading">${icon('mountain')}<strong>你即将看见的山</strong><span>实时路线预览</span></div><div class="preview-illustration">${littleMountain(m)}${birds()}<span class="preview-topic">${escapeHTML(m.title)}</span>${art('traveler-stand','preview-traveler')}</div><div class="preview-plan"><span class="tag">${ctx.ask.prefs.focus}</span><h3>${ctx.ask.prefs.focus==='现实与我'?'带着生活里的问题，看见思想的回声。':ctx.ask.prefs.focus==='观点与争议'?'让不同观点相遇，也让判断慢慢形成。':'先建立脉络，再向更深处走。'}</h3><div class="preview-stage-list">${m.nodes.map((n,i)=>`<div><i>${i+1}</i><span>${STAGES[i].split(' · ')[1]}</span><small>${escapeHTML(n.short??n.title)}</small></div>`).join('')}</div><div class="preview-meta">${icon('clock')} ${readingMinutes(ctx.ask.prefs)} 分钟左右 <span>·</span> ${icon('map')} 5 个营地</div><p class="tiny muted">偏好影响阅读重点和篇幅，不跳过知识前置关系。</p></div></aside></div></div></main>`;}
 function generateHTML(ctx){const g=ctx.generation,m=ctx.mountain;let steps=['读取本地知识与来源索引','匹配你的阅读偏好','校验十五个营地的资料关系','准备专属地形与互动装置'];if(g.live)steps=['发送你的主题与偏好','等待模型构建五层内容','校验内容结构与前置关系','准备山路与交互场景'];return `<main id="main" class="generate-page">${scenicBackground()}<div class="generation-art ${g.stage>1?'formed':''}">${littleMountain(m)}${art('traveler-stand','generation-traveler')}<div class="generation-orbit"></div>${birds()}</div><span class="eyebrow">山路正在成形</span><h1>你的知识山，正在出现。</h1><p>从「${escapeHTML(m?.title??g.topic)}」开始，给好奇一条清晰的路。</p><div class="generation-steps">${steps.map((s,i)=>`<div class="${i<g.stage?'done':i===g.stage?'active':''}"><span>${i<g.stage?icon('check'):i===g.stage?'<i class="spinner"></i>':i+1}</span>${s}</div>`).join('')}</div><div class="generation-meter"><i style="width:${Math.min(98,g.stage*25+12)}%"></i></div><small>${g.live?'正在调用你配置的真实接口；结果将标记为 AI 生成。':'离线策展模式 · 正在处理本地内容，不模拟实时知乎检索。'}</small><button class="text-button" data-action="cancel-generation">${icon('back')} 返回调整</button></main>`;}
-function mountainHTML(ctx){const m=ctx.mountain,j=ctx.journey,c=j.completed,d=doneCount(j);return `<main id="main" class="mountain-page"><div class="page-width"><div class="mountain-heading"><div><a class="text-button back-link" href="#/">${icon('back')} 探索 / ${m.category??'自选主题'}</a><div class="eyebrow">${m.kicker??m.subtitle??'一条自己的路'}</div><h1>${escapeHTML(m.title)}<span>这座山</span></h1><p>${escapeHTML(m.subtitle)}</p></div><div class="mountain-top-tools">${tag(j.plan?'AI 生成 · 未外部核验':'离线策展示例')}<button class="icon-button ${ctx.ui.scene3d?'is-on':''}" data-action="scene3d-toggle" aria-label="切换程序化 3D 地形" aria-pressed="${!!ctx.ui.scene3d}" title="3D 场景">${icon('mountain')}</button><button class="icon-button" data-action="proc-reseed" aria-label="重新生成场景细节" title="换一茬场景">${icon('refresh')||icon('compass')}</button><button class="icon-button" data-action="share" aria-label="分享这座山">${icon('share')}</button><button class="icon-button" data-action="guide" aria-label="查看登山指南">${icon('help')}</button></div></div><div class="mountain-layout"><section class="mountain-world" aria-label="五层知识山地图"><div class="world-topline"><span>${icon('compass')} 先看见全貌，再一步步抵达</span><span>${d===5?'已走完全部营地':`已走过 ${d} / 5 个营地`}</span></div>${ctx.ui.scene3d?`<div class="map-viewport scene3d-viewport" id="map-viewport"><div class="scene3d-host" id="scene3d-host"></div><div class="scene3d-toolbar"><span class="scene3d-zoom"><button class="icon-button" data-action="scene3d-zoom-out" title="缩小" aria-label="缩小">−</button><button class="icon-button" data-action="scene3d-zoom-in" title="放大" aria-label="放大">＋</button></span><button class="icon-button ${ctx.ui.scene3dDirector===false?'':'is-on'}" data-action="scene3d-director" title="自动导览 / 自由观察" aria-label="切换自动导览" aria-pressed="${ctx.ui.scene3dDirector!==false}">${icon('compass')}</button><button class="icon-button" data-action="scene3d-reseed" title="换一批山林与落石" aria-label="换一批山林与落石">${icon('refresh')||icon('compass')}</button><span class="tiny">拖动旋转 · 滚轮缩放 · 一碰就暂停导览</span></div></div>`:`<div class="map-viewport" id="map-viewport"><div class="map-transform" id="map-transform" style="transform:translate(${ctx.ui.panX??0}px,${ctx.ui.panY??0}px) scale(${ctx.ui.zoom??1})">${mountainScene(m,c,{walking:ctx.ui.walking,seed:ctx.ui.sceneSeed||'',done:m.nodes.map((_,k)=>nodeDone(j,k))})}</div></div>`}<div class="world-bottomline"><div class="world-legend"><span><i class="current"></i>当前位置</span><span><i class="done"></i>已走过</span><span>${icon('lock')}未解锁</span></div><div class="map-tools"><button data-action="zoom-out" aria-label="缩小地图">−</button><button data-action="reset-map" aria-label="还原地图">${Math.round((ctx.ui.zoom??1)*100)}%</button><button data-action="zoom-in" aria-label="放大地图">＋</button></div></div>${ctx.ui.walking?`<div class="walking-notice">${avatar()}<span>走过的路，正在成为你的风景。</span><button data-action="skip-walk">跳过动画 ${icon('arrow')}</button></div>`:''}</section><aside class="route-panel"><div class="route-panel-title">${icon('map')}<h2>这一次的山途</h2><span>05 营地</span></div><p>不急着登顶。先走稳脚下的这一步。</p><div class="journey-progress"><div><strong>${d===5?'已抵达山顶':`${d*20}%`}</strong><span>${d} / 5 个营地已完成</span></div><span><i style="width:${d*20}%"></i></span></div><ol class="route-list">${m.nodes.map((n,i)=>{const done=nodeDone(j,i),open=canOpen(j,i);return `<li class="${done?'completed':!open?'locked':i===c?'current':'openable'}"><button data-action="station" data-index="${i}" ${ctx.ui.walking?'disabled':''}><span class="route-number">${done?icon('check'):i+1}</span><span><strong>${STAGES[i]}</strong><small>${escapeHTML(n.title)}</small>${i===c&&!done?'<em>从这里继续</em>':''}</span>${open?icon('chevron'):icon('lock')}</button></li>`;}).join('')}</ol><div class="route-guide">${avatar()}<p>${c===5?'走完一座山，不是结束。<br>把你的理解和笔记，带去更远处。':`<strong>你的节奏：${escapeHTML(j.prefs.pace)}</strong><br>${j.prefs.focus==='现实与我'?'在每个营地，用一个生活问题停留片刻。':j.prefs.focus==='观点与争议'?'别错过阅读页里的「多元视角」。':'我们先梳理来路，再一步步看清分歧。'}`}</p></div>${button(c===5?'看看我的山顶总结':c===0?'开启第一站':'继续第 '+(c+1)+' 站',c===5?'summit':'read-current','primary wide',ctx.ui.walking?'disabled':'',c===5?'flag':'arrow')}<small class="route-autosave">${icon('shield')} 脚印会自动保存在这个浏览器</small></aside></div></div></main>`;}
+function mountainHTML(ctx){const m=ctx.mountain,j=ctx.journey,c=j.completed,d=doneCount(j);return `<main id="main" class="mountain-page"><div class="page-width"><div class="mountain-heading"><div><a class="text-button back-link" href="#/">${icon('back')} 探索 / ${m.category??'自选主题'}</a><div class="eyebrow">${m.kicker??m.subtitle??'一条自己的路'}</div><h1>${escapeHTML(m.title)}<span>这座山</span></h1><p>${escapeHTML(m.subtitle)}</p></div><div class="mountain-top-tools">${tag(j.plan?'AI 生成 · 未外部核验':'离线策展示例')}<button class="icon-button ${ctx.ui.scene3d?'is-on':''}" data-action="scene3d-toggle" aria-label="切换程序化 3D 地形" aria-pressed="${!!ctx.ui.scene3d}" title="3D 场景">${icon('mountain')}</button><button class="icon-button ${ctx.ui.scene3dDirector!==false&&ctx.ui.scene3d?'is-on':''}" data-action="scene3d-director" aria-label="自动导览 / 自由观察" aria-pressed="${ctx.ui.scene3dDirector!==false}" title="自动导览 / 自由观察">${icon('compass')}</button><button class="icon-button" data-action="scene3d-reseed" aria-label="换一批山林与落石" title="换一批山林与落石">${icon('refresh')||icon('compass')}</button><button class="icon-button" data-action="proc-reseed" aria-label="重新生成场景细节" title="换一茬场景">${icon('refresh')||icon('compass')}</button><button class="icon-button" data-action="share" aria-label="分享这座山">${icon('share')}</button><button class="icon-button" data-action="guide" aria-label="查看登山指南">${icon('help')}</button></div></div><div class="mountain-layout"><section class="mountain-world" aria-label="五层知识山地图"><div class="world-topline"><span>${icon('compass')} 先看见全貌，再一步步抵达</span><span>${d===5?'已走完全部营地':`已走过 ${d} / 5 个营地`}</span></div>${ctx.ui.scene3d?`<div class="map-viewport scene3d-viewport" id="map-viewport"><div class="scene3d-host" id="scene3d-host"></div></div>`:`<div class="map-viewport" id="map-viewport"><div class="map-transform" id="map-transform" style="transform:translate(${ctx.ui.panX??0}px,${ctx.ui.panY??0}px) scale(${ctx.ui.zoom??1})">${mountainScene(m,c,{walking:ctx.ui.walking,seed:ctx.ui.sceneSeed||'',done:m.nodes.map((_,k)=>nodeDone(j,k))})}</div></div>`}<div class="world-bottomline"><div class="world-legend"><span><i class="current"></i>当前位置</span><span><i class="done"></i>已走过</span><span>${icon('lock')}未解锁</span></div><div class="map-tools"><button data-action="zoom-out" aria-label="缩小地图">−</button><button data-action="reset-map" aria-label="还原地图">${Math.round((ctx.ui.zoom??1)*100)}%</button><button data-action="zoom-in" aria-label="放大地图">＋</button></div></div>${ctx.ui.walking?`<div class="walking-notice">${avatar()}<span>走过的路，正在成为你的风景。</span><button data-action="skip-walk">跳过动画 ${icon('arrow')}</button></div>`:''}</section><aside class="route-panel"><div class="route-panel-title">${icon('map')}<h2>这一次的山途</h2><span>05 营地</span></div><p>不急着登顶。先走稳脚下的这一步。</p><div class="journey-progress"><div><strong>${d===5?'已抵达山顶':`${d*20}%`}</strong><span>${d} / 5 个营地已完成</span></div><span><i style="width:${d*20}%"></i></span></div><ol class="route-list">${m.nodes.map((n,i)=>{const done=nodeDone(j,i),open=canOpen(j,i);return `<li class="${done?'completed':!open?'locked':i===c?'current':'openable'}"><button data-action="station" data-index="${i}" ${ctx.ui.walking?'disabled':''}><span class="route-number">${done?icon('check'):i+1}</span><span><strong>${STAGES[i]}</strong><small>${escapeHTML(n.title)}</small>${i===c&&!done?'<em>从这里继续</em>':''}</span>${open?icon('chevron'):icon('lock')}</button></li>`;}).join('')}</ol><div class="route-guide">${avatar()}<p>${c===5?'走完一座山，不是结束。<br>把你的理解和笔记，带去更远处。':`<strong>你的节奏：${escapeHTML(j.prefs.pace)}</strong><br>${j.prefs.focus==='现实与我'?'在每个营地，用一个生活问题停留片刻。':j.prefs.focus==='观点与争议'?'别错过阅读页里的「多元视角」。':'我们先梳理来路，再一步步看清分歧。'}`}</p></div>${button(c===5?'看看我的山顶总结':c===0?'开启第一站':'继续第 '+(c+1)+' 站',c===5?'summit':'read-current','primary wide',ctx.ui.walking?'disabled':'',c===5?'flag':'arrow')}<small class="route-autosave">${icon('shield')} 脚印会自动保存在这个浏览器</small></aside></div></div></main>`;}
 function readHTML(ctx){const m=ctx.mountain,j=ctx.journey,i=ctx.node,n=m.nodes[i],checked=j.checks[i]===true,done=nodeDone(j,i),tab=ctx.ui.readTab??'guide',saved=ctx.state.bookmarks.includes(`${m.id}:${i}`),sel=ctx.ui.quizSelected,compact=readingMinutes(j.prefs)<=15;
  return `<main id="main" class="read-page"><div class="read-breadcrumb page-width"><button class="text-button" data-action="return-map">${icon('back')} 返回知识山</button><span>${escapeHTML(m.title)} <i>/</i> ${STAGES[i]}</span><button class="text-button bookmark-action ${saved?'saved':''}" data-action="bookmark" aria-pressed="${saved}">${icon('bookmark')} ${saved?'已收藏':'收藏本营地'}</button></div><div class="reader-layout page-width"><aside class="reader-nav"><div class="reader-nav-art">${littleMountain(m)}</div><h3>${escapeHTML(m.title)}</h3><p>每一小步，都算数。</p><ol>${m.nodes.map((item,k)=>{const kd=nodeDone(j,k),ko=canOpen(j,k);return `<li><button class="${i===k?'active':''} ${kd?'done':''}" data-action="reader-station" data-index="${k}"><span>${kd?icon('check'):ko?k+1:icon('lock')}</span><span>${STAGES[k].split(' · ')[1]}<small>${escapeHTML(item.short??item.title)}</small></span></button></li>`;}).join('')}</ol><span class="reader-progress">${doneCount(j)} / 5 营地 · 路还在前方</span></aside><article class="reading-article"><header class="article-header"><span class="eyebrow">考察手记 · 0${i+1} / 05</span><h1 tabindex="-1">${escapeHTML(n.title)}</h1><div class="article-meta">${tag(STAGES[i])}<span>${icon('clock')} 约 ${compact?1:readingMinutes(j.prefs)>=40?8:5} 分钟</span><span>${j.plan?'AI 生成 · 未核验':'编辑策展示例'}</span></div></header><nav class="reader-tabs" aria-label="内容视角">${[['guide','导读'],['perspectives','多元视角'],['sources','参考资料']].map(([v,t])=>`<button class="${tab===v?'active':''}" data-action="read-tab" data-tab="${v}" aria-pressed="${tab===v}">${t}${v==='sources'?icon('external'):''}</button>`).join('')}</nav>
  ${tab==='guide'?`<div class="reading-body">${j.prefs.goal!=='从零入门'?`<div class="goal-prompt"><span>${icon('compass')} ${j.prefs.goal==='已有了解'?'先连接你已经知道的':'带着你的问题阅读'}</span><p>${j.prefs.goal==='已有了解'?`先写下你对「${escapeHTML(n.short??n.title)}」的原有理解，再对照导读，找出一处需要补充或修改的地方。`:`读到「${escapeHTML(n.short??n.title)}」时，记下：它回答了你哪个问题？还有哪个条件没有被说清？`}</p></div>`:''}<div class="intro-text">${escapeHTML(n.intro)}</div>${j.prefs.focus==='现实与我'?`<div class="application-inline"><span>${icon('leaf')} 先带着一个生活问题</span><p>${escapeHTML(n.application)}</p></div>`:''}<section class="key-points"><div class="subheading">${icon('spark')} ${compact?'先记住这些要点':'把核心，慢慢看清楚'}</div>${n.points.map((p,k)=>`<div class="key-point"><span>0${k+1}</span><div><h2>${escapeHTML(p.title)}</h2>${compact?`<button class="inline-expand" data-action="expand-point" data-point="${k}" aria-expanded="${!!ctx.ui.expanded?.[k]}">${ctx.ui.expanded?.[k]?'收起解释':'展开看看'} ${icon('down')}</button>${ctx.ui.expanded?.[k]?`<p>${escapeHTML(p.text)}</p>`:''}`:`<p>${escapeHTML(p.text)}</p>`}</div></div>`).join('')}</section><aside class="misconception">${icon('info')}<div><strong>也留意它的边界</strong><p>${escapeHTML(n.misconception)}</p></div></aside>${j.prefs.focus==='观点与争议'?`<div class="focus-nudge">${icon('chat')} 你选择了关注分歧。读完后，去「多元视角」看看另一面。<button data-action="read-tab" data-tab="perspectives">去看看 ${icon('arrow')}</button></div>`:''}</div>`:''}
@@ -60716,9 +60691,7 @@ function ensureScene3D(){
   // 结果人还在别的页面（甚至首页）也会看到"已切到自由观察"，还会被录进截图。
   if(ctl)ctl.onUserTakeover=()=>{
     ctx.ui.scene3dDirector=false;
-    document.querySelectorAll('[data-action="scene3d-director"]').forEach(b=>{b.classList.remove('is-on');b.setAttribute('aria-pressed','false');});
-    const hint=document.querySelector('.scene3d-toolbar .tiny');
-    if(hint)hint.textContent='自由观察中 · 点罗盘回到自动导览';
+    document.querySelectorAll('[data-action="scene3d-director"]').forEach(b=>{b.classList.remove('is-on');b.setAttribute('aria-pressed','false');b.title='回到自动导览';b.setAttribute('aria-label','回到自动导览');});
   };
 }
 // ── 向导「山犬 · 阿山」：浮动小狗 + 抽屉，答案全部来自本地检索并带出处 ──────
@@ -61163,5 +61136,59 @@ document.addEventListener('drop',event=>{const target=event.target.closest('[dat
 document.addEventListener('dragend',()=>{draggedLab=null;document.querySelectorAll('.drag-over,.is-dragging').forEach(x=>x.classList.remove('drag-over','is-dragging'));});
 document.addEventListener('input',event=>{const t=event.target;if(t.dataset.labField)updateLab({type:'field',key:t.dataset.labField,value:t.value},{field:true});if(t.dataset.labRange)updateLab({type:'value',key:t.dataset.labRange,value:Number(t.value)},{live:true});});
 document.addEventListener('change',event=>{const t=event.target;if(t.dataset.labSelect)updateLab({type:'value',key:t.dataset.labSelect,value:Number(t.value)});if(t.dataset.labRange)updateLab({type:'value',key:t.dataset.labRange,value:Number(t.value)},{live:true});});
+
+// ── 自动演示模式（?tour=1）：录制演示视频用 ──────────────────────────────
+// 页面自己按脚本走：换页 → 平滑滚动到指定区块 → 停留。这样录制时不需要一边点一边录，
+// 画面稳定、节奏可控，字幕时间轴也就能和脚本一一对上。
+// ?seed=1 会先把「存在主义」这座山标记为已走完（只为演示能走到山顶页），不写进仓库内容。
+const TOUR_STEPS = [
+  { route: '#/', dwell: 4200, caption: '看山不是山 · 让知识有路径' },
+  { scroll: '.recommend-section', dwell: 4200, caption: '六座知识山，每座五层营地' },
+  { route: '#/mountain/existentialism', dwell: 4000, caption: '山页：五站路径，前三站默认开放' },
+  { route: '#/mountain/existentialism/3d', dwell: 9000, caption: '3D 微缩沙盘：镜头沿五站自动导览' },
+  { route: '#/read/existentialism/0', scroll: '#node-materials', dwell: 7000, caption: '每一站第一步：材料与出处（含知乎真实回答）' },
+  { scroll: '#understanding', dwell: 5000, caption: '然后是亲手探索与理解确认' },
+  { quiz: 0, dwell: 3500, caption: '答完立刻给解释，并弹出「进入下一站」' },
+  { route: '#/summit/existentialism', dwell: 10000, caption: '走完五层：一览众山小，判断连成脉络' },
+  { route: '#/library', scroll: '#zhihu-hot', dwell: 5000, caption: '资料馆：知乎热榜、真实讨论与公开参考分开标注' },
+  { route: '#/', dwell: 3600, caption: '看山不是山 · 知乎黑客松 2026' }
+];
+function tourSleep(ms){return new Promise(r=>setTimeout(r,ms));}
+async function runTour(){
+  const seed=/(?:^|[?&])seed=1/.test(location.search);
+  if(seed){
+    const id='existentialism';
+    // 演示用：把这座山标成已走完，好让脚本能走到山顶页；只写本地存储，不影响仓库内容
+    const fake={version:1,journeys:{[id]:{id,topic:id,prefs:{goal:'从零入门',focus:'概念与脉络',pace:'漫游 · 25 分钟'},completed:5,
+      checks:{0:true,1:true,2:true,3:true,4:true},notes:{},activities:{0:{confirmed:true},1:{confirmed:true},2:{confirmed:true},3:{confirmed:true},4:{confirmed:true}},receipts:{},labVersion:1,startedAt:Date.now(),updatedAt:Date.now()}},
+      bookmarks:[],savedSources:[],sourceVisits:[],interest:'all'};
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(fake));state=normalizeState(fake,MOUNTAINS.map(m=>m.id));ctx.state=state;}catch{}
+  }
+  await tourSleep(1200);
+  for(const step of TOUR_STEPS){
+    if(step.route){ctx.view='';location.hash=step.route;}
+    await tourSleep(step.scroll?900:520);
+    if(step.scroll){
+      const el=document.querySelector(step.scroll);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+      await tourSleep(900);
+    }
+    if(step.quiz!==undefined){
+      const b=document.querySelector('[data-action="quiz"][data-index="'+step.quiz+'"]');
+      if(b)b.click();
+      await tourSleep(700);
+    }
+    const cap=step.caption||'';
+    if(cap){
+      let badge=document.getElementById('tour-caption');
+      if(!badge){badge=document.createElement('div');badge.id='tour-caption';badge.className='tour-caption';document.body.appendChild(badge);}
+      badge.textContent=cap;badge.classList.add('show');
+    }
+    await tourSleep(step.dwell||2000);
+  }
+  document.getElementById('tour-caption')?.classList.remove('show');
+}
+if(/[?&]tour=1/.test(location.search)){const d=Number((location.search.match(/[?&]delay=(\d+)/)||[])[1])||1200;setTimeout(()=>{runTour();},d);}
 render();preloadAssets();checkAPI(true);
+
 })();</script></body></html>

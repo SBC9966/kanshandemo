@@ -244,18 +244,6 @@ dialog,.saved-card,.summit-summary{border-radius:8px}
 .scene3d-host{position:absolute;inset:0}
 .scene3d-canvas{display:block;width:100%;height:100%;cursor:grab}
 .scene3d-canvas:active{cursor:grabbing}
-.scene3d-toolbar{
-  position:absolute;left:14px;bottom:14px;z-index:4;
-  display:flex;align-items:center;gap:10px;
-  padding:8px 12px;border-radius:8px;
-  background:#fbfaf5e8;border:1px solid #cfd6c6;
-  backdrop-filter:blur(8px);
-}
-.scene3d-toolbar .tiny{color:#6a7368;font-size:11px}
-.scene3d-toolbar .icon-button.is-on,
-.mountain-top-tools .icon-button.is-on{
-  background:#e2ebdd;border-color:#8fa890;
-}
 .icon-button.is-on{box-shadow:inset 0 0 0 1px #7d9a82}
 @media(max-width:760px){
   .scene3d-viewport{min-height:420px}
@@ -745,25 +733,6 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .return-experiment button,
 .runner-result>button,
 .runner-result>button small,
-.scene3d-toolbar .tiny,
-.segmented button,
-.settings-backup .btn,
-.site-header nav>a,.site-header nav>button,
-.source-compare-grid .btn,
-.source-link small,
-.source-meta-table>div,
-.stage-chips i,
-.stage-chips>span,
-.summary-footer .text-button,
-.summary-footer>.text-button,
-.summit-actions>.btn,
-.summit-evidence .btn,
-.tab-row button,
-.tool-event,
-.tool-log-empty,
-.tool-log-head,
-.tool-log-head small,
-.walking-notice button{font-size:13px!important}
 .about-grid small,
 .about-grid strong,
 .activity-body .guard-policies span,.activity-body .benchmark-cases p,
@@ -1248,3 +1217,9 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .next-cta.is-half .next-cta-label{background:var(--zh-gray-l)}
 .activity-panel.is-flash,.understanding.is-flash{animation:target-flash 1.5s var(--zh-ease)}
 @keyframes target-flash{0%,100%{box-shadow:none}25%,60%{box-shadow:0 0 0 3px var(--zh-blue-soft),0 8px 24px rgba(5,109,232,.16)}}
+
+/* 自动演示模式的说明条（只在 ?tour=1 时出现，用于录制视频时的画面说明） */
+.tour-caption{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:70;max-width:min(760px,86vw);
+  padding:11px 20px;border-radius:100px;background:rgba(18,18,18,.86);color:#fff;font-size:15px;line-height:1.5;
+  box-shadow:0 12px 34px rgba(0,0,0,.28);opacity:0;transition:opacity .45s var(--zh-ease),transform .45s var(--zh-ease);pointer-events:none}
+.tour-caption.show{opacity:1;transform:translate(-50%,0)}

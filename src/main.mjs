@@ -157,9 +157,7 @@ function ensureScene3D(){
   // 结果人还在别的页面（甚至首页）也会看到"已切到自由观察"，还会被录进截图。
   if(ctl)ctl.onUserTakeover=()=>{
     ctx.ui.scene3dDirector=false;
-    document.querySelectorAll('[data-action="scene3d-director"]').forEach(b=>{b.classList.remove('is-on');b.setAttribute('aria-pressed','false');});
-    const hint=document.querySelector('.scene3d-toolbar .tiny');
-    if(hint)hint.textContent='自由观察中 · 点罗盘回到自动导览';
+    document.querySelectorAll('[data-action="scene3d-director"]').forEach(b=>{b.classList.remove('is-on');b.setAttribute('aria-pressed','false');b.title='回到自动导览';b.setAttribute('aria-label','回到自动导览');});
   };
 }
 // ── 向导「山犬 · 阿山」：浮动小狗 + 抽屉，答案全部来自本地检索并带出处 ──────
@@ -604,4 +602,57 @@ document.addEventListener('drop',event=>{const target=event.target.closest('[dat
 document.addEventListener('dragend',()=>{draggedLab=null;document.querySelectorAll('.drag-over,.is-dragging').forEach(x=>x.classList.remove('drag-over','is-dragging'));});
 document.addEventListener('input',event=>{const t=event.target;if(t.dataset.labField)updateLab({type:'field',key:t.dataset.labField,value:t.value},{field:true});if(t.dataset.labRange)updateLab({type:'value',key:t.dataset.labRange,value:Number(t.value)},{live:true});});
 document.addEventListener('change',event=>{const t=event.target;if(t.dataset.labSelect)updateLab({type:'value',key:t.dataset.labSelect,value:Number(t.value)});if(t.dataset.labRange)updateLab({type:'value',key:t.dataset.labRange,value:Number(t.value)},{live:true});});
+
+// ── 自动演示模式（?tour=1）：录制演示视频用 ──────────────────────────────
+// 页面自己按脚本走：换页 → 平滑滚动到指定区块 → 停留。这样录制时不需要一边点一边录，
+// 画面稳定、节奏可控，字幕时间轴也就能和脚本一一对上。
+// ?seed=1 会先把「存在主义」这座山标记为已走完（只为演示能走到山顶页），不写进仓库内容。
+const TOUR_STEPS = [
+  { route: '#/', dwell: 4200, caption: '看山不是山 · 让知识有路径' },
+  { scroll: '.recommend-section', dwell: 4200, caption: '六座知识山，每座五层营地' },
+  { route: '#/mountain/existentialism', dwell: 4000, caption: '山页：五站路径，前三站默认开放' },
+  { route: '#/mountain/existentialism/3d', dwell: 9000, caption: '3D 微缩沙盘：镜头沿五站自动导览' },
+  { route: '#/read/existentialism/0', scroll: '#node-materials', dwell: 7000, caption: '每一站第一步：材料与出处（含知乎真实回答）' },
+  { scroll: '#understanding', dwell: 5000, caption: '然后是亲手探索与理解确认' },
+  { quiz: 0, dwell: 3500, caption: '答完立刻给解释，并弹出「进入下一站」' },
+  { route: '#/summit/existentialism', dwell: 10000, caption: '走完五层：一览众山小，判断连成脉络' },
+  { route: '#/library', scroll: '#zhihu-hot', dwell: 5000, caption: '资料馆：知乎热榜、真实讨论与公开参考分开标注' },
+  { route: '#/', dwell: 3600, caption: '看山不是山 · 知乎黑客松 2026' }
+];
+function tourSleep(ms){return new Promise(r=>setTimeout(r,ms));}
+async function runTour(){
+  const seed=/(?:^|[?&])seed=1/.test(location.search);
+  if(seed){
+    const id='existentialism';
+    // 演示用：把这座山标成已走完，好让脚本能走到山顶页；只写本地存储，不影响仓库内容
+    const fake={version:1,journeys:{[id]:{id,topic:id,prefs:{goal:'从零入门',focus:'概念与脉络',pace:'漫游 · 25 分钟'},completed:5,
+      checks:{0:true,1:true,2:true,3:true,4:true},notes:{},activities:{0:{confirmed:true},1:{confirmed:true},2:{confirmed:true},3:{confirmed:true},4:{confirmed:true}},receipts:{},labVersion:1,startedAt:Date.now(),updatedAt:Date.now()}},
+      bookmarks:[],savedSources:[],sourceVisits:[],interest:'all'};
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(fake));state=normalizeState(fake,MOUNTAINS.map(m=>m.id));ctx.state=state;}catch{}
+  }
+  await tourSleep(1200);
+  for(const step of TOUR_STEPS){
+    if(step.route){ctx.view='';location.hash=step.route;}
+    await tourSleep(step.scroll?900:520);
+    if(step.scroll){
+      const el=document.querySelector(step.scroll);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+      await tourSleep(900);
+    }
+    if(step.quiz!==undefined){
+      const b=document.querySelector('[data-action="quiz"][data-index="'+step.quiz+'"]');
+      if(b)b.click();
+      await tourSleep(700);
+    }
+    const cap=step.caption||'';
+    if(cap){
+      let badge=document.getElementById('tour-caption');
+      if(!badge){badge=document.createElement('div');badge.id='tour-caption';badge.className='tour-caption';document.body.appendChild(badge);}
+      badge.textContent=cap;badge.classList.add('show');
+    }
+    await tourSleep(step.dwell||2000);
+  }
+  document.getElementById('tour-caption')?.classList.remove('show');
+}
+if(/[?&]tour=1/.test(location.search)){const d=Number((location.search.match(/[?&]delay=(\d+)/)||[])[1])||1200;setTimeout(()=>{runTour();},d);}
 render();preloadAssets();checkAPI(true);
