@@ -7,7 +7,7 @@ const assetModule='export const ASSETS = '+JSON.stringify(assets)+';';
 fs.writeFileSync(path.join(root,'src/assets.mjs'),assetModule);
 // The source files remain native ES modules. Distribution packs the known module graph
 // into one closure for file:// support, with no runtime loader or network dependencies.
-const modules=['vendor/three.module.js','vendor/OrbitControls.js','assets.mjs','data/knowledge.mjs','data/activities.mjs','domain.mjs','data/content.mjs','data/mountains.mjs','knowledge-engine.mjs','activity-engine.mjs','ui.mjs','worlds.mjs','diorama/core.mjs','diorama/camera.mjs','diorama/engine.mjs','diorama/mountains/field.mjs','diorama/mountains/shell.mjs','diorama/mountains/stations.mjs','diorama/mountains/peakScene.mjs','diorama/registry.mjs','scene3d.mjs','activities-ui.mjs','scenes.mjs','pages.mjs','pages-v2.mjs','mind-map.mjs','rag-guide.mjs','main.mjs'];
+const modules=['vendor/three.module.js','vendor/OrbitControls.js','assets.mjs','data/knowledge.mjs','data/activities.mjs','domain.mjs','data/content.mjs','data/mountains.mjs','data/zhihu-snapshot.mjs','knowledge-engine.mjs','activity-engine.mjs','ui.mjs','worlds.mjs','diorama/core.mjs','diorama/camera.mjs','diorama/engine.mjs','diorama/mountains/field.mjs','diorama/mountains/shell.mjs','diorama/mountains/stations.mjs','diorama/mountains/peakScene.mjs','diorama/registry.mjs','scene3d.mjs','activities-ui.mjs','scenes.mjs','pages.mjs','pages-v2.mjs','mind-map.mjs','rag-guide.mjs','main.mjs'];
 // 沙盘模块以 `import * as T from './vendor/three.module.js'` + `T.Xxx` 访问 three。
 // 打包时 import 会被剥掉，所以 three 要包成 IIFE 并回传命名空间 T；这样 three 的内部名
 // （clamp/lerp/_ray 等）留在 IIFE 内，也不会与沙盘模块的顶层同名声明冲突。

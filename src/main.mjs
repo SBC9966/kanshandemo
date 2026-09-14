@@ -13,6 +13,7 @@ import { box,label,ease } from './diorama/core.mjs';
 import { MOUNTAIN } from './diorama/mountains/field.mjs';
 import { mountScene3D } from './scene3d.mjs';
 import { guideShellHTML, guideAnswer, guideContextLine, guideQuickAsks, guideTip } from './rag-guide.mjs';
+import { ZHIHU_SNAPSHOT } from './data/zhihu-snapshot.mjs';
 import { activityHTML,updateLiveActivity } from './activities-ui.mjs';
 import { navHTML,footerHTML,askHTML,generateHTML,journeyHTML,collectionHTML } from './pages.mjs';
 import { sourceDetailsHTML,compareSourcesHTML,libraryHTML,localGuideHTML,homeHTMLV2,mountainHTMLV2,readHTMLV2,fieldbookHTML,summitHTMLV2 } from './pages-v2.mjs';
@@ -390,13 +391,34 @@ function zhihuHotHTML(hot){
       +'<span class="hot-why">命中「'+(it.matched||[]).join("／")+'」</span></li>').join("")
     +'</ul><p class="tiny muted">'+escapeHTML(hot.note||"按关键词把当日热榜匹配到这座山，只说明话题相邻。")+'</p></div>';
 }
+// 静态托管（如 GitHub Pages）没有服务端代理，fetch /api/zhihu/* 会 404。
+// 这时用仓库里固化的离线快照展示真实内容，并如实标注取回时间——比一片"暂时取不到"有用，也不假装是实时的。
+function zhihuFallback(kind,key){
+  const snap=ZHIHU_SNAPSHOT||null;
+  if(!snap)return null;
+  if(kind==='topic'){
+    const t=snap.topics?.[key];
+    if(!t)return null;
+    return {answers:t.answers||[],questions:t.questions||{items:[],mode:'snapshot'},hot:t.hot||null,
+      fetchedAt:t.snapshotAt,note:snap.note,snapshot:true};
+  }
+  if(kind==='works'){
+    if(!snap.works||!(snap.works.items||[]).length)return null;
+    return {...snap.works,snapshot:true};
+  }
+  if(kind==='hot'){
+    if(!snap.hotList||!(snap.hotList.items||[]).length)return null;
+    return {...snap.hotList,snapshot:true};
+  }
+  return null;
+}
 function zhihuNodeHTML(d){
   if(!d)return '<p class="tiny muted">知乎内容暂时取不到，下面的本地资料仍可阅读。</p>';
   const answers=(d.answers||[]).filter(a=>a.excerpt).slice(0,2);
   const qs=(d.questions&&d.questions.items||[]).slice(0,5);
   const hot=d.hot||null;
   const head='<div class="zhihu-live-head"><span class="zhihu-mark">知</span><div><strong>知乎上正在讨论</strong><small>'
-    +(answers.length?"真实回答摘要":"当前内容")+' · '+escapeHTML((d.fetchedAt||"").slice(0,16).replace("T"," "))+'</small></div></div>';
+    +(d.snapshot?'离线快照 · 取回于 ':'')+escapeHTML((d.fetchedAt||"").slice(0,16).replace("T"," "))+(d.snapshot?'（实时内容需服务端在线）':'')+'</small></div></div>';
   if(!answers.length&&!qs.length&&!(hot&&hot.items&&hot.items.length))return head+'<p class="tiny muted">这座山今天还没有取到知乎内容，可以先读本地策展资料。</p>';
   return head+answers.map(zhihuAnswerHTML).join("")+zhihuQuestionsHTML(qs)+zhihuHotHTML(hot)
     +'<p class="tiny muted">内容来自知乎开放平台：回答为服务端摘要，不代表全文；本项目只标注出处，不改写原文。</p>';
@@ -444,7 +466,10 @@ function ensureZhihuHot(){
     if(el){el.innerHTML=zhihuHotListHTML(d);el.classList.add("loaded");}
   }).catch(err=>{
     const el=document.getElementById("zhihu-hot");
-    if(el)el.innerHTML='<p class="tiny muted">此刻热榜暂时取不到（'+escapeHTML(fetchFailNote(err))+'，离线打开时会这样）。</p>';
+    if(!el)return;
+    const snap=zhihuFallback('hot');
+    if(snap){el.innerHTML=zhihuHotListHTML(snap);el.classList.add("loaded");return;}
+    el.innerHTML='<p class="tiny muted">此刻热榜暂时取不到（'+escapeHTML(fetchFailNote(err))+'，离线打开时会这样）。</p>';
   });
 }
 function zhihuWorksHTML(d){
@@ -464,7 +489,10 @@ function ensureZhihuNode(){
     if(el&&el.dataset.mountain===id){el.innerHTML=zhihuNodeHTML(d);el.classList.add("loaded");}
   }).catch(err=>{
     const el=document.getElementById("zhihu-node");
-    if(el&&el.dataset.mountain===id)el.innerHTML='<p class="tiny muted">知乎内容暂时取不到（'+escapeHTML(fetchFailNote(err))+'，离线或额度受限），本地资料仍可阅读。</p>';
+    if(!(el&&el.dataset.mountain===id))return;
+    const snap=zhihuFallback('topic',id);
+    if(snap){el.innerHTML=zhihuNodeHTML(snap);el.classList.add('loaded');return;}
+    el.innerHTML='<p class="tiny muted">知乎内容暂时取不到（'+escapeHTML(fetchFailNote(err))+'，离线或额度受限），本地资料仍可阅读。</p>';
   });
 }
 function ensureZhihuWorks(){
@@ -478,7 +506,10 @@ function ensureZhihuWorks(){
     if(el){el.innerHTML=zhihuWorksHTML(d);el.classList.add('loaded');}
   }).catch(err=>{
     const el=document.getElementById('zhihu-works');
-    if(el)el.innerHTML='<p class="tiny muted">知乎作品货架暂时取不到（'+escapeHTML(fetchFailNote(err))+'）。</p>';
+    if(!el)return;
+    const snap=zhihuFallback('works');
+    if(snap){el.innerHTML=zhihuWorksHTML(snap);el.classList.add('loaded');return;}
+    el.innerHTML='<p class="tiny muted">知乎作品货架暂时取不到（'+escapeHTML(fetchFailNote(err))+'）。</p>';
   });
 }
 async function runZhihuLiveSearch(query){

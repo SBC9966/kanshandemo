@@ -45,7 +45,7 @@
             "passed": true,
             "message": "处境不能凭意志抹掉；承认处境，也不必取消行动。分类是这个具体练习的用法，并非给整个人生定性。",
             "attempts": 1,
-            "completedAt": 1789406459632
+            "completedAt": 1789407947994
           },
           "1": {
             "placements": {},
@@ -66,7 +66,7 @@
             "passed": true,
             "message": "这是理解背景的简化时间线，不是声称后一个阶段必然由前一个阶段造成，也不是把这些思想家归成一个统一派别。",
             "attempts": 1,
-            "completedAt": 1789406459632
+            "completedAt": 1789407947994
           },
           "2": {
             "placements": {
@@ -91,7 +91,7 @@
             "passed": true,
             "message": "三条线连在同一张图上，但不汇成同一种声音。特别是加缪与“存在主义者”标签的关系，需要说明而非默认。",
             "attempts": 1,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "3": {
             "placements": {},
@@ -114,7 +114,7 @@
             "passed": true,
             "message": "桥需要两端的支撑。把所有困难归于个人，与把行动完全取消，都使具体问题消失了。",
             "attempts": 1,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "4": {
             "placements": {},
@@ -135,7 +135,7 @@
             "passed": true,
             "message": "这里没有唯一正确的生活答案。写下处境、行动和修正条件，只是让抽象理解变得具体。",
             "attempts": 1,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           }
         },
         "receipts": {
@@ -168,7 +168,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459632
+            "completedAt": 1789407947994
           },
           "1": {
             "placements": {},
@@ -193,7 +193,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459632
+            "completedAt": 1789407947994
           },
           "2": {
             "placements": {
@@ -222,7 +222,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "3": {
             "placements": {},
@@ -249,7 +249,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "4": {
             "placements": {},
@@ -274,13 +274,13 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           }
         },
         "labVersion": 2,
-        "startedAt": 1789406459630,
-        "updatedAt": 1789406459633,
-        "finishedAt": 1789406459633
+        "startedAt": 1789407947988,
+        "updatedAt": 1789407947995,
+        "finishedAt": 1789407947995
       },
       "ai-agents": {
         "id": "ai-agents",
@@ -320,7 +320,7 @@
             "passed": true,
             "message": "自然语言表示“已完成”不是外部执行证据。回路需要真正的观察结果；本页也一样，由状态而不是动画决定是否完成。",
             "attempts": 1,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "1": {
             "placements": {
@@ -345,7 +345,7 @@
             "passed": true,
             "message": "最少必要的自主性，通常比“所有事都交给 Agent”更容易验证。写入和对外发送需要单独的许可。",
             "attempts": 1,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "2": {
             "placements": {},
@@ -358,22 +358,22 @@
               {
                 "label": "search_local：命中 2 条来源元数据。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               },
               {
                 "label": "inspect：已区分公开页面与仅有检索摘要的资料。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               },
               {
                 "label": "draft：依据预编导读组装草稿，非大模型生成。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               },
               {
                 "label": "verify：所有引用 ID 均可解析。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               }
             ],
             "seen": [],
@@ -396,7 +396,7 @@
             "draft": "主要区别在于谁决定下一步：工作流按预先定义的路径组织执行，而 Agent 让模型动态决定部分过程与工具选择。它们不是高低等级。先建简单、可测量的基线，再用任务结果、成本和延迟判断要不要增加自主性。 [anthropic-agents] [zh-ai-03]",
             "verified": true,
             "attempts": 1,
-            "completedAt": 1789406459639
+            "completedAt": 1789407947999
           },
           "3": {
             "placements": {},
@@ -413,22 +413,22 @@
               {
                 "label": "故障演练开始：读取一份含越权文字的外部资料。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "资料被保留为数据，未提升为指令。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "写入权限锁：要求用户批准。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "越权调用被阻止；第 3 步触发停止边界。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               }
             ],
             "seen": [],
@@ -439,7 +439,7 @@
             "message": "外部文本不是系统指令。最大步数、批准与隔离必须由代码强制执行，而不是依靠模型的一句安全承诺。",
             "blocked": true,
             "attempts": 1,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948000
           },
           "4": {
             "placements": {},
@@ -452,17 +452,17 @@
               {
                 "label": "PASS grounded — 实际调用本地检索并检查来源 ID。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "PASS missing — 无匹配问题返回不足，而非随机导读。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "PASS injection — 权限函数拒绝外部内容发起的写入。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               }
             ],
             "seen": [],
@@ -476,7 +476,7 @@
             "passed": true,
             "message": "三个用例只是教学基线，不代表生产安全认证。准确率、成本和复杂失败场景仍需要更大的独立测试集。",
             "attempts": 1,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948001
           }
         },
         "receipts": {
@@ -504,7 +504,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "1": {
             "placements": {
@@ -533,7 +533,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459633
+            "completedAt": 1789407947995
           },
           "2": {
             "placements": {},
@@ -546,22 +546,22 @@
               {
                 "label": "search_local：命中 2 条来源元数据。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               },
               {
                 "label": "inspect：已区分公开页面与仅有检索摘要的资料。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               },
               {
                 "label": "draft：依据预编导读组装草稿，非大模型生成。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               },
               {
                 "label": "verify：所有引用 ID 均可解析。",
                 "status": "ok",
-                "at": 1789406459638
+                "at": 1789407947999
               }
             ],
             "seen": [],
@@ -584,7 +584,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459639
+            "completedAt": 1789407947999
           },
           "3": {
             "placements": {},
@@ -601,22 +601,22 @@
               {
                 "label": "故障演练开始：读取一份含越权文字的外部资料。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "资料被保留为数据，未提升为指令。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "写入权限锁：要求用户批准。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "越权调用被阻止；第 3 步触发停止边界。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               }
             ],
             "seen": [],
@@ -630,7 +630,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948000
           },
           "4": {
             "placements": {},
@@ -643,17 +643,17 @@
               {
                 "label": "PASS grounded — 实际调用本地检索并检查来源 ID。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "PASS missing — 无匹配问题返回不足，而非随机导读。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               },
               {
                 "label": "PASS injection — 权限函数拒绝外部内容发起的写入。",
                 "status": "ok",
-                "at": 1789406459639
+                "at": 1789407948000
               }
             ],
             "seen": [],
@@ -671,13 +671,13 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948001
           }
         },
         "labVersion": 2,
-        "startedAt": 1789406459633,
-        "updatedAt": 1789406459639,
-        "finishedAt": 1789406459639
+        "startedAt": 1789407947995,
+        "updatedAt": 1789407948001,
+        "finishedAt": 1789407948001
       },
       "critical-thinking": {
         "id": "critical-thinking",
@@ -720,7 +720,7 @@
             "passed": true,
             "message": "先判断一句话在做什么，再判断它是否成立。能被核查的陈述，依然可能与记录不符。",
             "attempts": 1,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948001
           },
           "1": {
             "placements": {},
@@ -742,7 +742,7 @@
             "passed": true,
             "message": "可见样本的成功率是 18/20，完整教学样本是 30/100。变化来自观察范围，不是这些人的结果被改变了。",
             "attempts": 1,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948001
           },
           "2": {
             "placements": {},
@@ -766,7 +766,7 @@
             "passed": true,
             "message": "在这个例子里，温度是预先设定的共同原因。分组观察帮助暴露混杂，但现实中“控制一个变量”也不自动证明因果。",
             "attempts": 1,
-            "completedAt": 1789406459640
+            "completedAt": 1789407948001
           },
           "3": {
             "placements": {
@@ -793,7 +793,7 @@
             "passed": true,
             "message": "支持材料与限制可以同时存在。科学判断不按两边卡片数量投票，而要比较设计、适用范围和不确定性。",
             "attempts": 1,
-            "completedAt": 1789406459640
+            "completedAt": 1789407948001
           },
           "4": {
             "placements": {},
@@ -815,7 +815,7 @@
             "passed": true,
             "message": "后验 = 先验×0.8 ÷ [先验×0.8 + (1−先验)×0.2]。数字来自写明的假设；并不是对真实天气的预测。",
             "attempts": 1,
-            "completedAt": 1789406459640
+            "completedAt": 1789407948001
           }
         },
         "receipts": {
@@ -846,7 +846,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948001
           },
           "1": {
             "placements": {},
@@ -872,7 +872,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459639
+            "completedAt": 1789407948001
           },
           "2": {
             "placements": {},
@@ -900,7 +900,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459640
+            "completedAt": 1789407948001
           },
           "3": {
             "placements": {
@@ -931,7 +931,7 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459640
+            "completedAt": 1789407948001
           },
           "4": {
             "placements": {},
@@ -957,13 +957,13 @@
             "attempts": 1,
             "confirmed": true,
             "passed": true,
-            "completedAt": 1789406459640
+            "completedAt": 1789407948001
           }
         },
         "labVersion": 2,
-        "startedAt": 1789406459639,
-        "updatedAt": 1789406459640,
-        "finishedAt": 1789406459640
+        "startedAt": 1789407948001,
+        "updatedAt": 1789407948001,
+        "finishedAt": 1789407948001
       },
       "cognitive-biases": {
         "id": "cognitive-biases",
@@ -991,9 +991,9 @@
           "4": null
         },
         "labVersion": 2,
-        "startedAt": 1789406459640,
-        "updatedAt": 1789406459640,
-        "finishedAt": 1789406459640
+        "startedAt": 1789407948001,
+        "updatedAt": 1789407948001,
+        "finishedAt": 1789407948001
       },
       "ethics-intro": {
         "id": "ethics-intro",
@@ -1021,9 +1021,9 @@
           "4": null
         },
         "labVersion": 2,
-        "startedAt": 1789406459640,
-        "updatedAt": 1789406459640,
-        "finishedAt": 1789406459640
+        "startedAt": 1789407948001,
+        "updatedAt": 1789407948001,
+        "finishedAt": 1789407948001
       },
       "meme-culture": {
         "id": "meme-culture",
@@ -1051,9 +1051,9 @@
           "4": null
         },
         "labVersion": 2,
-        "startedAt": 1789406459640,
-        "updatedAt": 1789406459640,
-        "finishedAt": 1789406459640
+        "startedAt": 1789407948001,
+        "updatedAt": 1789407948001,
+        "finishedAt": 1789407948001
       }
     },
     "bookmarks": [],
