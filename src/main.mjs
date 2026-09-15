@@ -27,7 +27,7 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 function currentPlan(id){return MOUNTAINS.find(m=>m.id===id)??state.journeys[id]?.plan;}
 function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{if(!storageWarned){storageWarned=true;toast('浏览器未允许本地保存。本次仍可体验，请用「导出学习记录」备份。','info');}}}
 function track(type,id){state.events.push({type,id,at:Date.now()});state.events=state.events.slice(-100);}
-function toast(message,type='check'){clearTimeout(toastTimer);toastEl.innerHTML=icon(type)+`<span>${escapeHTML(message)}</span>`;toastEl.classList.add('visible');toastTimer=setTimeout(()=>toastEl.classList.remove('visible'),3600);}
+function toast(message,type='check'){clearTimeout(toastTimer);const msg=String(message??'').trim();if(!msg){toastEl.classList.remove('visible');toastEl.textContent='';return;}toastEl.innerHTML=icon(type)+`<span>${escapeHTML(msg)}</span>`;toastEl.classList.add('visible');toastTimer=setTimeout(()=>{toastEl.classList.remove('visible');toastEl.textContent='';},3600);}
 function openDialog(title,body,footer='',cls=''){previousFocus=document.activeElement;dialog.className=cls;dialog.innerHTML=dialogHTML(title,body,footer);if(!dialog.open)dialog.showModal();ensureZhihuSource();}
 function closeDialog(){if(dialog.open)dialog.close();try{previousFocus?.focus({preventScroll:true});}catch{}}
 function go(path){closeDialog();if(location.hash==='#'+path)render();else location.hash=path;}

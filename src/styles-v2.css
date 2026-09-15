@@ -432,7 +432,12 @@ p{color:var(--zh-ink-2)}
 .quiz-option:hover{border-color:#CFE3FB;background:#F7FBFF}
 .quiz-option.is-correct{animation:zh-pop .42s var(--zh-ease)}
 .terrain-station.current{animation:zh-pulse 2.4s ease-out infinite}
-.toast{animation:zh-rise .3s var(--zh-ease) both}
+/* 以前这里是 animation:zh-rise ... both —— both 会把末帧 opacity:1 永久定格，
+   于是没内容的空 toast（页面里默认就是空的）会一直显示成一个小白框。
+   入退场只交给 styles.css 里的 transition，空元素直接不渲染。 */
+.toast{animation:none}
+.toast:empty,.toast:not(.visible){opacity:0;transform:translate(-50%,15px)}
+.toast:empty{display:none!important}
 .node-checklist span{transition:color .2s var(--zh-ease)}
 .node-checklist span.done{color:var(--zh-green)}
 @media(prefers-reduced-motion:reduce){
