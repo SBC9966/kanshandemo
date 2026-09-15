@@ -1312,6 +1312,30 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
   box-shadow:0 12px 34px rgba(0,0,0,.28);opacity:0;transition:opacity .45s var(--zh-ease),transform .45s var(--zh-ease);pointer-events:none}
 .tour-caption.show{opacity:1;transform:translate(-50%,0)}
 
+/* ── 知乎 OAuth 登录（可选能力）：只在服务端配置了凭证时才出现 ────────────── */
+.zh-account-slot{display:inline-flex;align-items:center}
+.zh-account-slot:empty{display:none}
+.zh-account{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 12px;border-radius:100px;
+  background:var(--zh-card);border:1px solid var(--zh-line);color:var(--zh-ink);font-size:13px;font-weight:500;
+  transition:border-color .2s var(--zh-ease),background .2s var(--zh-ease)}
+.zh-account:hover{border-color:#CFE3FB;background:#F7FBFF}
+.zh-account>.icon{width:16px;height:16px;color:var(--zh-blue)}
+.zh-account.on{background:var(--zh-blue-soft);border-color:#CFE3FB;color:var(--zh-blue-deep)}
+.zh-account img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#fff}
+.zh-account .zh-face{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--zh-blue);
+  color:#fff;font-size:12.5px;display:inline-flex;align-items:center;justify-content:center}
+.zh-account-card{margin:26px auto;padding:22px 24px;border-radius:14px;background:var(--zh-card);
+  border:1px solid var(--zh-line);box-shadow:var(--zh-shadow-1);max-width:760px}
+.zh-account-card.on{border-left:3px solid var(--zh-blue)}
+.zh-account-card h2{display:flex;align-items:center;gap:8px;margin:6px 0 10px;font-size:19px}
+.zh-account-card h2>.icon{width:19px;height:19px;color:var(--zh-blue)}
+.zh-account-card p{margin:0 0 8px;font-size:13.5px;line-height:1.85;color:var(--zh-ink-2)}
+.zh-account-face{width:44px;height:44px;border-radius:50%;object-fit:cover;float:right;margin:0 0 8px 12px;background:#fff}
+.zh-account-headline{color:var(--zh-gray)!important}
+.zh-account-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.zh-account-card>.btn{margin-top:8px}
+.zh-account-card .eyebrow{display:inline-block;font-size:12.5px;color:var(--zh-gray-l);letter-spacing:.06em}
+
 /* 排版修复层 A（文本格式：字距 / 行宽 / 小字可读性）
    —— 由并行子代理维护，最后由主流程统一复检；新规则一律追加在文件末尾 */
 
@@ -60221,7 +60245,7 @@ const QUESTION_STEPS=[
  {title:'哪一处风景，更让你好奇？',subtitle:'五层顺序不变，我们会调整导读的着重点。',key:'focus',options:[['概念与脉络','先理解概念，再看见来路','book'],['观点与争议','让不同的声音相遇','chat'],['现实与我','把知识放回自己的生活','person']]},
  {title:'给这次旅程，留多少时间？',subtitle:'轻装也能登顶。你随时可以停下来，改天继续。',key:'pace',options:[['轻装 · 15 分钟','核心摘要，走完五层脉络','leaf'],['漫游 · 25 分钟','导读与实验，慢慢看懂','compass'],['深读 · 40 分钟','包括原始参考与延伸阅读','book']]}
 ];
-function navHTML(ctx){const v=ctx.view;return `<header class="site-header"><a class="brand" href="#/" aria-label="看山不是山，回到首页">${icon('mountain')}<span>看山不是山</span><span class="brand-divider"></span><small>让好奇，走得更远</small></a><nav aria-label="主导航"><a href="#/" class="${v==='home'?'active':''}">探索</a><a href="#/journey" class="${v==='journey'?'active':''}">我的山途${Object.keys(ctx.state.journeys).length?'<i class="nav-dot"></i>':''}</a><a href="#/library" class="${v==='library'?'active':''}">资料馆</a><a href="#/fieldbook" class="${v==='fieldbook'?'active':''}">理解图谱</a><a href="#/collection" class="${v==='collection'?'active':''}">收藏</a><button data-action="about">关于</button></nav><div class="header-actions"><button class="mode-pill" data-action="mode-info"><span></span>${ctx.api?'AI 接口可用':'本地知识库 · 互动版'}</button><button class="icon-button sound-button ${ctx.sound?'on':''}" data-action="sound" aria-label="${ctx.sound?'关闭':'开启'}山间环境音" aria-pressed="${ctx.sound}">${icon(ctx.sound?'volume':'mute')}</button><button class="icon-button" data-action="settings" aria-label="打开偏好设置">${icon('settings')}</button><button class="profile-button" data-action="guide" aria-label="查看新手指南">${avatar()}</button></div></header>`;}
+function navHTML(ctx){const v=ctx.view;return `<header class="site-header"><a class="brand" href="#/" aria-label="看山不是山，回到首页">${icon('mountain')}<span>看山不是山</span><span class="brand-divider"></span><small>让好奇，走得更远</small></a><nav aria-label="主导航"><a href="#/" class="${v==='home'?'active':''}">探索</a><a href="#/journey" class="${v==='journey'?'active':''}">我的山途${Object.keys(ctx.state.journeys).length?'<i class="nav-dot"></i>':''}</a><a href="#/library" class="${v==='library'?'active':''}">资料馆</a><a href="#/fieldbook" class="${v==='fieldbook'?'active':''}">理解图谱</a><a href="#/collection" class="${v==='collection'?'active':''}">收藏</a><button data-action="about">关于</button></nav><div class="header-actions"><span class="zh-account-slot" id="zh-account-slot"></span><button class="mode-pill" data-action="mode-info"><span></span>${ctx.api?'AI 接口可用':'本地知识库 · 互动版'}</button><button class="icon-button sound-button ${ctx.sound?'on':''}" data-action="sound" aria-label="${ctx.sound?'关闭':'开启'}山间环境音" aria-pressed="${ctx.sound}">${icon(ctx.sound?'volume':'mute')}</button><button class="icon-button" data-action="settings" aria-label="打开偏好设置">${icon('settings')}</button><button class="profile-button" data-action="guide" aria-label="查看新手指南">${avatar()}</button></div></header>`;}
 function footerHTML(){return `<footer class="site-footer"><div><a class="brand" href="#/">${icon('mountain')}<span>看山不是山</span></a><p>每一次好奇，都是一次出发。</p></div><div class="footer-links"><button data-action="guide">如何登山</button><button data-action="sources">内容与来源</button><button data-action="privacy">隐私说明</button><button data-action="settings">偏好设置</button></div><small>知乎黑客松 · 独立概念 Demo<br>学习进度保存在当前浏览器 · 不代表知乎官方产品</small></footer>`;}
 function cardHTML(m,journey,reason=false){let done=journey?doneCount(journey):0;return `<article class="mountain-card ${m.color}"><button class="card-hit" data-action="open-topic" data-id="${m.id}" aria-label="${journey?'继续':'探索'}${escapeHTML(m.title)}">${littleMountain(m)}<div class="card-content"><span class="card-category">${m.category}</span><h3>${escapeHTML(m.title)}</h3><p>${escapeHTML(m.subtitle)}</p><div class="tags">${m.tags.map(x=>tag(x)).join('')}</div><div class="card-meta"><span>${icon(journey?'foot':'map')}${journey?`${done} / 5 营地${done===5?' · 已登顶':''}`:'5 层 · 5 个互动实验'}</span><span class="card-arrow">${icon(done===5?'flag':'arrow')}</span></div>${journey?`<div class="card-progress"><i style="width:${done*20}%"></i></div>`:''}</div></button>${reason?`<div class="card-reason">${icon('spark')} ${m.kicker}</div>`:''}</article>`;}
 function homeHTML(ctx){let ms=[...MOUNTAINS];if(ctx.state.interest!=='all')ms.sort((a,b)=>Number(b.group===ctx.state.interest)-Number(a.group===ctx.state.interest));if(ctx.ui.shuffle)ms=[...ms.slice(ctx.ui.shuffle%3),...ms.slice(0,ctx.ui.shuffle%3)];
@@ -60243,6 +60267,7 @@ function readHTML(ctx){const m=ctx.mountain,j=ctx.journey,i=ctx.node,n=m.nodes[i
 function journeyHTML(ctx){const journeys=Object.values(ctx.state.journeys).sort((a,b)=>b.updatedAt-a.updatedAt);const tab=ctx.ui.journeyTab??'all';const filtered=journeys.filter(j=>tab==='all'||(tab==='climbing'?j.completed<5:j.completed===5));let complete=journeys.filter(j=>j.completed===5).length,nodes=journeys.reduce((a,j)=>a+doneCount(j),0),notes=journeys.reduce((a,j)=>a+Object.values(j.notes).filter(Boolean).length,0);return `<main id="main" class="journey-page page-width"><div class="page-intro"><span class="eyebrow">已经走过的路</span><h1>我的山途</h1><p>走过的路不会消失。每一次回来，都可以从这里继续。</p>${button('去探索新的山','home','secondary')}</div><div class="journey-stats"><div>${icon('mountain')}<strong>${journeys.length}</strong><span>座山 · 已出发</span></div><div>${icon('flag')}<strong>${complete}</strong><span>座山 · 已登顶</span></div><div>${icon('foot')}<strong>${nodes}</strong><span>个营地 · 已走过</span></div><div>${icon('pen')}<strong>${notes}</strong><span>篇山间手记</span></div></div><div class="list-toolbar"><div class="tab-row">${[['all','全部山途'],['climbing','正在攀登'],['finished','已抵达山顶']].map(([v,t])=>`<button class="${tab===v?'active':''}" data-action="journey-tab" data-tab="${v}">${t}</button>`).join('')}</div><button class="text-button" data-action="export-notes">${icon('download')} 导出手记</button></div>${filtered.length?`<div class="journey-grid">${filtered.map(j=>{const m=MOUNTAINS.find(x=>x.id===j.id)??j.plan;return `<div class="journey-card-wrapper">${cardHTML(m,j)}<div class="journey-card-bottom"><span>${new Date(j.updatedAt).toLocaleDateString('zh-CN',{month:'long',day:'numeric'})} 留下了脚印</span><button class="text-button" data-action="reset-journey" data-id="${j.id}">重新出发</button></div></div>`;}).join('')}</div>`:emptyState(tab==='all'?'你的第一座山，还在等你。':'这里暂时没有山途。','不用一次想清所有问题。选一个好奇，就能出发。')}<div class="journey-quote">${art('traveler-flag')}<div>山顶是一种风景，<br>在路上也是。</div></div></main>`;}
 function collectionHTML(ctx){const saved=ctx.state.bookmarks.map(key=>{const [id,i]=key.split(':');const j=ctx.state.journeys[id],m=MOUNTAINS.find(x=>x.id===id)??j?.plan;return m&&canOpen(j,Number(i))?{key,m,n:m.nodes[Number(i)],i:Number(i)}:null;}).filter(Boolean);return `<main id="main" class="collection-page page-width"><div class="page-intro"><span class="eyebrow">有些想法值得留下</span><h1>把值得的，留在身边。</h1><p>${saved.length?`${saved.length} 个被你收藏的营地。随时重访，重新看见。`:'不只是收集信息，也让收藏成为可以重访的理解。'}</p></div>${saved.length?`<div class="collection-grid">${saved.map(({key,m,n,i})=>`<article class="saved-card"><div>${tag(m.title)}<button class="icon-button saved" data-action="remove-bookmark" data-key="${key}" aria-label="取消收藏 ${escapeHTML(n.title)}">${icon('bookmark')}</button></div><span class="eyebrow">0${i+1} · ${STAGES[i]}</span><h2>${escapeHTML(n.title)}</h2><p>${escapeHTML(n.takeaway)}</p>${button('重访这个营地','open-saved','secondary',`data-id="${m.id}" data-index="${i}"`)}</article>`).join('')}</div>`:emptyState('一页手记，一处好风景。','在阅读营地时点击「收藏本营地」，它就会出现在这里。')}<div class="privacy-line">${icon('shield')} 收藏只保存在当前浏览器。通过设置中的「导出学习记录」可以备份。</div></main>`;}
 function summitHTML(ctx){const m=ctx.mountain,j=ctx.journey,notes=Object.entries(j.notes).filter(([,n])=>n.trim());return `<main id="main" class="summit-page">${scenicBackground()}<section class="summit-hero page-width"><div class="summit-art">${littleMountain(m)}${art('traveler-flag','summit-traveler')}<span class="summit-ray"></span>${birds()}</div><div class="summit-stamp">${icon('flag')} 5 / 5 · 已抵达山顶</div><span class="eyebrow">一处新风景，不是终点</span><h1>你看见的，已经不只是山。</h1><p>你已走完「${escapeHTML(m.title)}」的五层路径。<br>不是掌握一切，而是有了属于自己的脉络。</p><div class="summit-actions">${button('保存山顶卡片','export-card','primary','','download')}${button('回看这座山','return-map','secondary','','map')}</div></section><section class="summit-summary page-width"><div class="summit-summary-heading"><div><span class="eyebrow">你的山间手记</span><h2>这一路，你带走了什么？</h2></div>${tag('由实际完成的营地整理')}</div><ol class="takeaway-list">${m.nodes.map((n,i)=>`<li><span>${icon('check')}</span><div><small>${STAGES[i]}</small><h3>${escapeHTML(n.takeaway)}</h3></div><button class="icon-button" data-action="reader-station" data-index="${i}" aria-label="重访${escapeHTML(n.title)}">${icon('arrow')}</button></li>`).join('')}</ol>${notes.length?`<div class="summit-notes"><h3>${icon('pen')} 你自己的声音</h3>${notes.map(([i,n])=>`<blockquote><small>${STAGES[Number(i)]}</small><p>${escapeHTML(n)}</p></blockquote>`).join('')}</div>`:`<div class="summit-note-invite">${icon('pen')} 回到任意营地写一篇手记，下次再看，也许会有不同的理解。</div>`}<div class="summary-footer"><small>这是一份学习足迹，不是能力认证或完整知识的证明。</small><button class="text-button" data-action="export-notes">导出所有手记 ${icon('download')}</button></div></section><section class="next-mountains page-width">${sectionTitle('THERE ARE ALWAYS MORE MOUNTAINS','远处，还有新的风景。','带着新的问题，再出发一次。')}<div class="next-grid">${MOUNTAINS.filter(x=>x.id!==m.id).slice(0,2).map(x=>cardHTML(x,ctx.state.journeys[x.id])).join('')}</div></section></main>`;}
+
 
 
 
@@ -60289,7 +60314,7 @@ function readHTMLV2(ctx){const a=activityFor(ctx.mountain.id,ctx.node),s=ctx.jou
  if(tab==='sources'){const start=html.indexOf('<div class="reference-intro">'),end=html.indexOf('<section class="understanding"');if(start>=0&&end>start)html=html.slice(0,start)+`<div class="reference-intro"><h2>先分清来源，再讨论理解。</h2><p>知乎讨论用来提出和比较问题；公开参考用于核对概念。每份资料都标注实际访问范围，点击即可查看关联营地与原始链接。</p></div><div class="reader-source-list">${sources.map(x=>sourceCardHTML(x,{compact:true,saved:ctx.state.savedSources?.includes(x.id)})).join('')||'<div class="notice-box">此自选主题尚未关联已核验来源，请审慎对待。</div>'}</div>`+html.slice(end);}
  html=html.replace('编辑策展示例','带出处的策展导读').replace('策展示例内容 · 不是知乎原帖','本项目导读与实验 · 不复制知乎原文').replace('这座 Demo 没有接入知乎私有数据、用户画像或真实回答接口，不编造作者、赞同数或检索命中数。在线生成的内容会另行标明。','资料卡包含真实链接与检索记录，不含知乎私有数据或全文镜像。');
  const unlocked=done||(labPassed&&quizPassed);html=html.replace(/(<button[^>]*data-action="complete"[^>]*)(>)/,(match,p1,p2)=>p1.replace(/\sdisabled\b/g,'')+(unlocked?'':' disabled')+p2);html=html.replace(quizPassed?'行囊准备好了':'先完成一次理解确认',unlocked?'这一步，准备好了':!labPassed?'先完成一次亲手探索':'还差一次理解确认');html=html.replace('下一段风景，正在等你。',labPassed?'下一段风景，正在等你。':'实验还未完成，不能只凭答题解锁。');html=html.replace('选出更贴近内容的说法，就能解锁下一站。','互动实验 + 理解确认，一起决定下一站是否开放。');return html;}
-function fieldbookHTML(ctx){const total=Object.values(ctx.state.journeys).reduce((n,j)=>n+doneCount(j),0),completedLabs=Object.values(ctx.state.journeys).reduce((n,j)=>n+Object.entries(j.activities??{}).filter(([i,s])=>activityPassed(activityFor(j.id,Number(i)),s)).length,0);return `<main id="main" class="fieldbook-page page-width"><div class="fieldbook-heading"><span class="eyebrow">你的想法 · 彼此相连</span><h1>我的理解图谱</h1><p>不是收藏越多越好。让走过的路，真的彼此连接。</p></div><div class="fieldbook-stats"><span><strong>${total}</strong> 已走过的营地</span><span><strong>${completedLabs}</strong> 已完成的实验</span><span><strong>${ctx.state.savedSources?.length??0}</strong> 收藏的资料卡</span><span><strong>${ctx.state.sourceVisits?.length??0}</strong> 查看过的来源卡</span></div>${(()=>{const card=(m,n,i)=>{const j=ctx.state.journeys[m.id];const done=nodeDone(j,i);const open=canOpen(j,i);const src=(n.sourceIds??[]).map(id=>SOURCE_BY_ID[id]).filter(Boolean)[0];const stage=STAGES[i].split(' · ')[1];const head='<header><span class="ach-stage'+(done?'':' is-locked')+'">'+stage+'</span><span class="ach-mountain">'+m.title+'</span></header>';const title='<h3>'+escapeHTML(done||open?n.title:'还没有走到这一站')+'</h3>';const take='<p class="ach-takeaway">'+escapeHTML(done?(n.takeaway??n.short??''):'走完这一站，它会和你的判断一起出现在这里。')+'</p>';const link=src?('<a href="'+escapeHTML(src.url)+'" target="_blank" rel="noopener" class="ach-src">'+escapeHTML(src.title.slice(0,22))+(src.title.length>22?'…':'')+' '+icon('external')+'</a>'):'<span class="tiny muted">本站暂无外部材料</span>';const go='<button class="ach-go" data-action="source-to-node" data-id="'+m.id+'" data-index="'+i+'">'+(done?'回到这一站':open?'去这一站':'解锁后可进')+' '+icon(open?'arrow':'lock')+'</button>';return '<article class="achievement '+(done?'unlocked':open?'openable':'locked')+'">'+head+title+take+'<footer>'+link+go+'</footer></article>';};return '<section class="achievement-hall"><header class="achievement-head"><span class="eyebrow">成就馆 · 我理解的这些点</span><h2>每走完一站，这里留下你自己的判断</h2><p>徽章不是分数，是你走过的路，和愿意带走的一句话。</p></header><div class="achievement-grid">'+MOUNTAINS.flatMap(m=>m.nodes.map((n,i)=>card(m,n,i))).join('')+'</div></section>';})()}<div class="concept-worlds">${MOUNTAINS.map(m=>{const j=ctx.state.journeys[m.id];return `<section class="concept-world">${terrainThumbnail(m)}<h2>${m.title}</h2><p>${worldFor(m.id).name}</p><ol>${m.nodes.map((n,i)=>{const dn=nodeDone(j,i);return `<li class="${dn?'earned':'unearned'}"><button data-action="source-to-node" data-id="${m.id}" data-index="${i}"><span>${dn?'✓':i+1}</span><strong>${STAGES[i].split(' · ')[1]}</strong><small>${(CONCEPT_LABELS[m.id]?.[i]??[]).join(' · ')}</small>${icon(canOpen(j,i)?'arrow':'lock')}</button></li>`;}).join('')}</ol></section>`;}).join('')}</div><section class="cross-path-section"><span class="eyebrow">几座山之间的联系</span><h2>从一个问题，走向另一个问题。</h2><div class="cross-path-grid">${CROSS_PATHS.map(c=>{const active=nodeDone(ctx.state.journeys[c.from[0]],c.from[1]);return `<article class="cross-path ${active?'active':''}"><div><span>${TOPIC_LABELS[c.from[0]]}</span>${icon('arrow')}<span>${TOPIC_LABELS[c.to[0]]}</span></div><h3>${c.name}</h3><p>${c.relation}</p><button data-action="open-topic" data-id="${active?c.to[0]:c.from[0]}">${active?'发现相邻的山':'先走完起点营地'} ${icon(active?'arrow':'lock')}</button></article>`;}).join('')}</div></section><div class="fieldbook-actions"><button class="btn secondary" data-action="export-research">导出考察手记 ${icon('download')}</button><button class="btn primary" data-action="library-open">回到山间资料馆 ${icon('book')}</button></div></main>`;}
+function fieldbookHTML(ctx){const total=Object.values(ctx.state.journeys).reduce((n,j)=>n+doneCount(j),0),completedLabs=Object.values(ctx.state.journeys).reduce((n,j)=>n+Object.entries(j.activities??{}).filter(([i,s])=>activityPassed(activityFor(j.id,Number(i)),s)).length,0);return `<main id="main" class="fieldbook-page page-width"><div class="fieldbook-heading"><span class="eyebrow">你的想法 · 彼此相连</span><h1>我的理解图谱</h1><p>不是收藏越多越好。让走过的路，真的彼此连接。</p></div><div class="fieldbook-stats"><span><strong>${total}</strong> 已走过的营地</span><span><strong>${completedLabs}</strong> 已完成的实验</span><span><strong>${ctx.state.savedSources?.length??0}</strong> 收藏的资料卡</span><span><strong>${ctx.state.sourceVisits?.length??0}</strong> 查看过的来源卡</span></div>${(()=>{const card=(m,n,i)=>{const j=ctx.state.journeys[m.id];const done=nodeDone(j,i);const open=canOpen(j,i);const src=(n.sourceIds??[]).map(id=>SOURCE_BY_ID[id]).filter(Boolean)[0];const stage=STAGES[i].split(' · ')[1];const head='<header><span class="ach-stage'+(done?'':' is-locked')+'">'+stage+'</span><span class="ach-mountain">'+m.title+'</span></header>';const title='<h3>'+escapeHTML(done||open?n.title:'还没有走到这一站')+'</h3>';const take='<p class="ach-takeaway">'+escapeHTML(done?(n.takeaway??n.short??''):'走完这一站，它会和你的判断一起出现在这里。')+'</p>';const link=src?('<a href="'+escapeHTML(src.url)+'" target="_blank" rel="noopener" class="ach-src">'+escapeHTML(src.title.slice(0,22))+(src.title.length>22?'…':'')+' '+icon('external')+'</a>'):'<span class="tiny muted">本站暂无外部材料</span>';const go='<button class="ach-go" data-action="source-to-node" data-id="'+m.id+'" data-index="'+i+'">'+(done?'回到这一站':open?'去这一站':'解锁后可进')+' '+icon(open?'arrow':'lock')+'</button>';return '<article class="achievement '+(done?'unlocked':open?'openable':'locked')+'">'+head+title+take+'<footer>'+link+go+'</footer></article>';};return '<section class="achievement-hall"><header class="achievement-head"><span class="eyebrow">成就馆 · 我理解的这些点</span><h2>每走完一站，这里留下你自己的判断</h2><p>徽章不是分数，是你走过的路，和愿意带走的一句话。</p></header><div class="achievement-grid">'+MOUNTAINS.flatMap(m=>m.nodes.map((n,i)=>card(m,n,i))).join('')+'</div></section>';})()}<div class="concept-worlds">${MOUNTAINS.map(m=>{const j=ctx.state.journeys[m.id];return `<section class="concept-world">${terrainThumbnail(m)}<h2>${m.title}</h2><p>${worldFor(m.id).name}</p><ol>${m.nodes.map((n,i)=>{const dn=nodeDone(j,i);return `<li class="${dn?'earned':'unearned'}"><button data-action="source-to-node" data-id="${m.id}" data-index="${i}"><span>${dn?'✓':i+1}</span><strong>${STAGES[i].split(' · ')[1]}</strong><small>${(CONCEPT_LABELS[m.id]?.[i]??[]).join(' · ')}</small>${icon(canOpen(j,i)?'arrow':'lock')}</button></li>`;}).join('')}</ol></section>`;}).join('')}</div><section class="cross-path-section"><span class="eyebrow">几座山之间的联系</span><h2>从一个问题，走向另一个问题。</h2><div class="cross-path-grid">${CROSS_PATHS.map(c=>{const active=nodeDone(ctx.state.journeys[c.from[0]],c.from[1]);return `<article class="cross-path ${active?'active':''}"><div><span>${TOPIC_LABELS[c.from[0]]}</span>${icon('arrow')}<span>${TOPIC_LABELS[c.to[0]]}</span></div><h3>${c.name}</h3><p>${c.relation}</p><button data-action="open-topic" data-id="${active?c.to[0]:c.from[0]}">${active?'发现相邻的山':'先走完起点营地'} ${icon(active?'arrow':'lock')}</button></article>`;}).join('')}</div></section><div class="fieldbook-account" id="fieldbook-account"></div><div class="fieldbook-actions"><button class="btn secondary" data-action="export-research">导出考察手记 ${icon('download')}</button><button class="btn primary" data-action="library-open">回到山间资料馆 ${icon('book')}</button></div></main>`;}
 function summitHTMLV2(ctx){let html=summitHTML(ctx);html=html.replace('</main>',summitMapHTML(ctx)+'</main>');const a=activityFor(ctx.mountain.id,4),s=ctx.journey.activities?.[4];if(a?.type==='reflection'&&s?.fields)html=html.replace('<div class="summit-actions">',`<section class="summit-letter"><span class="eyebrow">这座山的一封信</span><h2>你留给未来自己的话</h2>${a.fields.map(f=>`<div><strong>${f.label}</strong><p>${escapeHTML(s.fields[f.id]??'')}</p></div>`).join('')}</section><div class="summit-actions">`);html=html.replace('</main>',`<section class="summit-evidence page-width"><div><h2>这座山，不只留下一个完成标记。</h2><p>实验记录、资料出处与自己的想法，可以一起带走。</p></div><button class="btn secondary" data-action="export-research">导出考察手记 ${icon('download')}</button><a class="btn primary" href="#/fieldbook">看看理解图谱 ${icon('arrow')}</a></section></main>`);return html;}
 
 // 山顶收束：把一座山的五层脉络摊成一张可看的思维图，再把六座山的进度摆成一览。
@@ -60606,8 +60631,66 @@ function guideShellHTML(ctx) {
 }
 
 
+// 知乎 OAuth 登录（可选能力）：凭证只在服务端，前端只读昵称/头像这些公开字段。
+// 没配置 App ID / App Key 时（例如 GitHub Pages 静态版）这里什么也不渲染，不会出现点不动的假按钮。
+
+const oauthUser = (ctx) => ctx?.ui?.oauth?.user || null;
+const oauthName = (ctx) => oauthUser(ctx)?.fullname || '';
+
+function zhAccountHTML(ctx) {
+  const st = ctx?.ui?.oauth;
+  if (!st || !st.configured) return '';
+  const u = st.user;
+  if (st.loggedIn && u) {
+    const face = u.avatar
+      ? `<img src="${escapeHTML(u.avatar)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
+      : `<i class="zh-face">知</i>`;
+    return `<button class="zh-account on" data-action="zh-account" title="已用知乎账号登录：${escapeHTML(u.fullname)}${u.headline ? ' · ' + escapeHTML(u.headline) : ''}（点开可退出）">${face}<span>${escapeHTML(u.fullname)}</span></button>`;
+  }
+  if (st.expired) {
+    return `<button class="zh-account" data-action="zh-login" title="知乎授权已过期，重新登录即可">${icon('user')}<span>重新登录知乎</span></button>`;
+  }
+  return `<button class="zh-account" data-action="zh-login" title="用知乎账号登录（只读昵称与头像，不读你的创作与收藏）">${icon('user')}<span>用知乎登录</span></button>`;
+}
+
+/** 登录后的说明卡片：放在「我的理解图谱」里，讲清拿到了什么、没拿什么 */
+function zhAccountCardHTML(ctx) {
+  const st = ctx?.ui?.oauth;
+  if (!st || !st.configured) return '';
+  const u = st.user;
+  if (!(st.loggedIn && u)) {
+    return `<section class="zh-account-card" id="zh-account-card">
+      <div><span class="eyebrow">可选 · 知乎账号</span><h2>${icon('user')} 用知乎登录</h2>
+      <p>登录后这一页会显示你的知乎昵称与头像；<b>你的学习进度、笔记与收藏仍然只保存在这台设备上</b>，不会上传。</p>
+      <p class="tiny muted">授权只用读取你的公开资料（昵称、头像、一句话介绍），不读取创作、关注与收藏。随时可以退出。</p>
+      <button class="btn secondary" data-action="zh-login">${icon('user')} 用知乎登录 ${icon('arrow')}</button></div>
+    </section>`;
+  }
+  return `<section class="zh-account-card on" id="zh-account-card">
+    <div>${u.avatar ? `<img class="zh-account-face" src="${escapeHTML(u.avatar)}" alt="" referrerpolicy="no-referrer">` : ''}
+    <span class="eyebrow">已连接 · 知乎账号</span><h2>${escapeHTML(u.fullname)}</h2>
+    ${u.headline ? `<p class="zh-account-headline">${escapeHTML(u.headline)}</p>` : ''}
+    <p class="tiny muted">这份授权只读到了公开资料（昵称、头像、一句话介绍）；你的山途进度仍然只存在本地浏览器，退出登录也不会丢。</p>
+    <div class="zh-account-actions">
+      <button class="btn secondary" data-action="zh-account">查看授权范围</button>
+      <button class="btn secondary" data-action="zh-logout">退出登录</button>
+    </div></div>
+  </section>`;
+}
+
+function zhAccountDialogHTML(ctx) {
+  const u = oauthUser(ctx);
+  if (!u) return '<p>当前没有登录知乎账号。</p>';
+  return `<p>已授权：<b>${escapeHTML(u.fullname)}</b>${u.uid ? `（uid ${escapeHTML(String(u.uid))}）` : ''}</p>
+    <p class="tiny muted">读取范围：知乎账号的公开资料（昵称、头像、一句话介绍与个人介绍）。</p>
+    <p class="tiny muted">没有读取：你的创作、关注、收藏、私信与手机号/邮箱；这些字段即使返回也会在服务端被丢弃。</p>
+    <p class="tiny muted">服务端只保存一个 HttpOnly 会话 Cookie，App Key 与授权令牌都不会下发到浏览器。</p>`;
+}
+
+
 // 由打包产物恢复到的一次性修复：main.mjs 曾被误清空（源内容取自上一版 index.html 的内联脚本，
 // 打包只剥掉 import/export，因此函数体与原文件逐字节一致；这里按各模块导出与使用情况重建了 import 行）。
+
 
 
 
@@ -60672,7 +60755,7 @@ function render(preserveScroll=false){const scroll=window.scrollY;const newRoute
  document.title=(view==='home'?'看山不是山 · 让知识有路径':view==='read'?ctx.mountain.nodes[ctx.node].title:view==='journey'?'我的山途':view==='collection'?'我的收藏':view==='library'?'山间资料馆':view==='fieldbook'?'理解图谱':ctx.mountain.title+' · 看山不是山');
  if(!preserveScroll&&changed)window.scrollTo({top:0,behavior:'instant'});else if(preserveScroll)window.scrollTo({top:scroll,behavior:'instant'});
  if(changed&&view!=='home'){const h=app.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}}
- bindScene();
+ handleOauthReturn();bindScene();
 }
 function refreshSoundButton(){document.querySelectorAll('.sound-button').forEach(b=>{b.innerHTML=icon(ctx.sound?'volume':'mute');b.classList.toggle('on',ctx.sound);b.setAttribute('aria-pressed',String(ctx.sound));b.setAttribute('aria-label',(ctx.sound?'关闭':'开启')+'山间环境音');});}
 async function toggleSound(){try{
@@ -60781,7 +60864,8 @@ function pushGuideMessage(role,html){
   return el;
 }
 function guideGreeting(){
-  return '<p class="guide-lead">我是阿山，随身的向导。你现在的位置：'+escapeHTML(guideContextLine(ctx).replace('现在在：',''))+'。</p>'
+  const who=oauthName(ctx);
+  return '<p class="guide-lead">我是阿山，随身的向导。'+(who?escapeHTML(who)+'，':'' )+'你现在的位置：'+escapeHTML(guideContextLine(ctx).replace('现在在：',''))+'。</p>'
     +'<p class="tiny muted">问一句就行：我先去本地资料里找（带出处），再补一条知乎直答大模型的回答；找不到就说没有。</p>';
 }
 // 把本地检索到的材料整理成"参考资料"，和问题一起交给知乎直答：
@@ -60952,7 +61036,7 @@ function bindExploreRail(){
   document.querySelectorAll('[data-action="rail-prev"],[data-action="rail-next"]').forEach(btn=>{
     btn.onclick=()=>{paused=true;rail.scrollBy({left:(btn.dataset.action==='rail-next'?1:-1)*rail.clientWidth*0.8,behavior:'smooth'});clearTimeout(rail.__resume);rail.__resume=setTimeout(()=>{paused=false;},1600);};});
 }
-function bindScene(){ensureScene3D();ensureZhihuNode();ensureZhihuWorks();ensureZhihuSource();ensureZhihuHot();ensureGuideDog();bindExploreRail();syncLabDock();const viewport=document.getElementById('map-viewport'),transform=document.getElementById('map-transform');if(!viewport||!transform||ctx.ui.scene3d)return;let drag=null;viewport.addEventListener('pointerdown',e=>{if(e.target.closest('button')||ctx.ui.walking)return;drag={x:e.clientX,y:e.clientY,px:ctx.ui.panX||0,py:ctx.ui.panY||0};viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging');});viewport.addEventListener('pointermove',e=>{if(!drag)return;ctx.ui.panX=Math.max(-130,Math.min(130,drag.px+e.clientX-drag.x));ctx.ui.panY=Math.max(-130,Math.min(130,drag.py+e.clientY-drag.y));transform.style.transform=`translate(${ctx.ui.panX}px,${ctx.ui.panY}px) scale(${ctx.ui.zoom??1})`;});const end=()=>{drag=null;viewport.classList.remove('dragging');};viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);}
+function bindScene(){ensureScene3D();ensureZhAccount();ensureZhihuNode();ensureZhihuWorks();ensureZhihuSource();ensureZhihuHot();ensureGuideDog();bindExploreRail();syncLabDock();const viewport=document.getElementById('map-viewport'),transform=document.getElementById('map-transform');if(!viewport||!transform||ctx.ui.scene3d)return;let drag=null;viewport.addEventListener('pointerdown',e=>{if(e.target.closest('button')||ctx.ui.walking)return;drag={x:e.clientX,y:e.clientY,px:ctx.ui.panX||0,py:ctx.ui.panY||0};viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging');});viewport.addEventListener('pointermove',e=>{if(!drag)return;ctx.ui.panX=Math.max(-130,Math.min(130,drag.px+e.clientX-drag.x));ctx.ui.panY=Math.max(-130,Math.min(130,drag.py+e.clientY-drag.y));transform.style.transform=`translate(${ctx.ui.panX}px,${ctx.ui.panY}px) scale(${ctx.ui.zoom??1})`;});const end=()=>{drag=null;viewport.classList.remove('dragging');};viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);}
 function updateMapTransform(){const el=document.getElementById('map-transform');if(el)el.style.transform=`translate(${ctx.ui.panX??0}px,${ctx.ui.panY??0}px) scale(${ctx.ui.zoom})`;const reset=document.querySelector('[data-action="reset-map"]');if(reset)reset.textContent=Math.round(ctx.ui.zoom*100)+'%';}
 // One delegated action surface keeps all controls functional across page transitions.
 function closeGuidePanel(){const panel=document.getElementById('guide-panel');if(!panel||panel.hidden)return false;panel.hidden=true;const btn=document.querySelector('[data-action="guide-toggle"]');if(btn)btn.setAttribute('aria-expanded','false');return true;}
@@ -60975,6 +61059,10 @@ document.addEventListener('click',async event=>{if(event.target.closest('.skip-l
  case 'guide-toggle':{const panel=document.getElementById('guide-panel'),btn=document.querySelector('[data-action="guide-toggle"]');const willOpen=!!(panel&&panel.hidden);if(panel)panel.hidden=!willOpen;if(btn)btn.setAttribute('aria-expanded',String(willOpen));if(willOpen){const tip=document.getElementById('guide-tip');if(tip)tip.hidden=true;askGuide('');}break;}
  case 'guide-close':{const panel=document.getElementById('guide-panel');if(panel)panel.hidden=true;const btn=document.querySelector('[data-action="guide-toggle"]');if(btn)btn.setAttribute('aria-expanded','false');break;}
  case 'guide-chip':{askGuide(el.dataset.q||'');break;}
+ // 知乎 OAuth：整页跳转到服务端入口（授权地址由服务端生成，App Key 不下发）
+ case 'zh-login':{location.href='/api/zhihu/oauth/start';break;}
+ case 'zh-logout':{location.href='/api/zhihu/oauth/logout';break;}
+ case 'zh-account':{openDialog('知乎账号授权',zhAccountDialogHTML(ctx),'<button class="btn primary" data-action="dialog-close">知道了</button>');break;}
  // 直答按钮：带 data-q 的（检索没命中时的兜底入口）用那句话问，否则读输入框
  case 'guide-direct':{const inline=el.dataset.q||'';const inp=document.getElementById('guide-input');const fromInput=inp?String(inp.value||'').trim():'';const q=inline||fromInput;if(inp&&!inline)inp.value='';askGuideDirect(q);break;}
  case 'excerpt-toggle':{
@@ -61257,6 +61345,35 @@ function updateLab(event,{live=false,field=false}={}){
  if(event.type==='evaluate'&&activityPassed(a,j.activities[ctx.node]))toast('实验完成。再做一次理解确认，就能继续向前。','check');
 }
 function resetLiveConfirmation(panel,a){if(!panel)return;panel.classList.remove('is-passed');panel.querySelector('.lab-feedback')?.remove();const c=panel.querySelector('[data-action="go-quiz"]');if(c){c.dataset.action='lab-evaluate';c.textContent='观察结果 · 检查这一步';}const stamp=panel.querySelector('.lab-stamp');if(stamp)stamp.textContent='0'+(ctx.node+1);}
+// ── 知乎 OAuth（可选能力）：没配置凭证时按钮不出现；登录/退出都是整页跳转，令牌留在服务端 ──
+function syncZhAccount(){
+  const slot=document.getElementById("zh-account-slot");
+  if(slot)slot.innerHTML=zhAccountHTML(ctx);
+  const card=document.getElementById("fieldbook-account");
+  if(card)card.innerHTML=zhAccountCardHTML(ctx);
+}
+async function ensureZhAccount(){
+  if(ctx.ui.oauth)return;
+  try{
+    const r=await fetch("/api/zhihu/oauth/me");
+    if(!r.ok)throw Error("HTTP "+r.status);
+    ctx.ui.oauth=await r.json();
+  }catch{ctx.ui.oauth={configured:false,loggedIn:false};}
+  syncZhAccount();
+}
+// 从授权页跳回时：清掉地址栏上的 oauth 参数，并给一句人话（成功/失败都如实说）
+function handleOauthReturn(){
+  const p=new URLSearchParams(location.search);
+  const flag=p.get("oauth");
+  if(!flag)return;
+  const reason=p.get("reason")||"";
+  const why={missing:"授权请求已失效（可能是重复回调）",expired:"授权超时，请重新登录",session:"这次授权不是本浏览器发起的",denied:"没有拿到授权码",config:"服务端还没有配置 OAuth 凭证"}[reason]||decodeURIComponent(reason||"未知原因");
+  if(flag==="ok")toast("已用知乎账号登录。","check");
+  else if(flag==="out")toast("已退出知乎账号，本地进度不受影响。","info");
+  else toast("知乎登录没有完成："+why+"。","info");
+  ctx.ui.oauth=null;
+  try{history.replaceState(null,"",location.pathname+location.hash);}catch{}
+}
 function syncLabDock(){if(ctx.view!=='read')return;const j=state.journeys[ctx.mountain.id],a=activityFor(ctx.mountain.id,ctx.node),passed=!a||activityPassed(a,j.activities?.[ctx.node]),checked=!!j.checks[ctx.node],done=nodeDone(j,ctx.node);const c=document.querySelector('[data-action="complete"]');if(c)c.disabled=!(passed&&checked)&&!done;
  const item=document.querySelector('.node-checklist span');if(item){item.classList.toggle('done',passed);item.innerHTML=icon(passed?'check':'compass')+' 亲手探索';}
  const label=document.querySelector('.reading-dock strong');if(label&&!done)label.textContent=passed&&checked?'这一步，准备好了':!passed?'先完成一次亲手探索':'还差一次理解确认';

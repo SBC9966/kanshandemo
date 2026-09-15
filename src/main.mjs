@@ -12,6 +12,7 @@ import { worldFor } from './worlds.mjs';
 import { box,label,ease } from './diorama/core.mjs';
 import { MOUNTAIN } from './diorama/mountains/field.mjs';
 import { mountScene3D } from './scene3d.mjs';
+import { zhAccountHTML, zhAccountCardHTML, zhAccountDialogHTML, oauthName } from './oauth-ui.mjs';
 import { guideShellHTML, guideAnswer, guideContextLine, guideQuickAsks, guideTip, zhihuDirectHTML, ZHIDA_MODEL_NAME, ZHIDA_MODEL_WAIT } from './rag-guide.mjs';
 import { ZHIHU_SNAPSHOT } from './data/zhihu-snapshot.mjs';
 import { activityHTML,updateLiveActivity } from './activities-ui.mjs';
@@ -64,7 +65,7 @@ function render(preserveScroll=false){const scroll=window.scrollY;const newRoute
  document.title=(view==='home'?'看山不是山 · 让知识有路径':view==='read'?ctx.mountain.nodes[ctx.node].title:view==='journey'?'我的山途':view==='collection'?'我的收藏':view==='library'?'山间资料馆':view==='fieldbook'?'理解图谱':ctx.mountain.title+' · 看山不是山');
  if(!preserveScroll&&changed)window.scrollTo({top:0,behavior:'instant'});else if(preserveScroll)window.scrollTo({top:scroll,behavior:'instant'});
  if(changed&&view!=='home'){const h=app.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true});}}
- bindScene();
+ handleOauthReturn();bindScene();
 }
 function refreshSoundButton(){document.querySelectorAll('.sound-button').forEach(b=>{b.innerHTML=icon(ctx.sound?'volume':'mute');b.classList.toggle('on',ctx.sound);b.setAttribute('aria-pressed',String(ctx.sound));b.setAttribute('aria-label',(ctx.sound?'关闭':'开启')+'山间环境音');});}
 async function toggleSound(){try{
@@ -173,7 +174,8 @@ function pushGuideMessage(role,html){
   return el;
 }
 function guideGreeting(){
-  return '<p class="guide-lead">我是阿山，随身的向导。你现在的位置：'+escapeHTML(guideContextLine(ctx).replace('现在在：',''))+'。</p>'
+  const who=oauthName(ctx);
+  return '<p class="guide-lead">我是阿山，随身的向导。'+(who?escapeHTML(who)+'，':'' )+'你现在的位置：'+escapeHTML(guideContextLine(ctx).replace('现在在：',''))+'。</p>'
     +'<p class="tiny muted">问一句就行：我先去本地资料里找（带出处），再补一条知乎直答大模型的回答；找不到就说没有。</p>';
 }
 // 把本地检索到的材料整理成"参考资料"，和问题一起交给知乎直答：
@@ -344,7 +346,7 @@ function bindExploreRail(){
   document.querySelectorAll('[data-action="rail-prev"],[data-action="rail-next"]').forEach(btn=>{
     btn.onclick=()=>{paused=true;rail.scrollBy({left:(btn.dataset.action==='rail-next'?1:-1)*rail.clientWidth*0.8,behavior:'smooth'});clearTimeout(rail.__resume);rail.__resume=setTimeout(()=>{paused=false;},1600);};});
 }
-function bindScene(){ensureScene3D();ensureZhihuNode();ensureZhihuWorks();ensureZhihuSource();ensureZhihuHot();ensureGuideDog();bindExploreRail();syncLabDock();const viewport=document.getElementById('map-viewport'),transform=document.getElementById('map-transform');if(!viewport||!transform||ctx.ui.scene3d)return;let drag=null;viewport.addEventListener('pointerdown',e=>{if(e.target.closest('button')||ctx.ui.walking)return;drag={x:e.clientX,y:e.clientY,px:ctx.ui.panX||0,py:ctx.ui.panY||0};viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging');});viewport.addEventListener('pointermove',e=>{if(!drag)return;ctx.ui.panX=Math.max(-130,Math.min(130,drag.px+e.clientX-drag.x));ctx.ui.panY=Math.max(-130,Math.min(130,drag.py+e.clientY-drag.y));transform.style.transform=`translate(${ctx.ui.panX}px,${ctx.ui.panY}px) scale(${ctx.ui.zoom??1})`;});const end=()=>{drag=null;viewport.classList.remove('dragging');};viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);}
+function bindScene(){ensureScene3D();ensureZhAccount();ensureZhihuNode();ensureZhihuWorks();ensureZhihuSource();ensureZhihuHot();ensureGuideDog();bindExploreRail();syncLabDock();const viewport=document.getElementById('map-viewport'),transform=document.getElementById('map-transform');if(!viewport||!transform||ctx.ui.scene3d)return;let drag=null;viewport.addEventListener('pointerdown',e=>{if(e.target.closest('button')||ctx.ui.walking)return;drag={x:e.clientX,y:e.clientY,px:ctx.ui.panX||0,py:ctx.ui.panY||0};viewport.setPointerCapture(e.pointerId);viewport.classList.add('dragging');});viewport.addEventListener('pointermove',e=>{if(!drag)return;ctx.ui.panX=Math.max(-130,Math.min(130,drag.px+e.clientX-drag.x));ctx.ui.panY=Math.max(-130,Math.min(130,drag.py+e.clientY-drag.y));transform.style.transform=`translate(${ctx.ui.panX}px,${ctx.ui.panY}px) scale(${ctx.ui.zoom??1})`;});const end=()=>{drag=null;viewport.classList.remove('dragging');};viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);}
 function updateMapTransform(){const el=document.getElementById('map-transform');if(el)el.style.transform=`translate(${ctx.ui.panX??0}px,${ctx.ui.panY??0}px) scale(${ctx.ui.zoom})`;const reset=document.querySelector('[data-action="reset-map"]');if(reset)reset.textContent=Math.round(ctx.ui.zoom*100)+'%';}
 // One delegated action surface keeps all controls functional across page transitions.
 function closeGuidePanel(){const panel=document.getElementById('guide-panel');if(!panel||panel.hidden)return false;panel.hidden=true;const btn=document.querySelector('[data-action="guide-toggle"]');if(btn)btn.setAttribute('aria-expanded','false');return true;}
@@ -367,6 +369,10 @@ document.addEventListener('click',async event=>{if(event.target.closest('.skip-l
  case 'guide-toggle':{const panel=document.getElementById('guide-panel'),btn=document.querySelector('[data-action="guide-toggle"]');const willOpen=!!(panel&&panel.hidden);if(panel)panel.hidden=!willOpen;if(btn)btn.setAttribute('aria-expanded',String(willOpen));if(willOpen){const tip=document.getElementById('guide-tip');if(tip)tip.hidden=true;askGuide('');}break;}
  case 'guide-close':{const panel=document.getElementById('guide-panel');if(panel)panel.hidden=true;const btn=document.querySelector('[data-action="guide-toggle"]');if(btn)btn.setAttribute('aria-expanded','false');break;}
  case 'guide-chip':{askGuide(el.dataset.q||'');break;}
+ // 知乎 OAuth：整页跳转到服务端入口（授权地址由服务端生成，App Key 不下发）
+ case 'zh-login':{location.href='/api/zhihu/oauth/start';break;}
+ case 'zh-logout':{location.href='/api/zhihu/oauth/logout';break;}
+ case 'zh-account':{openDialog('知乎账号授权',zhAccountDialogHTML(ctx),'<button class="btn primary" data-action="dialog-close">知道了</button>');break;}
  // 直答按钮：带 data-q 的（检索没命中时的兜底入口）用那句话问，否则读输入框
  case 'guide-direct':{const inline=el.dataset.q||'';const inp=document.getElementById('guide-input');const fromInput=inp?String(inp.value||'').trim():'';const q=inline||fromInput;if(inp&&!inline)inp.value='';askGuideDirect(q);break;}
  case 'excerpt-toggle':{
@@ -649,6 +655,35 @@ function updateLab(event,{live=false,field=false}={}){
  if(event.type==='evaluate'&&activityPassed(a,j.activities[ctx.node]))toast('实验完成。再做一次理解确认，就能继续向前。','check');
 }
 function resetLiveConfirmation(panel,a){if(!panel)return;panel.classList.remove('is-passed');panel.querySelector('.lab-feedback')?.remove();const c=panel.querySelector('[data-action="go-quiz"]');if(c){c.dataset.action='lab-evaluate';c.textContent='观察结果 · 检查这一步';}const stamp=panel.querySelector('.lab-stamp');if(stamp)stamp.textContent='0'+(ctx.node+1);}
+// ── 知乎 OAuth（可选能力）：没配置凭证时按钮不出现；登录/退出都是整页跳转，令牌留在服务端 ──
+function syncZhAccount(){
+  const slot=document.getElementById("zh-account-slot");
+  if(slot)slot.innerHTML=zhAccountHTML(ctx);
+  const card=document.getElementById("fieldbook-account");
+  if(card)card.innerHTML=zhAccountCardHTML(ctx);
+}
+async function ensureZhAccount(){
+  if(ctx.ui.oauth)return;
+  try{
+    const r=await fetch("/api/zhihu/oauth/me");
+    if(!r.ok)throw Error("HTTP "+r.status);
+    ctx.ui.oauth=await r.json();
+  }catch{ctx.ui.oauth={configured:false,loggedIn:false};}
+  syncZhAccount();
+}
+// 从授权页跳回时：清掉地址栏上的 oauth 参数，并给一句人话（成功/失败都如实说）
+function handleOauthReturn(){
+  const p=new URLSearchParams(location.search);
+  const flag=p.get("oauth");
+  if(!flag)return;
+  const reason=p.get("reason")||"";
+  const why={missing:"授权请求已失效（可能是重复回调）",expired:"授权超时，请重新登录",session:"这次授权不是本浏览器发起的",denied:"没有拿到授权码",config:"服务端还没有配置 OAuth 凭证"}[reason]||decodeURIComponent(reason||"未知原因");
+  if(flag==="ok")toast("已用知乎账号登录。","check");
+  else if(flag==="out")toast("已退出知乎账号，本地进度不受影响。","info");
+  else toast("知乎登录没有完成："+why+"。","info");
+  ctx.ui.oauth=null;
+  try{history.replaceState(null,"",location.pathname+location.hash);}catch{}
+}
 function syncLabDock(){if(ctx.view!=='read')return;const j=state.journeys[ctx.mountain.id],a=activityFor(ctx.mountain.id,ctx.node),passed=!a||activityPassed(a,j.activities?.[ctx.node]),checked=!!j.checks[ctx.node],done=nodeDone(j,ctx.node);const c=document.querySelector('[data-action="complete"]');if(c)c.disabled=!(passed&&checked)&&!done;
  const item=document.querySelector('.node-checklist span');if(item){item.classList.toggle('done',passed);item.innerHTML=icon(passed?'check':'compass')+' 亲手探索';}
  const label=document.querySelector('.reading-dock strong');if(label&&!done)label.textContent=passed&&checked?'这一步，准备好了':!passed?'先完成一次亲手探索':'还差一次理解确认';

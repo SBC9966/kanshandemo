@@ -1,6 +1,7 @@
 import { searchSources,retrieveKnowledge,validateKnowledge } from '../src/knowledge-engine.mjs';
 import { SOURCE_BY_ID } from '../src/data/knowledge.mjs';
 import * as zhihu from './zhihu.mjs';
+import * as oauth from './oauth.mjs';
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -51,6 +52,27 @@ const server=http.createServer(async(req,res)=>{
   if(pathname==='/api/zhihu/answer'&&req.method==='GET'){const q=new URL(req.url,'http://localhost').searchParams;try{return json(res,200,await zhihu.directAnswer(q.get('q')??'',{model:q.get('model')||'zhida-fast-1p5',ip:req.socket.remoteAddress??'local'}));}catch(e){return json(res,e.status||502,{error:e.message,code:e.code||null});}}
  if(pathname.startsWith('/api/zhihu/topic/')&&req.method==='GET'){const id=decodeURIComponent(pathname.slice('/api/zhihu/topic/'.length)).replace(/[^a-z-]/g,'');try{return json(res,200,await zhihu.topicDigest(id,{ip:req.socket.remoteAddress??'local'}));}catch(e){return json(res,e.status||502,{error:e.message,code:e.code||null});}}
  if(pathname==='/api/zhihu/quota'&&req.method==='GET'){try{return json(res,200,await zhihu.quota({ip:req.socket.remoteAddress??'local'}));}catch(e){return json(res,e.status||502,{error:e.message,code:e.code||null});}}
+ // ── 知乎 OAuth（授权码流程）：浏览器只拿会话 Cookie，App Key 与用户 token 都留在服务端 ──
+ function cookie(req,name){const raw=req.headers.cookie||'';for(const part of raw.split(';')){const m=part.trim().match(/^([^=]+)=(.*)$/);if(m&&m[1]===name)return decodeURIComponent(m[2]);}return '';}
+ function redirect(res,location,extra={}){res.writeHead(302,{Location:location,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...extra});res.end();}
+ function sidCookie(sid,secure){return 'zh_sid='+encodeURIComponent(sid)+'; Path=/; HttpOnly; SameSite=Lax; Max-Age='+(60*60*24*7)+(secure?'; Secure':'');}
+ const secureReq=(req)=>req.headers['x-forwarded-proto']==='https'||Boolean(req.socket.encrypted);
+ if(pathname==='/api/zhihu/oauth/me'&&req.method==='GET'){try{return json(res,200,oauth.status(cookie(req,'zh_sid')));}catch(e){return json(res,e.status||502,{error:e.message});}}
+ if(pathname==='/api/zhihu/oauth/start'&&req.method==='GET'){
+  const secure=secureReq(req),sid=cookie(req,'zh_sid')||oauth.newSid();
+  try{const {url}=oauth.startAuth(sid);return redirect(res,url,{'Set-Cookie':sidCookie(sid,secure)});}
+  catch(e){return redirect(res,'/?oauth=error&reason='+encodeURIComponent(e.code||'config'));}
+ }
+ if(pathname==='/api/zhihu/oauth/callback'&&req.method==='GET'){
+  const q=new URL(req.url,'http://localhost').searchParams,sid=cookie(req,'zh_sid');
+  const check=oauth.consumeState(q.get('state'),sid);
+  if(!check.ok)return redirect(res,'/?oauth=error&reason='+check.reason);
+  const code=q.get('authorization_code')||q.get('code');
+  if(!code)return redirect(res,'/?oauth=error&reason=denied');
+  try{const {token,expiresIn}=await oauth.exchangeCode(code);const user=await oauth.fetchProfile(token);oauth.createSession(sid,{token,expiresIn,user});return redirect(res,'/?oauth=ok');}
+  catch(e){return redirect(res,'/?oauth=error&reason='+encodeURIComponent(String(e.message).slice(0,60)));}
+ }
+ if(pathname==='/api/zhihu/oauth/logout'&&req.method==='GET'){oauth.dropSession(cookie(req,'zh_sid'));return redirect(res,'/?oauth=out',{'Set-Cookie':'zh_sid=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'});}
  if(pathname==='/api/knowledge'&&req.method==='GET')return json(res,200,validateKnowledge());
  if(pathname==='/api/sources'&&req.method==='GET'){const q=new URL(req.url,'http://localhost').searchParams;return json(res,200,{items:searchSources((q.get('q')??'').slice(0,240),{topic:q.get('topic')??'all',kind:q.get('kind')??'all'}),mode:'local-metadata'});}
  if(pathname==='/api/query'&&req.method==='POST'){try{const data=await readBody(req);return json(res,200,retrieveKnowledge(String(data.question??'').slice(0,240),typeof data.topic==='string'?data.topic:null));}catch{return json(res,400,{error:'Invalid query JSON.'});}}

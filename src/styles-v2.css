@@ -1252,3 +1252,27 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
   padding:11px 20px;border-radius:100px;background:rgba(18,18,18,.86);color:#fff;font-size:15px;line-height:1.5;
   box-shadow:0 12px 34px rgba(0,0,0,.28);opacity:0;transition:opacity .45s var(--zh-ease),transform .45s var(--zh-ease);pointer-events:none}
 .tour-caption.show{opacity:1;transform:translate(-50%,0)}
+
+/* ── 知乎 OAuth 登录（可选能力）：只在服务端配置了凭证时才出现 ────────────── */
+.zh-account-slot{display:inline-flex;align-items:center}
+.zh-account-slot:empty{display:none}
+.zh-account{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 12px;border-radius:100px;
+  background:var(--zh-card);border:1px solid var(--zh-line);color:var(--zh-ink);font-size:13px;font-weight:500;
+  transition:border-color .2s var(--zh-ease),background .2s var(--zh-ease)}
+.zh-account:hover{border-color:#CFE3FB;background:#F7FBFF}
+.zh-account>.icon{width:16px;height:16px;color:var(--zh-blue)}
+.zh-account.on{background:var(--zh-blue-soft);border-color:#CFE3FB;color:var(--zh-blue-deep)}
+.zh-account img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#fff}
+.zh-account .zh-face{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--zh-blue);
+  color:#fff;font-size:12.5px;display:inline-flex;align-items:center;justify-content:center}
+.zh-account-card{margin:26px auto;padding:22px 24px;border-radius:14px;background:var(--zh-card);
+  border:1px solid var(--zh-line);box-shadow:var(--zh-shadow-1);max-width:760px}
+.zh-account-card.on{border-left:3px solid var(--zh-blue)}
+.zh-account-card h2{display:flex;align-items:center;gap:8px;margin:6px 0 10px;font-size:19px}
+.zh-account-card h2>.icon{width:19px;height:19px;color:var(--zh-blue)}
+.zh-account-card p{margin:0 0 8px;font-size:13.5px;line-height:1.85;color:var(--zh-ink-2)}
+.zh-account-face{width:44px;height:44px;border-radius:50%;object-fit:cover;float:right;margin:0 0 8px 12px;background:#fff}
+.zh-account-headline{color:var(--zh-gray)!important}
+.zh-account-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.zh-account-card>.btn{margin-top:8px}
+.zh-account-card .eyebrow{display:inline-block;font-size:12.5px;color:var(--zh-gray-l);letter-spacing:.06em}

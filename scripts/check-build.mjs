@@ -25,7 +25,7 @@ try {
 
 // 顶层重名检查（单闭包打包的致命伤）已内建在 build.mjs 里，这里再跑一遍测试
 try {
-  const out = execFileSync(process.execPath, ['--test', 'tests/mountain3d.test.mjs', 'tests/v2-domain.test.mjs', 'tests/v2-model.test.mjs'], { encoding: 'utf8' });
+  const out = execFileSync(process.execPath, ['--test', 'tests/mountain3d.test.mjs', 'tests/v2-domain.test.mjs', 'tests/v2-model.test.mjs', 'tests/oauth.test.mjs'], { encoding: 'utf8' });
   const pass = (out.match(/# pass (\d+)/) || [])[1];
   const fail = (out.match(/# fail (\d+)/) || [])[1];
   console.log(`TESTS pass=${pass} fail=${fail}`);
