@@ -36,6 +36,8 @@ export default async function handler(req, res) {
         if (topic) return json(res, 200, await zhihu.hotFor(topic, { limit: Number(q.get('limit') ?? 4) || 4, ip }));
         return json(res, 200, await zhihu.hotList(q.get('limit') ?? 10, { ip }));
       }
+      case 'answer':
+        return json(res, 200, await zhihu.directAnswer(q.get('q') ?? '', { model: q.get('model') || 'zhida-fast-1p5', ip }));
       case 'works':
         return json(res, 200, await zhihu.hackathonWorks(q.get('kind') ?? 'knowledge', q.get('limit') ?? 8));
       case 'quota':

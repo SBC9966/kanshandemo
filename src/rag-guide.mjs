@@ -1,7 +1,7 @@
 // 傍身向导「山犬 · 阿山」：在探索时给解释与帮助。
-// 检索侧全部走本地知识库（QA 卡片 + 49 条来源 + 当前营地内容 + 知乎缓存），
-// 答案必须带出处；命中不足就如实说"没有足够匹配"，不编造。刻意不接生成式模型：
-// 没配置模型时凭空生成只会显得像在编，这里只做「检索 + 归纳 + 引用」。
+// 检索侧走本地知识库（QA 卡片 + 49 条来源 + 当前营地内容 + 知乎缓存），答案必须带出处；
+// 每次提问后再补一条「知乎直答」大模型的回答（服务端 /api/zhihu/answer），
+// 两者在界面上分得很开：本地那条是策展材料，直答那条标明是模型生成、不算本站结论。
 import { retrieveKnowledge, searchSources } from './knowledge-engine.mjs';
 import { SOURCE_BY_ID } from './data/knowledge.mjs';
 import { STAGES } from './domain.mjs';
@@ -86,7 +86,7 @@ function zhihuPart(ctx, question) {
 const LOCAL_FAQ = [
   { k: /能做什么|干什么用|这是什么|怎么用|介绍/, a: '这是一条"爬山式"的知识路径：六座知识山，每座五层营地（认识 → 背景 → 核心 → 分歧 → 延伸）。每一层先摆材料与出处，再让你亲手做一个互动实验，最后用一次理解确认把话说清。右侧还有一座资料馆，49 条资料都标了读取范围与来处。' },
   { k: /数据|资料.*来|来源|哪来|可靠|编的/, a: '三类来源分得很清：本地策展资料 49 条（33 条知乎问题与专栏入口 + 16 份公开参考页），知乎实时内容经开放平台接口取回（回答是服务端摘要，不是全文），以及本项目自己撰写的导读与实验。哪一条属于哪一类，卡片上都标着；我们不复制全文、不伪造赞同数。' },
-  { k: /联网|离线|断网|网络/, a: '页面本身可以离线运行（成品是单文件，插画与脚本都内嵌）。知乎那部分需要本地服务在线才有实时内容；取不到时会显示"暂时取不到"，不会假装成功。' },
+  { k: /联网|离线|断网|网络/, a: '页面本身可以离线运行（成品是单文件，插画与脚本都内嵌）。知乎那部分（讨论摘要、热榜、直答大模型）需要本地服务或线上代理在线才有实时内容；取不到时会显示"暂时取不到"，不会假装成功。' },
   { k: /进度|记录|存在哪|上传|隐私/, a: '你的进度（走过的营地、笔记、收藏）只存在这台设备的浏览器 localStorage 里，不上传、不带账号。可以在"我的理解图谱"里导出成考察手记。' },
   { k: /解锁|为什么能进|前三个|跳着|顺序/, a: '这是路演模式：前三个营地默认开放，方便直接跳进去看内容；后面的营地走完前面的就会依次解锁。进度按"逐站真实完成"统计，跳着走不会把中间的空档算成走过。' },
   { k: /3d|沙盘|视角|缩放|旋转/, a: '山页右上角可以切到 3D 微缩沙盘：拖动旋转、滚轮缩放，镜头会按五站自动导览；你一拖动它就交给手动，点罗盘回到自动导览。旁边的按钮可以换一批山林与落石（山形不变）。' },
@@ -164,7 +164,8 @@ export function guideAnswer(ctx, question) {
       html: `<p class="guide-lead">本地资料里没有足够匹配的内容，我就不硬凑一个答案了。</p>
         <p class="tiny muted">${escapeHTML(r.reason || '')}</p>
         <div class="guide-actions"><button class="btn secondary" data-action="library-open">去资料馆自己搜 ${icon('arrow')}</button>
-        <button class="btn secondary" data-action="guide-chip" data-q="${inRead ? '这一站在讲什么？' : '这个 Demo 能做什么？'}">换个问法 ${icon('arrow')}</button></div>`,
+        <button class="btn secondary" data-action="guide-chip" data-q="${inRead ? '这一站在讲什么？' : '这个 Demo 能做什么？'}">换个问法 ${icon('arrow')}</button>
+        <button class="btn secondary" data-action="guide-direct" data-q="${escapeHTML(q.slice(0, 80))}">交给知乎直答试试 ${icon('external')}</button></div>`,
       sources: [], usedLocal: true, missed: true
     };
   }
@@ -179,18 +180,55 @@ export function guideAnswer(ctx, question) {
   };
 }
 
+/** 知乎直答的可选模型。三个模型共用同一组额度（每日有限），所以默认选最快的「快答」；
+ *  需要看推理过程时再自己切到「深度思考」。 */
+export const ZHIDA_MODELS = [
+  { id: 'zhida-fast-1p5', name: '快答', hint: '最快（约 3 秒），适合问一个概念', wait: '大约 3 秒' },
+  { id: 'zhida-thinking-1p5', name: '深度思考', hint: '会先想一遍再答，带推理过程', wait: '十几秒，长问题更久' },
+  { id: 'zhida-agent', name: '智能体', hint: '先去知乎翻真实材料再答，最慢也最实', wait: '可能要一分钟，别关面板' }
+];
+export const ZHIDA_MODEL_NAME = (id) => (ZHIDA_MODELS.find(m => m.id === id) || ZHIDA_MODELS[0]).name;
+export const ZHIDA_MODEL_WAIT = (id) => (ZHIDA_MODELS.find(m => m.id === id) || ZHIDA_MODELS[0]).wait;
+
+const paragraphs = (text) => String(text || '').split(/\n{2,}/).map(s => s.trim()).filter(Boolean)
+  .map(s => `<p>${escapeHTML(s)}</p>`).join('');
+
+/** 直答结果渲染：模型回答 + 可折叠的推理过程 + 额度/缓存提示（不假装是检索结果）。 */
+export function zhihuDirectHTML(d) {
+  const cached = d.mode === 'cached' || d.mode === 'cache' || d.cached;
+  const name = ZHIDA_MODEL_NAME(d.model);
+  const head = `<span class="guide-label">知乎直答<b class="gd-model">${escapeHTML(name)}</b></span>`;
+  const lead = cached
+    ? `<p class="tiny muted">同一问题不再重复问模型，直接给你上次取回的回答（${escapeHTML(String(d.fetchedAt || '').slice(0, 10))}）。</p>`
+    : '';
+  const body = paragraphs(d.answer);
+  const reason = String(d.reasoning || '').trim();
+  return `<div class="guide-block gd-block">
+    ${head}${lead}
+    <p class="gd-q">问：${escapeHTML(String(d.question || '').slice(0, 80))}</p>
+    <div class="gd-body">${body}</div>
+    ${reason ? `<details class="gd-reason"><summary>看它的推理过程</summary>${paragraphs(reason)}</details>` : ''}
+    <p class="tiny muted">${escapeHTML(d.note || '内容由知乎直答模型生成，可能存在错误；仅供学习参考。')}这是模型的另一种说法，不是本站策展材料——判断仍以页面上的来源为准。</p>
+    <div class="guide-actions">
+      <button class="btn secondary" data-action="guide-chip" data-q="这一站有哪些材料？">对照材料再核一遍 ${icon('arrow')}</button>
+      <a class="btn secondary" href="https://www.zhihu.com/search?type=content&q=${encodeURIComponent(String(d.question || '').slice(0, 40))}" target="_blank" rel="noopener">去知乎搜这个问题 ${icon('external')}</a>
+    </div>
+  </div>`;
+}
+
 /** 面板骨架：浮动小狗 + 右侧抽屉（打开状态由 ctx.ui.guide.open 控制） */
 export function guideShellHTML(ctx) {
   const quick = guideQuickAsks(ctx).map(q => `<button class="guide-chip" data-action="guide-chip" data-q="${escapeHTML(q)}">${escapeHTML(q)}</button>`).join('');
+  const models = ZHIDA_MODELS.map((m, i) => `<option value="${m.id}" title="${escapeHTML(m.hint)}"${i === 0 ? ' selected' : ''}>${escapeHTML(m.name)}</option>`).join('');
   return `<aside class="guide-dock" id="guide-dock" aria-label="向导">
     <button class="guide-dog-btn" data-action="guide-toggle" aria-label="问向导" aria-expanded="false">
       ${guideDogSVG()}<span class="guide-dog-name">问阿山</span>
     </button>
-    <div class="guide-tip" id="guide-tip" hidden></div>
+    <div class="guide-tip" id="guide-tip" role="status" data-action="guide-toggle" title="点一下展开问我" hidden></div>
     <section class="guide-panel" id="guide-panel" role="dialog" aria-label="向导 · 山犬阿山" hidden>
       <header class="guide-head">
         ${guideDogSVG('is-happy')}
-        <div><strong>山犬 · 阿山</strong><small>本地检索 + 出处引用</small></div>
+        <div><strong>山犬 · 阿山</strong><small>本地检索 + 知乎直答</small></div>
         <button class="icon-button" data-action="guide-close" aria-label="收起向导">${icon('x')}</button>
       </header>
       <p class="guide-ctx" id="guide-ctx">${escapeHTML(guideContextLine(ctx))}</p>
@@ -200,7 +238,14 @@ export function guideShellHTML(ctx) {
         <input id="guide-input" type="text" placeholder="问一句：这一段在讲什么？有哪些材料？" autocomplete="off" aria-label="向向导提问">
         <button type="submit" class="btn primary" aria-label="发送">${icon('arrow')}</button>
       </form>
-      <p class="guide-note">我只会引用本地知识库与已取回的知乎摘要，命中不足就说没有；不接生成式模型，不编答案。</p>
+      <div class="guide-direct-row">
+        <label class="guide-model-wrap" title="选一个知乎直答的模型">
+          <span class="tiny muted">直答模型</span>
+          <select id="guide-model" class="guide-model" aria-label="选择知乎直答模型">${models}</select>
+        </label>
+        <button class="btn secondary guide-direct-btn" data-action="guide-direct" title="把上面输入框里的话交给知乎直答模型（额度有限，同一问题只问一次，之后读缓存）">知乎直答 ${icon('external')}</button>
+      </div>
+      <p class="guide-note">我会先引用本地知识库与已取回的知乎摘要（都带出处），再自动补一条<b>知乎直答</b>大模型的回答——那条标明是模型生成，不算本站结论。想指定模型或只问模型，用上面的下拉和「知乎直答」按钮。</p>
     </section>
   </aside>`;
 }

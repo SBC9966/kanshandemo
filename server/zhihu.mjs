@@ -28,8 +28,10 @@ const TTL = {
   questions: 3 * 24 * 60 * 60 * 1000,
   hot: 30 * 60 * 1000,
   hackathon: 12 * 60 * 60 * 1000,
+  direct: 30 * 24 * 60 * 60 * 1000,   // 直答额度稀缺：同一问题+模型的回答固化 30 天
   quota: 60 * 1000
 };
+const TTL_DIRECT = TTL.direct;
 
 let disk = null;
 function loadDisk() {
@@ -121,7 +123,7 @@ function allow(ip, limit, windowMs) {
   return true;
 }
 
-async function call(pathname, params = {}, { timeoutMs = 12000, auth = true, base = BASE } = {}) {
+async function call(pathname, params = {}, { timeoutMs = 12000, auth = true, base = BASE, method = 'GET', bodyText = null } = {}) {
   if (auth && !configured()) {
     const err = new Error('知乎接口未配置（缺少 Access Secret）。');
     err.code = 'NOT_CONFIGURED';
@@ -144,7 +146,7 @@ async function call(pathname, params = {}, { timeoutMs = 12000, auth = true, bas
       headers.Authorization = `Bearer ${secret()}`;
       headers['X-Request-Timestamp'] = String(Math.floor(Date.now() / 1000));
     }
-    const res = await fetch(url, { method: 'GET', headers, signal: ctrl.signal });
+    const res = await fetch(url, { method: method || 'GET', headers, signal: ctrl.signal, body: method === 'POST' ? bodyText : undefined });
     const text = await res.text();
     let payload;
     try {
@@ -402,6 +404,66 @@ export async function hotFor(topicId, { limit = 4, ip = 'local' } = {}) {
   };
 }
 
+/** 知乎直答（大模型接口）：POST /v1/chat/completions，OpenAI 兼容格式。
+ *  额度紧（本租户 2 次/日），所以：同一问题 + 同一模型的回答固化 30 天，不重复消耗；
+ *  失败（含额度耗尽）时退回缓存并在文案里如实写明原因。内容由直答模型生成，仅供学习参考。 */
+export async function directAnswer(query, { model = 'zhida-fast-1p5', ip = 'local' } = {}) {
+  const crypto = await import('node:crypto');
+  const q = String(query || '').trim().slice(0, 1500);
+  if (!q) {
+    const err = new Error('需要一个问题。');
+    err.status = 400;
+    throw err;
+  }
+  const hash = crypto.createHash('md5').update(q + '|' + model).digest('hex').slice(0, 16);
+  const key = `answer:${hash}`;
+  const hit = readCache(key, TTL_DIRECT);
+  if (hit?.fresh) return { ...hit.value, cached: true };
+  if (!allow('d:' + ip, 3, 60_000)) {
+    const err = new Error('直答请求过于频繁，请稍后再试。');
+    err.status = 429;
+    throw err;
+  }
+  try {
+    const payload = await call('/v1/chat/completions', {}, {
+      method: 'POST',
+      auth: true,
+      timeoutMs: 60000,
+      bodyText: JSON.stringify({ model, messages: [{ role: 'user', content: q }], stream: false })
+    });
+    const msg = payload?.choices?.[0]?.message;
+    if (!msg || !String(msg.content || '').trim()) {
+      const err = new Error('直答没有返回内容。');
+      err.status = 502;
+      throw err;
+    }
+    const result = {
+      ok: true,
+      mode: 'live',
+      model,
+      question: q,
+      answer: String(msg.content),
+      reasoning: String(msg.reasoning_content || ''),
+      fetchedAt: new Date().toISOString(),
+      note: '内容由知乎直答模型生成，可能存在错误与遗漏；仅供学习参考，请以页面上的策展材料与原回答为准。'
+    };
+    writeCache(key, result);
+    return result;
+  } catch (err) {
+    if (hit) {
+      return {
+        ...hit.value,
+        mode: 'cached',
+        cached: true,
+        degraded: true,
+        snapshotAt: new Date(hit.at).toISOString(),
+        note: `直答取回失败（${err?.message || '未知原因'}），这里是 ${new Date(hit.at).toLocaleString('zh-CN')} 的缓存结果。`
+      };
+    }
+    throw err;
+  }
+}
+
 /** 某个知乎问题下的真实回答摘要（服务端截取文本，不是全文，也不是 AI 生成） */
 export async function questionAnswers(questionUrlOrId, limit = 6, { ip = 'local' } = {}) {
   const raw = String(questionUrlOrId || '').trim();
@@ -624,6 +686,7 @@ export function status() {
       '/api/zhihu/questions',
       '/api/zhihu/topic/<id>',
       '/api/zhihu/works',
+      '/api/zhihu/answer',
       '/api/zhihu/quota'
     ]
   };

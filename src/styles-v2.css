@@ -1034,7 +1034,7 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .guide-dog-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:100px;
   background:var(--zh-card);border:1px solid var(--zh-line);box-shadow:var(--zh-shadow-2);color:var(--zh-ink);
   font-weight:600;font-size:13.5px;transition:transform .22s var(--zh-ease),box-shadow .22s var(--zh-ease),border-color .22s var(--zh-ease)}
-.guide-dog-btn:hover{transform:translateY(-2px);border-color:#CFE3FB}
+.guide-dog-btn:hover{border-color:#CFE3FB;box-shadow:0 12px 26px rgba(23,81,153,.16)}
 .guide-dog-btn[aria-expanded="true"]{background:var(--zh-blue);border-color:var(--zh-blue);color:#fff}
 .guide-dog{width:34px;height:34px;color:var(--zh-blue)}
 .guide-dog-btn[aria-expanded="true"] .guide-dog{color:#fff}
@@ -1044,8 +1044,12 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 @keyframes dog-wag{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(14deg)}}
 @keyframes dog-pant{0%,100%{transform:translateY(0)}50%{transform:translateY(1.2px)}}
 @keyframes dog-perk{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
-.guide-tip{max-width:300px;background:var(--zh-ink);color:#fff;font-size:12.5px;line-height:1.7;
-  padding:9px 12px;border-radius:12px 12px 2px 12px;box-shadow:var(--zh-shadow-2);animation:zh-rise .3s var(--zh-ease) both}
+/* 气泡绝对定位：出现/消失都不推动小狗按钮（之前是 flex 子项，展开动画会把按钮顶来顶去，
+   连点都点不准），并且只用 opacity 过渡，避免遮挡与位移 */
+.guide-tip{position:absolute;right:0;bottom:calc(100% + 10px);width:max-content;max-width:300px;background:var(--zh-ink);color:#fff;font-size:12.5px;line-height:1.7;cursor:pointer;
+  padding:9px 12px;border-radius:12px 12px 2px 12px;box-shadow:var(--zh-shadow-2);animation:zh-fade .18s var(--zh-ease) both}
+@keyframes zh-fade{from{opacity:0}to{opacity:1}}
+.guide-tip::after{content:" 点我展开";opacity:.6;font-size:12.5px;white-space:nowrap}
 .guide-panel{position:fixed;right:22px;bottom:88px;width:min(392px,calc(100vw - 44px));max-height:min(70vh,620px);
   display:flex;flex-direction:column;background:var(--zh-card);border:1px solid var(--zh-line);border-radius:16px;
   box-shadow:0 18px 48px rgba(18,18,18,.16);overflow:hidden;animation:zh-rise .32s var(--zh-ease) both}
@@ -1093,6 +1097,26 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .guide-form input{flex:1 1 auto;min-width:0;padding:9px 12px;border-radius:10px;border:1px solid var(--zh-line);background:#fff;font-size:13.5px}
 .guide-form input:focus{outline:2px solid var(--zh-blue-soft);border-color:#CFE3FB}
 .guide-form .btn{padding:9px 13px}
+/* 知乎直答：模型选择 + 结果块。视觉上刻意和本地检索的答案区分开（左侧蓝条 + 模型徽标） */
+.guide-direct-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:0 16px 8px}
+.guide-model-wrap{display:inline-flex;align-items:center;gap:6px;flex:1 1 150px;min-width:0}
+.guide-model{flex:1 1 auto;min-width:0;min-height:44px;padding:0 10px;border-radius:9px;border:1px solid var(--zh-line);
+  background:#fff;font-size:12.5px;color:var(--zh-ink);font-family:inherit}
+.guide-model:focus{outline:2px solid var(--zh-blue-soft);border-color:#CFE3FB}
+.guide-direct-btn{padding:7px 12px;font-size:13px;white-space:nowrap}
+.gd-block{padding:10px 12px;border-radius:12px;background:#FBFCFF;border:1px solid var(--zh-line);border-left:3px solid var(--zh-blue)}
+.gd-block .guide-label{display:flex;align-items:center;gap:8px}
+.gd-model{display:inline-block;padding:1px 8px;border-radius:100px;background:var(--zh-blue-soft);
+  color:var(--zh-blue-deep);font-size:12.5px;font-weight:600;letter-spacing:0}
+.gd-q{margin:6px 0 8px;font-size:12.5px;color:var(--zh-gray);padding-bottom:8px;border-bottom:1px dashed var(--zh-line)}
+.gd-body p{margin:0 0 9px;font-size:13.5px;line-height:1.85;color:var(--zh-ink)}
+.gd-body p:last-child{margin-bottom:0}
+.gd-reason{margin:10px 0 6px;border-top:1px solid var(--zh-line);padding-top:8px}
+.gd-reason summary{font-size:12.5px;color:var(--zh-blue);cursor:pointer;list-style:none}
+.gd-reason summary::-webkit-details-marker{display:none}
+.gd-reason summary::before{content:"▸ ";color:var(--zh-blue)}
+.gd-reason[open] summary::before{content:"▾ "}
+.gd-reason p{margin:8px 0 0;font-size:12.5px;line-height:1.8;color:var(--zh-gray);white-space:pre-wrap}
 .guide-note{margin:0;padding:0 16px 14px;font-size:11.5px;line-height:1.7;color:var(--zh-gray-l)}
 @media(max-width:760px){
   .guide-dock{right:14px;bottom:14px}

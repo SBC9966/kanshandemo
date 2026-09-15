@@ -1093,7 +1093,7 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .guide-dog-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:100px;
   background:var(--zh-card);border:1px solid var(--zh-line);box-shadow:var(--zh-shadow-2);color:var(--zh-ink);
   font-weight:600;font-size:13.5px;transition:transform .22s var(--zh-ease),box-shadow .22s var(--zh-ease),border-color .22s var(--zh-ease)}
-.guide-dog-btn:hover{transform:translateY(-2px);border-color:#CFE3FB}
+.guide-dog-btn:hover{border-color:#CFE3FB;box-shadow:0 12px 26px rgba(23,81,153,.16)}
 .guide-dog-btn[aria-expanded="true"]{background:var(--zh-blue);border-color:var(--zh-blue);color:#fff}
 .guide-dog{width:34px;height:34px;color:var(--zh-blue)}
 .guide-dog-btn[aria-expanded="true"] .guide-dog{color:#fff}
@@ -1103,8 +1103,12 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 @keyframes dog-wag{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(14deg)}}
 @keyframes dog-pant{0%,100%{transform:translateY(0)}50%{transform:translateY(1.2px)}}
 @keyframes dog-perk{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
-.guide-tip{max-width:300px;background:var(--zh-ink);color:#fff;font-size:12.5px;line-height:1.7;
-  padding:9px 12px;border-radius:12px 12px 2px 12px;box-shadow:var(--zh-shadow-2);animation:zh-rise .3s var(--zh-ease) both}
+/* 气泡绝对定位：出现/消失都不推动小狗按钮（之前是 flex 子项，展开动画会把按钮顶来顶去，
+   连点都点不准），并且只用 opacity 过渡，避免遮挡与位移 */
+.guide-tip{position:absolute;right:0;bottom:calc(100% + 10px);width:max-content;max-width:300px;background:var(--zh-ink);color:#fff;font-size:12.5px;line-height:1.7;cursor:pointer;
+  padding:9px 12px;border-radius:12px 12px 2px 12px;box-shadow:var(--zh-shadow-2);animation:zh-fade .18s var(--zh-ease) both}
+@keyframes zh-fade{from{opacity:0}to{opacity:1}}
+.guide-tip::after{content:" 点我展开";opacity:.6;font-size:12.5px;white-space:nowrap}
 .guide-panel{position:fixed;right:22px;bottom:88px;width:min(392px,calc(100vw - 44px));max-height:min(70vh,620px);
   display:flex;flex-direction:column;background:var(--zh-card);border:1px solid var(--zh-line);border-radius:16px;
   box-shadow:0 18px 48px rgba(18,18,18,.16);overflow:hidden;animation:zh-rise .32s var(--zh-ease) both}
@@ -1152,6 +1156,26 @@ small,.tiny,.muted,.mode-pill,.edition-badge,.hero-suggestions,.hero-suggestions
 .guide-form input{flex:1 1 auto;min-width:0;padding:9px 12px;border-radius:10px;border:1px solid var(--zh-line);background:#fff;font-size:13.5px}
 .guide-form input:focus{outline:2px solid var(--zh-blue-soft);border-color:#CFE3FB}
 .guide-form .btn{padding:9px 13px}
+/* 知乎直答：模型选择 + 结果块。视觉上刻意和本地检索的答案区分开（左侧蓝条 + 模型徽标） */
+.guide-direct-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:0 16px 8px}
+.guide-model-wrap{display:inline-flex;align-items:center;gap:6px;flex:1 1 150px;min-width:0}
+.guide-model{flex:1 1 auto;min-width:0;min-height:44px;padding:0 10px;border-radius:9px;border:1px solid var(--zh-line);
+  background:#fff;font-size:12.5px;color:var(--zh-ink);font-family:inherit}
+.guide-model:focus{outline:2px solid var(--zh-blue-soft);border-color:#CFE3FB}
+.guide-direct-btn{padding:7px 12px;font-size:13px;white-space:nowrap}
+.gd-block{padding:10px 12px;border-radius:12px;background:#FBFCFF;border:1px solid var(--zh-line);border-left:3px solid var(--zh-blue)}
+.gd-block .guide-label{display:flex;align-items:center;gap:8px}
+.gd-model{display:inline-block;padding:1px 8px;border-radius:100px;background:var(--zh-blue-soft);
+  color:var(--zh-blue-deep);font-size:12.5px;font-weight:600;letter-spacing:0}
+.gd-q{margin:6px 0 8px;font-size:12.5px;color:var(--zh-gray);padding-bottom:8px;border-bottom:1px dashed var(--zh-line)}
+.gd-body p{margin:0 0 9px;font-size:13.5px;line-height:1.85;color:var(--zh-ink)}
+.gd-body p:last-child{margin-bottom:0}
+.gd-reason{margin:10px 0 6px;border-top:1px solid var(--zh-line);padding-top:8px}
+.gd-reason summary{font-size:12.5px;color:var(--zh-blue);cursor:pointer;list-style:none}
+.gd-reason summary::-webkit-details-marker{display:none}
+.gd-reason summary::before{content:"▸ ";color:var(--zh-blue)}
+.gd-reason[open] summary::before{content:"▾ "}
+.gd-reason p{margin:8px 0 0;font-size:12.5px;line-height:1.8;color:var(--zh-gray);white-space:pre-wrap}
 .guide-note{margin:0;padding:0 16px 14px;font-size:11.5px;line-height:1.7;color:var(--zh-gray-l)}
 @media(max-width:760px){
   .guide-dock{right:14px;bottom:14px}
@@ -60326,9 +60350,9 @@ function summitMapHTML(ctx) {
 
 
 // 傍身向导「山犬 · 阿山」：在探索时给解释与帮助。
-// 检索侧全部走本地知识库（QA 卡片 + 49 条来源 + 当前营地内容 + 知乎缓存），
-// 答案必须带出处；命中不足就如实说"没有足够匹配"，不编造。刻意不接生成式模型：
-// 没配置模型时凭空生成只会显得像在编，这里只做「检索 + 归纳 + 引用」。
+// 检索侧走本地知识库（QA 卡片 + 49 条来源 + 当前营地内容 + 知乎缓存），答案必须带出处；
+// 每次提问后再补一条「知乎直答」大模型的回答（服务端 /api/zhihu/answer），
+// 两者在界面上分得很开：本地那条是策展材料，直答那条标明是模型生成、不算本站结论。
 
 
 
@@ -60412,7 +60436,7 @@ function zhihuPart(ctx, question) {
 const LOCAL_FAQ = [
   { k: /能做什么|干什么用|这是什么|怎么用|介绍/, a: '这是一条"爬山式"的知识路径：六座知识山，每座五层营地（认识 → 背景 → 核心 → 分歧 → 延伸）。每一层先摆材料与出处，再让你亲手做一个互动实验，最后用一次理解确认把话说清。右侧还有一座资料馆，49 条资料都标了读取范围与来处。' },
   { k: /数据|资料.*来|来源|哪来|可靠|编的/, a: '三类来源分得很清：本地策展资料 49 条（33 条知乎问题与专栏入口 + 16 份公开参考页），知乎实时内容经开放平台接口取回（回答是服务端摘要，不是全文），以及本项目自己撰写的导读与实验。哪一条属于哪一类，卡片上都标着；我们不复制全文、不伪造赞同数。' },
-  { k: /联网|离线|断网|网络/, a: '页面本身可以离线运行（成品是单文件，插画与脚本都内嵌）。知乎那部分需要本地服务在线才有实时内容；取不到时会显示"暂时取不到"，不会假装成功。' },
+  { k: /联网|离线|断网|网络/, a: '页面本身可以离线运行（成品是单文件，插画与脚本都内嵌）。知乎那部分（讨论摘要、热榜、直答大模型）需要本地服务或线上代理在线才有实时内容；取不到时会显示"暂时取不到"，不会假装成功。' },
   { k: /进度|记录|存在哪|上传|隐私/, a: '你的进度（走过的营地、笔记、收藏）只存在这台设备的浏览器 localStorage 里，不上传、不带账号。可以在"我的理解图谱"里导出成考察手记。' },
   { k: /解锁|为什么能进|前三个|跳着|顺序/, a: '这是路演模式：前三个营地默认开放，方便直接跳进去看内容；后面的营地走完前面的就会依次解锁。进度按"逐站真实完成"统计，跳着走不会把中间的空档算成走过。' },
   { k: /3d|沙盘|视角|缩放|旋转/, a: '山页右上角可以切到 3D 微缩沙盘：拖动旋转、滚轮缩放，镜头会按五站自动导览；你一拖动它就交给手动，点罗盘回到自动导览。旁边的按钮可以换一批山林与落石（山形不变）。' },
@@ -60490,7 +60514,8 @@ function guideAnswer(ctx, question) {
       html: `<p class="guide-lead">本地资料里没有足够匹配的内容，我就不硬凑一个答案了。</p>
         <p class="tiny muted">${escapeHTML(r.reason || '')}</p>
         <div class="guide-actions"><button class="btn secondary" data-action="library-open">去资料馆自己搜 ${icon('arrow')}</button>
-        <button class="btn secondary" data-action="guide-chip" data-q="${inRead ? '这一站在讲什么？' : '这个 Demo 能做什么？'}">换个问法 ${icon('arrow')}</button></div>`,
+        <button class="btn secondary" data-action="guide-chip" data-q="${inRead ? '这一站在讲什么？' : '这个 Demo 能做什么？'}">换个问法 ${icon('arrow')}</button>
+        <button class="btn secondary" data-action="guide-direct" data-q="${escapeHTML(q.slice(0, 80))}">交给知乎直答试试 ${icon('external')}</button></div>`,
       sources: [], usedLocal: true, missed: true
     };
   }
@@ -60505,18 +60530,55 @@ function guideAnswer(ctx, question) {
   };
 }
 
+/** 知乎直答的可选模型。三个模型共用同一组额度（每日有限），所以默认选最快的「快答」；
+ *  需要看推理过程时再自己切到「深度思考」。 */
+const ZHIDA_MODELS = [
+  { id: 'zhida-fast-1p5', name: '快答', hint: '最快（约 3 秒），适合问一个概念', wait: '大约 3 秒' },
+  { id: 'zhida-thinking-1p5', name: '深度思考', hint: '会先想一遍再答，带推理过程', wait: '十几秒，长问题更久' },
+  { id: 'zhida-agent', name: '智能体', hint: '先去知乎翻真实材料再答，最慢也最实', wait: '可能要一分钟，别关面板' }
+];
+const ZHIDA_MODEL_NAME = (id) => (ZHIDA_MODELS.find(m => m.id === id) || ZHIDA_MODELS[0]).name;
+const ZHIDA_MODEL_WAIT = (id) => (ZHIDA_MODELS.find(m => m.id === id) || ZHIDA_MODELS[0]).wait;
+
+const paragraphs = (text) => String(text || '').split(/\n{2,}/).map(s => s.trim()).filter(Boolean)
+  .map(s => `<p>${escapeHTML(s)}</p>`).join('');
+
+/** 直答结果渲染：模型回答 + 可折叠的推理过程 + 额度/缓存提示（不假装是检索结果）。 */
+function zhihuDirectHTML(d) {
+  const cached = d.mode === 'cached' || d.mode === 'cache' || d.cached;
+  const name = ZHIDA_MODEL_NAME(d.model);
+  const head = `<span class="guide-label">知乎直答<b class="gd-model">${escapeHTML(name)}</b></span>`;
+  const lead = cached
+    ? `<p class="tiny muted">同一问题不再重复问模型，直接给你上次取回的回答（${escapeHTML(String(d.fetchedAt || '').slice(0, 10))}）。</p>`
+    : '';
+  const body = paragraphs(d.answer);
+  const reason = String(d.reasoning || '').trim();
+  return `<div class="guide-block gd-block">
+    ${head}${lead}
+    <p class="gd-q">问：${escapeHTML(String(d.question || '').slice(0, 80))}</p>
+    <div class="gd-body">${body}</div>
+    ${reason ? `<details class="gd-reason"><summary>看它的推理过程</summary>${paragraphs(reason)}</details>` : ''}
+    <p class="tiny muted">${escapeHTML(d.note || '内容由知乎直答模型生成，可能存在错误；仅供学习参考。')}这是模型的另一种说法，不是本站策展材料——判断仍以页面上的来源为准。</p>
+    <div class="guide-actions">
+      <button class="btn secondary" data-action="guide-chip" data-q="这一站有哪些材料？">对照材料再核一遍 ${icon('arrow')}</button>
+      <a class="btn secondary" href="https://www.zhihu.com/search?type=content&q=${encodeURIComponent(String(d.question || '').slice(0, 40))}" target="_blank" rel="noopener">去知乎搜这个问题 ${icon('external')}</a>
+    </div>
+  </div>`;
+}
+
 /** 面板骨架：浮动小狗 + 右侧抽屉（打开状态由 ctx.ui.guide.open 控制） */
 function guideShellHTML(ctx) {
   const quick = guideQuickAsks(ctx).map(q => `<button class="guide-chip" data-action="guide-chip" data-q="${escapeHTML(q)}">${escapeHTML(q)}</button>`).join('');
+  const models = ZHIDA_MODELS.map((m, i) => `<option value="${m.id}" title="${escapeHTML(m.hint)}"${i === 0 ? ' selected' : ''}>${escapeHTML(m.name)}</option>`).join('');
   return `<aside class="guide-dock" id="guide-dock" aria-label="向导">
     <button class="guide-dog-btn" data-action="guide-toggle" aria-label="问向导" aria-expanded="false">
       ${guideDogSVG()}<span class="guide-dog-name">问阿山</span>
     </button>
-    <div class="guide-tip" id="guide-tip" hidden></div>
+    <div class="guide-tip" id="guide-tip" role="status" data-action="guide-toggle" title="点一下展开问我" hidden></div>
     <section class="guide-panel" id="guide-panel" role="dialog" aria-label="向导 · 山犬阿山" hidden>
       <header class="guide-head">
         ${guideDogSVG('is-happy')}
-        <div><strong>山犬 · 阿山</strong><small>本地检索 + 出处引用</small></div>
+        <div><strong>山犬 · 阿山</strong><small>本地检索 + 知乎直答</small></div>
         <button class="icon-button" data-action="guide-close" aria-label="收起向导">${icon('x')}</button>
       </header>
       <p class="guide-ctx" id="guide-ctx">${escapeHTML(guideContextLine(ctx))}</p>
@@ -60526,7 +60588,14 @@ function guideShellHTML(ctx) {
         <input id="guide-input" type="text" placeholder="问一句：这一段在讲什么？有哪些材料？" autocomplete="off" aria-label="向向导提问">
         <button type="submit" class="btn primary" aria-label="发送">${icon('arrow')}</button>
       </form>
-      <p class="guide-note">我只会引用本地知识库与已取回的知乎摘要，命中不足就说没有；不接生成式模型，不编答案。</p>
+      <div class="guide-direct-row">
+        <label class="guide-model-wrap" title="选一个知乎直答的模型">
+          <span class="tiny muted">直答模型</span>
+          <select id="guide-model" class="guide-model" aria-label="选择知乎直答模型">${models}</select>
+        </label>
+        <button class="btn secondary guide-direct-btn" data-action="guide-direct" title="把上面输入框里的话交给知乎直答模型（额度有限，同一问题只问一次，之后读缓存）">知乎直答 ${icon('external')}</button>
+      </div>
+      <p class="guide-note">我会先引用本地知识库与已取回的知乎摘要（都带出处），再自动补一条<b>知乎直答</b>大模型的回答——那条标明是模型生成，不算本站结论。想指定模型或只问模型，用上面的下拉和「知乎直答」按钮。</p>
     </section>
   </aside>`;
 }
@@ -60708,7 +60777,44 @@ function pushGuideMessage(role,html){
 }
 function guideGreeting(){
   return '<p class="guide-lead">我是阿山，随身的向导。你现在的位置：'+escapeHTML(guideContextLine(ctx).replace('现在在：',''))+'。</p>'
-    +'<p class="tiny muted">问一句就行，我去本地资料里找；答案都带出处，找不到就说没有。</p>';
+    +'<p class="tiny muted">问一句就行：我先去本地资料里找（带出处），再补一条知乎直答大模型的回答；找不到就说没有。</p>';
+}
+// 把本地检索到的材料整理成"参考资料"，和问题一起交给知乎直答：
+// 这样模型是在本站材料上回答，而不是凭空生成；引用仍然回到上面的卡片。
+function guideGrounding(question){
+  const node=ctx.mountain?.nodes?.[ctx.node||0];
+  const lines=[];
+  if(ctx.view==='read'&&node){
+    lines.push('当前营地：'+ctx.mountain.title+' · '+(STAGES[ctx.node||0]||'')+'「'+node.title+'」');
+    if(node.intro)lines.push('导读：'+String(node.intro).slice(0,110));
+    (node.points||[]).slice(0,2).forEach(p=>lines.push('要点·'+p.title+'：'+String(p.text).slice(0,80)));
+  }
+  try{
+    const r=retrieveKnowledge(question,ctx.mountain?.id||null);
+    if(r.ok&&r.answer)lines.push('本站策展问答：'+String(r.answer).slice(0,150));
+    const s=(r.sources||[]).slice(0,2).map(x=>x.title).join('；');
+    if(s)lines.push('可引用的来源：'+s);
+  }catch{}
+  return lines.slice(0,6);
+}
+// 每次提问都自动补一条"知乎直答·快答"的回答（有材料就带上材料）。取不到就悄悄撤掉，不打扰用户。
+async function askGuideAI(question){
+  const q=String(question||'').trim();
+  if(q.length<4)return;
+  const log=document.getElementById('guide-log');if(!log)return;
+  const facts=guideGrounding(q);
+  const prompt='你是知乎社区的伴学向导「阿山」。下面是本站已有的材料，请优先依据它们，用中文、2 到 3 段、250 字以内回答用户的问题；材料里没提到的不要编造具体事实。\n'
+    +(facts.length?'【材料】\n'+facts.map((t,i)=>(i+1)+'. '+t).join('\n')+'\n':'')
+    +'【用户问题】'+q;
+  const el=pushGuideMessage('dog','<span class="guide-typing"><span class="guide-dots"><i></i><i></i><i></i></span>同时问一次知乎直答 · 快答（约 3 秒）</span>');
+  try{
+    const r=await fetch('/api/zhihu/answer?q='+encodeURIComponent(prompt)+'&model=zhida-fast-1p5');
+    const d=await r.json().catch(()=>null);
+    if(!r.ok||!d||d.ok===false||!d.answer){el?.remove();return;}
+    if(el){el.classList.add('is-answer');el.innerHTML=guideAvatar()+'<div class="guide-bubble">'+zhihuDirectHTML({...d,question:q,grounded:facts.length>0})+'</div>';}
+    const l=document.getElementById('guide-log');if(l)l.scrollTop=l.scrollHeight;
+    track&&track('guide_ai',d.cached?'cached':'live');
+  }catch{el?.remove();}
 }
 function askGuide(question){
   const q=String(question||'').trim();
@@ -60727,7 +60833,53 @@ function askGuide(question){
     dock?.classList.remove('is-thinking');
     const log2=document.getElementById('guide-log');
     if(log2)log2.scrollTop=log2.scrollHeight;
+    // 就在本地答案之后，再补一条知乎直答的回答（"作品说明"类问题除外，那些不需要模型）
+    if(!res.faq&&ctx.ui.guideAI!==false)askGuideAI(q);
   },520);
+}
+// 知乎直答：只有用户自己点「知乎直答」才会调大模型（额度有限，同一问题+模型的结果落盘 30 天）。
+// 这一路不是本地检索，回答必须带"由模型生成"的标注，不能和策展材料混为一谈。
+async function askGuideDirect(question){
+  const raw=String(question||'').trim();
+  const log=document.getElementById('guide-log');
+  if(!log)return;
+  if(!log.childElementCount)pushGuideMessage('dog',guideGreeting());
+  // 空输入不报错：按当前位置生成一个像样的默认问题，演示时一键就能出效果
+  const node=ctx.mountain?.nodes?.[ctx.node||0];
+  const fallback=ctx.view==='read'&&node
+    ? '关于「'+String(node.title).slice(0,20)+'」这一站，知乎上最值得先了解的一种说法是什么？'
+    : ctx.mountain?('「'+ctx.mountain.title+'」这条路里，最容易被忽略的一点是什么？'):'这个作品想解决什么问题？';
+  const q=raw||fallback;
+  const sel=document.getElementById('guide-model');
+  const model=(sel&&sel.value)||'zhida-fast-1p5';
+  pushGuideMessage('user',q);
+  const dock=document.getElementById('guide-dock');
+  dock?.classList.add('is-thinking');
+  const el=pushGuideMessage('dog','<span class="guide-typing"><span class="guide-dots"><i></i><i></i><i></i></span>正在问知乎直答 · '+escapeHTML(ZHIDA_MODEL_NAME(model))+'（'+escapeHTML(ZHIDA_MODEL_WAIT(model))+'）</span><span class="guide-progress"></span>');
+  const token=(ctx.ui.directToken=(ctx.ui.directToken||0)+1);
+  const done=(res)=>{
+    if(token!==ctx.ui.directToken)return;
+    dock?.classList.remove('is-thinking');
+    if(el){el.classList.add('is-answer');el.innerHTML=guideAvatar()+'<div class="guide-bubble">'+res+'</div>';}
+    const l=document.getElementById('guide-log');if(l)l.scrollTop=l.scrollHeight;
+  };
+  try{
+    const r=await fetch('/api/zhihu/answer?q='+encodeURIComponent(q)+'&model='+encodeURIComponent(model));
+    const d=await r.json().catch(()=>null);
+    if(!r.ok||!d||d.ok===false){
+      const reason=d?.error||('HTTP '+r.status);
+      const quota=/额度|quota|次数|rate|限流|429/i.test(reason+r.status);
+      done('<p class="guide-lead">这次没问成知乎直答。</p><p class="tiny muted">'+escapeHTML(reason)+
+        (quota?'（直答每日额度很少，本演示只在必要时调用；可以先看下面的本地材料与知乎讨论。）':'')+'</p>'+
+        '<div class="guide-actions"><button class="btn secondary" data-action="guide-chip" data-q="这一站有哪些材料？">先看本地材料 '+icon('arrow')+'</button>'+
+        '<a class="btn secondary" href="https://www.zhihu.com/question/'+encodeURIComponent(q.slice(0,40))+'" target="_blank" rel="noopener">去知乎自己搜 '+icon('external')+'</a></div>');
+      return;
+    }
+    done(zhihuDirectHTML(d));
+    track&&track('guide_direct',model+(d.cached?':cached':':live'));
+  }catch(err){
+    done('<p class="guide-lead">知乎直答这条路暂时不通。</p><p class="tiny muted">'+escapeHTML(fetchFailNote(err))+'：离线打开、代理未启动或额度用尽时会这样。本地检索不受影响。</p>');
+  }
 }
 function ensureGuideDog(){
   let dock=document.getElementById('guide-dock');
@@ -60749,13 +60901,20 @@ function ensureGuideDog(){
   if(quick)quick.innerHTML=guideQuickAsks(ctx).map(q=>'<button class="guide-chip" data-action="guide-chip" data-q="'+escapeHTML(q)+'">'+escapeHTML(q)+'</button>').join('');
   const panel=document.getElementById('guide-panel');
   if(!first&&panel&&!panel.hidden)pushGuideMessage('dog','<p class="guide-lead">换到这里了：'+escapeHTML(guideContextLine(ctx).replace('现在在：',''))+'。</p>');
+  // 气泡提示只在本次打开页面时出现一次：以前每换一站就弹一次、还要等 9 秒自己消失，
+  // 挡住内容又关不掉。现在任何一次点击/按键/滚动都会立刻收起它，点气泡本身直接开面板。
   const tip=document.getElementById('guide-tip');
-  if(tip&&panel&&panel.hidden){
-    tip.textContent=guideTip(ctx);tip.hidden=false;
-    clearTimeout(ctx.ui.guideTipTimer);
-    ctx.ui.guideTipTimer=setTimeout(()=>{tip.hidden=true;},9000);
-  }
+  if(tip&&panel&&panel.hidden&&!guideTipShown){guideTipShown=true;showGuideTip(tip);}
 }
+let guideTipShown=false;
+function hideGuideTip(){const tip=document.getElementById('guide-tip');if(tip&&!tip.hidden)tip.hidden=true;clearTimeout(guideTipTimer);}
+let guideTipTimer=0;
+function showGuideTip(tip){
+  tip.textContent=guideTip(ctx);tip.hidden=false;
+  clearTimeout(guideTipTimer);
+  guideTipTimer=setTimeout(()=>{tip.hidden=true;},6000);
+}
+['pointerdown','keydown','wheel','touchstart'].forEach(ev=>document.addEventListener(ev,()=>hideGuideTip(),{passive:true,capture:true}));
 function bindExploreRail(){
   const rail=document.querySelector('.recommend-grid');
   // 每次渲染都会换掉 .recommend-grid 节点：先清掉上一轮的巡游定时器，
@@ -60811,6 +60970,8 @@ document.addEventListener('click',async event=>{if(event.target.closest('.skip-l
  case 'guide-toggle':{const panel=document.getElementById('guide-panel'),btn=document.querySelector('[data-action="guide-toggle"]');const willOpen=!!(panel&&panel.hidden);if(panel)panel.hidden=!willOpen;if(btn)btn.setAttribute('aria-expanded',String(willOpen));if(willOpen){const tip=document.getElementById('guide-tip');if(tip)tip.hidden=true;askGuide('');}break;}
  case 'guide-close':{const panel=document.getElementById('guide-panel');if(panel)panel.hidden=true;const btn=document.querySelector('[data-action="guide-toggle"]');if(btn)btn.setAttribute('aria-expanded','false');break;}
  case 'guide-chip':{askGuide(el.dataset.q||'');break;}
+ // 直答按钮：带 data-q 的（检索没命中时的兜底入口）用那句话问，否则读输入框
+ case 'guide-direct':{const inline=el.dataset.q||'';const inp=document.getElementById('guide-input');const fromInput=inp?String(inp.value||'').trim():'';const q=inline||fromInput;if(inp&&!inline)inp.value='';askGuideDirect(q);break;}
  case 'excerpt-toggle':{
   // 回答卡（.zhihu-answer）和片段卡（.zhihu-excerpt）里按钮的父容器不同，旧代码只认 .zhihu-excerpt，
   // 于是节点页「先看材料」里的展开按钮点了没反应。这里按父容器找，并同步 aria-expanded。
